@@ -1,0 +1,71 @@
+<!-- pages/index/index.wxml -->
+<view class="container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <view class="header-content">
+      <text class="title">灵麝监测</text>
+      <text class="subtitle">实时守护 · 智能预警</text>
+    </view>
+  </view>
+
+  <!-- 数据概览卡 -->
+  <view class="data-card">
+    <view class="data-main">
+      <text class="number">{{activeCount}}</text>
+      <text class="separator">/</text>
+      <text class="total">{{totalCount}}</text>
+      <text class="unit">只</text>
+    </view>
+    <text class="label">今日活动正常</text>
+    <view class="status-tag {{systemStatus}}">
+      <view class="status-dot"></view>
+      <text>{{statusText}}</text>
+    </view>
+  </view>
+
+  <!-- 快捷功能 -->
+  <view class="quick-actions">
+    <view class="action-btn" bindtap="goToMonitor">
+      <view class="icon monitor">📹</view>
+      <text>实时监控</text>
+    </view>
+    <view class="action-btn" bindtap="goToReport">
+      <view class="icon report">📊</view>
+      <text>今日报表</text>
+    </view>
+    <view class="action-btn" bindtap="goToDevice">
+      <view class="icon device">⚙️</view>
+      <text>设备管理</text>
+    </view>
+  </view>
+
+  <!-- 圈舍列表 -->
+  <view class="section-title">圈舍状态</view>
+  <view class="shed-list">
+    <view 
+      class="shed-card {{item.status}}" 
+      wx:for="{{shedList}}" 
+      wx:key="id"
+      bindtap="goToShedDetail"
+      data-id="{{item.id}}"
+    >
+      <view class="shed-icon">🏠</view>
+      <view class="shed-info">
+        <text class="name">{{item.name}}</text>
+        <text class="env">温度 {{item.temperature}}°C · 湿度 {{item.humidity}}%</text>
+      </view>
+      <view class="shed-status">
+        <text class="count">{{item.animalCount}}只</text>
+        <text class="status-text">{{item.statusText}}</text>
+        <view class="alert-badge" wx:if="{{item.alertCount > 0}}">
+          ⚠️ {{item.alertCount}}只{{item.alertType}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="load-more" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

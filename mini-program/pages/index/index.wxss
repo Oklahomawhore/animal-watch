@@ -1,0 +1,238 @@
+/* pages/index/index.wxss */
+.container {
+  min-height: 100vh;
+  background: #F5F5F5;
+  padding-bottom: 20px;
+}
+
+/* 头部区域 */
+.header {
+  background: linear-gradient(180deg, #2E7D32 0%, #1B5E20 100%);
+  padding: 80rpx 40rpx 100rpx;
+  text-align: center;
+}
+
+.header-content .title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 16rpx;
+}
+
+.header-content .subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 数据概览卡 */
+.data-card {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  margin: -60rpx 40rpx 40rpx;
+  padding: 48rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.data-main {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 16rpx;
+}
+
+.data-main .number {
+  font-size: 96rpx;
+  font-weight: 700;
+  color: #2E7D32;
+  line-height: 1;
+}
+
+.data-main .separator {
+  font-size: 64rpx;
+  color: #757575;
+  margin: 0 8rpx;
+}
+
+.data-main .total {
+  font-size: 64rpx;
+  color: #757575;
+}
+
+.data-main .unit {
+  font-size: 32rpx;
+  color: #757575;
+  margin-left: 8rpx;
+}
+
+.data-card .label {
+  display: block;
+  font-size: 28rpx;
+  color: #757575;
+  margin-bottom: 24rpx;
+}
+
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 12rpx 24rpx;
+  border-radius: 40rpx;
+  font-size: 24rpx;
+}
+
+.status-tag.normal {
+  background: #E8F5E9;
+  color: #2E7D32;
+}
+
+.status-tag.warning {
+  background: #FFF3E0;
+  color: #FF6B35;
+}
+
+.status-dot {
+  width: 16rpx;
+  height: 16rpx;
+  background: #4CAF50;
+  border-radius: 50%;
+}
+
+.status-tag.warning .status-dot {
+  background: #FF6B35;
+}
+
+/* 快捷功能 */
+.quick-actions {
+  display: flex;
+  justify-content: center;
+  gap: 48rpx;
+  padding: 0 40rpx 40rpx;
+}
+
+.action-btn {
+  text-align: center;
+}
+
+.action-btn .icon {
+  width: 112rpx;
+  height: 112rpx;
+  background: #E8F5E9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+  font-size: 48rpx;
+}
+
+.action-btn:active .icon {
+  transform: scale(0.95);
+}
+
+.action-btn text {
+  font-size: 24rpx;
+  color: #212121;
+}
+
+/* 圈舍列表 */
+.section-title {
+  padding: 32rpx 40rpx 16rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #212121;
+}
+
+.shed-list {
+  padding: 0 40rpx;
+}
+
+.shed-card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  border-left: 8rpx solid #4CAF50;
+}
+
+.shed-card.warning {
+  border-left-color: #FFC107;
+}
+
+.shed-card.danger {
+  border-left-color: #FF6B35;
+}
+
+.shed-icon {
+  width: 80rpx;
+  height: 80rpx;
+  background: #E8F5E9;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+}
+
+.shed-info {
+  flex: 1;
+}
+
+.shed-info .name {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #212121;
+  margin-bottom: 8rpx;
+}
+
+.shed-info .env {
+  display: block;
+  font-size: 24rpx;
+  color: #757575;
+}
+
+.shed-status {
+  text-align: right;
+}
+
+.shed-status .count {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #2E7D32;
+  margin-bottom: 4rpx;
+}
+
+.shed-status .count.warning {
+  color: #FF6B35;
+}
+
+.shed-status .status-text {
+  display: block;
+  font-size: 24rpx;
+  color: #757575;
+}
+
+.alert-badge {
+  display: inline-block;
+  background: #FFF3E0;
+  color: #FF6B35;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  margin-top: 8rpx;
+}
+
+.load-more {
+  text-align: center;
+  padding: 40rpx;
+  color: #757575;
+  font-size: 28rpx;
+}

@@ -1,0 +1,62 @@
+<!-- pages/alerts/alerts.wxml -->
+<view class="container">
+  <!-- 筛选标签 -->
+  <view class="filter-tabs">
+    <view 
+      class="tab {{currentFilter === 'all' ? 'active' : ''}}" 
+      bindtap="switchFilter"
+      data-filter="all"
+    >全部</view>
+    <view 
+      class="tab {{currentFilter === 'unhandled' ? 'active' : ''}}" 
+      bindtap="switchFilter"
+      data-filter="unhandled"
+    >未处理</view>
+    <view 
+      class="tab {{currentFilter === 'activity' ? 'active' : ''}}" 
+      bindtap="switchFilter"
+      data-filter="activity"
+    >活动异常</view>
+    <view 
+      class="tab {{currentFilter === 'disease' ? 'active' : ''}}" 
+      bindtap="switchFilter"
+      data-filter="disease"
+    >疾病</view>
+  </view>
+
+  <!-- 报警列表 -->
+  <view class="alert-list">
+    <view 
+      class="alert-card {{item.level}}" 
+      wx:for="{{alertList}}" 
+      wx:key="id"
+      bindtap="viewAlertDetail"
+      data-id="{{item.id}}"
+    >
+      <view class="alert-header">
+        <view class="alert-type">
+          <text class="icon">{{item.level === 'urgent' ? '🔴' : (item.level === 'warning' ? '🟡' : '🔵')}}</text>
+          <text class="type-name">{{item.type}}</text>
+        </view>
+        <text class="time">{{item.time}}</text>
+      </view>
+      <view class="alert-body">
+        <text class="location">{{item.shedName}} - {{item.cameraName}}</text>
+        <text class="description">{{item.description}}</text>
+      </view>
+      <view class="alert-footer">
+        <view class="status-badge {{item.status}}">{{item.statusText}}</view>
+        <view class="actions">
+          <button class="btn-primary" wx:if="{{item.status === 'unhandled'}}" catchtap="handleAlert" data-id="{{item.id}}">处理</button>
+          <button class="btn-secondary" catchtap="viewDetail" data-id="{{item.id}}">查看</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{alertList.length === 0}}">
+    <text class="icon">✅</text>
+    <text class="text">暂无异常，一切正常</text>
+  </view>
+</view>

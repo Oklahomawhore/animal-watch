@@ -1,0 +1,178 @@
+/* pages/monitor/monitor.wxss */
+.container {
+  min-height: 100vh;
+  background: #F5F5F5;
+  padding-bottom: 140rpx;
+}
+
+/* 圈舍选择器 */
+.shed-selector {
+  display: flex;
+  gap: 16rpx;
+  padding: 24rpx 32rpx;
+  background: #FFFFFF;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-bottom: 1rpx solid #EEEEEE;
+}
+
+.selector-item {
+  padding: 16rpx 32rpx;
+  background: #F5F5F5;
+  border-radius: 32rpx;
+  font-size: 28rpx;
+  color: #757575;
+  flex-shrink: 0;
+}
+
+.selector-item.active {
+  background: #E8F5E9;
+  color: #2E7D32;
+  font-weight: 500;
+}
+
+/* 摄像头网格 */
+.camera-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24rpx;
+  padding: 24rpx;
+}
+
+.camera-card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  border: 2rpx solid transparent;
+}
+
+.camera-card.online {
+  border-color: #4CAF50;
+}
+
+.camera-card.offline {
+  border-color: #9E9E9E;
+}
+
+.camera-card.alert {
+  border-color: #FF6B35;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { border-color: #FF6B35; }
+  50% { border-color: #FF8A65; }
+}
+
+.camera-preview {
+  position: relative;
+  height: 240rpx;
+  background: #212121;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.snapshot {
+  width: 100%;
+  height: 100%;
+}
+
+.camera-placeholder {
+  font-size: 80rpx;
+  opacity: 0.5;
+}
+
+.live-badge {
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+  background: rgba(244, 67, 54, 0.9);
+  color: #FFFFFF;
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.camera-info {
+  padding: 24rpx;
+}
+
+.camera-info .name {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #212121;
+  margin-bottom: 12rpx;
+}
+
+.camera-info .meta {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.status-badge {
+  padding: 6rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+}
+
+.status-badge.online {
+  background: #E8F5E9;
+  color: #2E7D32;
+}
+
+.status-badge.offline {
+  background: #F5F5F5;
+  color: #757575;
+}
+
+.status-badge.alert {
+  background: #FFF3E0;
+  color: #FF6B35;
+}
+
+.camera-info .count {
+  font-size: 24rpx;
+  color: #757575;
+}
+
+.alert-text {
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #FF6B35;
+}
+
+/* 底部操作栏 */
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120rpx;
+  background: #FFFFFF;
+  border-top: 1rpx solid #EEEEEE;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.action-btn .icon {
+  font-size: 40rpx;
+}
+
+.action-btn text {
+  font-size: 22rpx;
+  color: #757575;
+}

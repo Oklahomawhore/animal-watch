@@ -1,0 +1,70 @@
+<!-- pages/profile/profile.wxml -->
+<view class="container">
+  <!-- 用户信息区 -->
+  <view class="user-card">
+    <view class="avatar">👤</view>
+    <view class="user-info">
+      <text class="name">张养殖场</text>
+      <view class="meta">
+        <text class="role">管理员</text>
+        <text class="location">📍 陕西省凤县</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数据统计 -->
+  <view class="stats-card">
+    <view class="stat-item">
+      <text class="value">12</text>
+      <text class="label">本月报警</text>
+    </view>
+    <view class="stat-item">
+      <text class="value">100%</text>
+      <text class="label">处理率</text>
+    </view>
+    <view class="stat-item">
+      <text class="value">5分钟</text>
+      <text class="label">平均响应</text>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="menu-list">
+    <view class="menu-item" bindtap="goToNotifications">
+      <view class="icon">🔔</view>
+      <text class="name">消息通知</text>
+      <view class="badge">3</view>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goToDevices">
+      <view class="icon">⚙️</view>
+      <text class="name">设备管理</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goToStaff">
+      <view class="icon">👥</view>
+      <text class="name">人员管理</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goToReports">
+      <view class="icon">📊</view>
+      <text class="name">数据报表</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goToHelp">
+      <view class="icon">❓</view>
+      <text class="name">帮助中心</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goToAbout">
+      <view class="icon">ℹ️</view>
+      <text class="name">关于我们</text>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="logout-btn" bindtap="logout">
+    退出登录
+  </view>
+</view>

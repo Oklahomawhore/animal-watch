@@ -1,0 +1,164 @@
+/* pages/alerts/alerts.wxss */
+.container {
+  min-height: 100vh;
+  background: #F5F5F5;
+}
+
+/* 筛选标签 */
+.filter-tabs {
+  display: flex;
+  gap: 16rpx;
+  padding: 24rpx 32rpx;
+  background: #FFFFFF;
+  border-bottom: 1rpx solid #EEEEEE;
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 16rpx 32rpx;
+  background: #F5F5F5;
+  border-radius: 32rpx;
+  font-size: 28rpx;
+  color: #757575;
+  white-space: nowrap;
+}
+
+.tab.active {
+  background: #E8F5E9;
+  color: #2E7D32;
+  font-weight: 500;
+}
+
+/* 报警列表 */
+.alert-list {
+  padding: 24rpx;
+}
+
+.alert-card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  border-left: 8rpx solid #E0E0E0;
+}
+
+.alert-card.urgent {
+  border-left-color: #FF6B35;
+}
+
+.alert-card.warning {
+  border-left-color: #FFC107;
+}
+
+.alert-card.info {
+  border-left-color: #2196F3;
+}
+
+.alert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.alert-type {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.alert-type .icon {
+  font-size: 32rpx;
+}
+
+.alert-type .type-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #212121;
+}
+
+.alert-header .time {
+  font-size: 24rpx;
+  color: #757575;
+}
+
+.alert-body {
+  margin-bottom: 24rpx;
+}
+
+.alert-body .location {
+  display: block;
+  font-size: 28rpx;
+  color: #212121;
+  margin-bottom: 8rpx;
+}
+
+.alert-body .description {
+  display: block;
+  font-size: 24rpx;
+  color: #757575;
+}
+
+.alert-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-badge {
+  padding: 8rpx 20rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+
+.status-badge.unhandled {
+  background: #FFF3E0;
+  color: #FF6B35;
+}
+
+.status-badge.handled {
+  background: #E8F5E9;
+  color: #2E7D32;
+}
+
+.actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 12rpx 28rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  border: none;
+}
+
+.btn-primary {
+  background: #2E7D32;
+  color: #FFFFFF;
+}
+
+.btn-secondary {
+  background: #F5F5F5;
+  color: #212121;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 160rpx 40rpx;
+}
+
+.empty-state .icon {
+  font-size: 120rpx;
+  margin-bottom: 32rpx;
+}
+
+.empty-state .text {
+  font-size: 32rpx;
+  color: #757575;
+}
