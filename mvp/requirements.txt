@@ -1,0 +1,13 @@
+# 林麝食量监控 MVP 依赖
+
+# 图像处理
+opencv-python>=4.8.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+
+# HTTP 请求
+requests>=2.31.0
+
+# 可选: 开发调试
+# jupyter>=1.0.0
+# pillow>=10.0.0
