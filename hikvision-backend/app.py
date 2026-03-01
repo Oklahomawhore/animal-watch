@@ -1,0 +1,118 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+海康互联开放平台后端服务
+Flask + SQLAlchemy + Redis
+
+环境变量:
+    HIK_APP_KEY - 海康应用Key
+    HIK_APP_SECRET - 海康应用Secret
+    DATABASE_URL - 数据库连接
+    REDIS_URL - Redis连接
+"""
+
+import os
+import logging
+from datetime import datetime
+from flask import Flask, jsonify
+from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from dotenv import load_dotenv
+
+# 加载环境变量
+load_dotenv()
+
+# 配置日志
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+# 初始化扩展
+db = SQLAlchemy()
+migrate = Migrate()
+
+def create_app():
+    """创建 Flask 应用"""
+    app = Flask(__name__)
+    
+    # 配置
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-key-change-in-production')
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///hikvision.db')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    
+    # 海康配置
+    app.config['HIK_APP_KEY'] = os.getenv('HIK_APP_KEY', '')
+    app.config['HIK_APP_SECRET'] = os.getenv('HIK_APP_SECRET', '')
+    app.config['HIK_BASE_URL'] = os.getenv('HIK_BASE_URL', 'https://open-api.hikiot.com')
+    
+    # 初始化扩展
+    db.init_app(app)
+    migrate.init_app(app, db)
+    CORS(app)
+    
+    # 注册蓝图
+    from routes.callback import callback_bp
+    from routes.device import device_bp
+    from routes.detection import detection_bp
+    
+    app.register_blueprint(callback_bp, url_prefix='/api/callback')
+    app.register_blueprint(device_bp, url_prefix='/api/devices')
+    app.register_blueprint(detection_bp, url_prefix='/api/detection')
+    
+    # 错误处理
+    @app.errorhandler(404)
+    def not_found(error):
+        return jsonify({'code': 404, 'msg': 'Not found'}), 404
+    
+    @app.errorhandler(500)
+    def internal_error(error):
+        db.session.rollback()
+        return jsonify({'code': 500, 'msg': 'Internal server error'}), 500
+    
+    # 健康检查
+    @app.route('/health')
+    def health_check():
+        return jsonify({
+            'code': 0,
+            'msg': 'Service is running',
+            'data': {
+                'timestamp': datetime.now().isoformat(),
+                'version': '1.0.0'
+            }
+        })
+    
+    # 根路由
+    @app.route('/')
+    def index():
+        return jsonify({
+            'code': 0,
+            'msg': 'Hikvision Cloud Backend Service',
+            'data': {
+                'endpoints': [
+                    '/api/callback - 海康互联回调',
+                    '/api/devices - 设备管理',
+                    '/api/detection - 检测服务',
+                    '/health - 健康检查'
+                ]
+            }
+        })
+    
+    return app
+
+# 创建应用实例
+app = create_app()
+
+# 确保在应用上下文中创建数据库表
+with app.app_context():
+    db.create_all()
+    logger.info("数据库表已创建")
+
+if __name__ == '__main__':
+    port = int(os.getenv('PORT', 5000))
+    debug = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
+    
+    logger.info(f"启动服务: port={port}, debug={debug}")
+    app.run(host='0.0.0.0', port=port, debug=debug)
