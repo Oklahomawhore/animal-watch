@@ -1,236 +1,57 @@
 version: '3.8'
 
 services:
-  # ==========================================
-  # MySQL 数据库
-  # ==========================================
-  mysql:
-    image: mysql:8.0
-    container_name: linshe-mysql
+  # 海康互联后端服务
+  hikvision-backend:
+    build: ./hikvision-backend
+    container_name: hikvision-backend
     restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root123}
-      MYSQL_DATABASE: linshe
-      MYSQL_USER: linshe
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-linshe123}
-    volumes:
-      - mysql-data:/var/lib/mysql
-      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
     ports:
-      - "3306:3306"
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - linshe-network
-
-  # ==========================================
-  # InfluxDB 时序数据库
-  # ==========================================
-  influxdb:
-    image: influxdb:2.7
-    container_name: linshe-influxdb
-    restart: unless-stopped
+      - "5000:5000"
     environment:
-      DOCKER_INFLUXDB_INIT_MODE: setup
-      DOCKER_INFLUXDB_INIT_USERNAME: ${INFLUX_USER:-admin}
-      DOCKER_INFLUXDB_INIT_PASSWORD: ${INFLUX_PASSWORD:-admin123}
-      DOCKER_INFLUXDB_INIT_ORG: linshe
-      DOCKER_INFLUXDB_INIT_BUCKET: raw_events
-      DOCKER_INFLUXDB_INIT_RETENTION: 30d
-      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${INFLUX_TOKEN:-linshe-token}
+      - HIK_APP_KEY=${HIK_APP_KEY}
+      - HIK_APP_SECRET=${HIK_APP_SECRET}
+      - HIK_BASE_URL=${HIK_BASE_URL:-https://open-api.hikiot.com}
+      - DATABASE_URL=${DATABASE_URL:-sqlite:///data/hikvision.db}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+      - SECRET_KEY=${SECRET_KEY}
+      - FLASK_DEBUG=${FLASK_DEBUG:-False}
     volumes:
-      - influxdb-data:/var/lib/influxdb2
-    ports:
-      - "8086:8086"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8086/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - linshe-network
-
-  # ==========================================
-  # Kafka 消息队列
-  # ==========================================
-  zookeeper:
-    image: confluentinc/cp-zookeeper:7.5.0
-    container_name: linshe-zookeeper
-    restart: unless-stopped
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
-    volumes:
-      - zookeeper-data:/var/lib/zookeeper
-    networks:
-      - linshe-network
-
-  kafka:
-    image: confluentinc/cp-kafka:7.5.0
-    container_name: linshe-kafka
-    restart: unless-stopped
+      - ./data:/app/data
     depends_on:
-      - zookeeper
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
-    volumes:
-      - kafka-data:/var/lib/kafka
-    ports:
-      - "9092:9092"
+      - redis
     networks:
-      - linshe-network
+      - hikvision-network
 
-  # ==========================================
   # Redis 缓存
-  # ==========================================
   redis:
     image: redis:7-alpine
-    container_name: linshe-redis
+    container_name: hikvision-redis
     restart: unless-stopped
     volumes:
       - redis-data:/data
-    ports:
-      - "6379:6379"
     networks:
-      - linshe-network
+      - hikvision-network
 
-  # ==========================================
-  # 后端 API 服务
-  # ==========================================
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: linshe-backend
-    restart: unless-stopped
-    depends_on:
-      mysql:
-        condition: service_healthy
-      redis:
-        condition: service_started
-    environment:
-      NODE_ENV: production
-      PORT: 3000
-      DB_HOST: mysql
-      DB_PORT: 3306
-      DB_NAME: linshe
-      DB_USER: linshe
-      DB_PASSWORD: ${MYSQL_PASSWORD:-linshe123}
-      REDIS_URL: redis://redis:6379
-      JWT_SECRET: ${JWT_SECRET:-your-jwt-secret-key}
-      INFLUX_URL: http://influxdb:8086
-      INFLUX_TOKEN: ${INFLUX_TOKEN:-linshe-token}
-      KAFKA_BROKERS: kafka:29092
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
-    networks:
-      - linshe-network
-
-  # ==========================================
-  # Event Processor 事件处理器
-  # ==========================================
-  event-processor:
-    build:
-      context: ./backend/services/event-processor
-      dockerfile: Dockerfile
-    container_name: linshe-event-processor
-    restart: unless-stopped
-    depends_on:
-      - kafka
-      - influxdb
-    environment:
-      KAFKA_BROKERS: kafka:29092
-      KAFKA_INPUT_TOPIC: hikvision-events-raw
-      KAFKA_OUTPUT_TOPIC: activity-metrics
-      INFLUX_URL: http://influxdb:8086
-      INFLUX_TOKEN: ${INFLUX_TOKEN:-linshe-token}
-      INFLUX_ORG: linshe
-      INFLUX_BUCKET: raw_events
-    networks:
-      - linshe-network
-
-  # ==========================================
-  # Anomaly Detector 异常检测器
-  # ==========================================
-  anomaly-detector:
-    build:
-      context: ./backend/services/anomaly-detector
-      dockerfile: Dockerfile
-    container_name: linshe-anomaly-detector
-    restart: unless-stopped
-    depends_on:
-      - influxdb
-      - mysql
-    environment:
-      INFLUX_URL: http://influxdb:8086
-      INFLUX_TOKEN: ${INFLUX_TOKEN:-linshe-token}
-      DB_HOST: mysql
-      DB_PORT: 3306
-      DB_NAME: linshe
-      DB_USER: linshe
-      DB_PASSWORD: ${MYSQL_PASSWORD:-linshe123}
-    networks:
-      - linshe-network
-
-  # ==========================================
-  # Nginx 反向代理
-  # ==========================================
+  # Nginx 反向代理（可选）
   nginx:
     image: nginx:alpine
-    container_name: linshe-nginx
+    container_name: hikvision-nginx
     restart: unless-stopped
-    depends_on:
-      - backend
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/conf.d:/etc/nginx/conf.d
     ports:
       - "80:80"
       - "443:443"
-    networks:
-      - linshe-network
-
-  # ==========================================
-  # 管理后台 (Vue3)
-  # ==========================================
-  admin-web:
-    build:
-      context: ./admin-web
-      dockerfile: Dockerfile
-    container_name: linshe-admin-web
-    restart: unless-stopped
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
     depends_on:
-      - backend
-    environment:
-      VUE_APP_API_URL: /api
+      - hikvision-backend
     networks:
-      - linshe-network
+      - hikvision-network
 
-# ==========================================
-# 数据卷
-# ==========================================
 volumes:
-  mysql-data:
-  influxdb-data:
-  zookeeper-data:
-  kafka-data:
   redis-data:
 
-# ==========================================
-# 网络
-# ==========================================
 networks:
-  linshe-network:
+  hikvision-network:
     driver: bridge

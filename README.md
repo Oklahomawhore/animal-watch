@@ -115,6 +115,48 @@ cd lin-she-health-monitor
 | 小程序前端 | 🚧 | 60% |
 | 管理后台 | 🚧 | 40% |
 | Docker部署 | ✅ | 100% |
+| 海康互联后端 | ✅ | 90% |
+
+## 海康互联后端服务
+
+独立的海康互联开放平台对接服务，支持设备管理、回调接收、动物检测。
+
+### 部署海康互联后端
+
+```bash
+# 进入项目目录
+cd lin-she-health-monitor
+
+# 1. 配置环境变量
+cp hikvision-backend/.env.example .env
+# 编辑 .env，填写 HIK_APP_KEY 和 HIK_APP_SECRET
+
+# 2. 一键部署
+./deploy.sh
+
+# 或使用 docker-compose 手动部署
+docker-compose up -d --build
+```
+
+### 海康互联后端 API
+
+| 接口 | 方法 | 说明 |
+|------|------|------|
+| `/health` | GET | 健康检查 |
+| `/api/callback` | POST | 接收海康云回调 |
+| `/api/callback` | GET | 验证回调地址 |
+| `/api/devices` | GET | 获取设备列表 |
+| `/api/devices` | POST | 添加设备 |
+| `/api/devices/:id/capture` | POST | 设备抓拍 |
+| `/api/detection/start` | POST | 开始检测 |
+| `/api/detection/stop` | POST | 停止检测 |
+
+### 配置海康互联回调
+
+在海康互联开放平台配置回调地址：
+```
+https://your-domain.com/api/callback
+```
 
 ## 开发计划
 
