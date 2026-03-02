@@ -1,13 +1,24 @@
 version: '3.8'
 
+# 使用外部网络（VideoPPT 创建的网络）
+networks:
+  # 方式1: 如果 VideoPPT 在同一台机器上，使用外部网络
+  videoppt-network:
+    external: true
+  
+  # 方式2: 独立的网络（用于本地开发测试）
+  hikvision-network:
+    driver: bridge
+
 services:
   # 海康互联后端服务
-  hikvision-backend:
+  animalwatch:
     build: ./hikvision-backend
-    container_name: hikvision-backend
+    container_name: animalwatch
     restart: unless-stopped
+    # 端口映射（仅用于本地测试，生产环境通过 VideoPPT 的 Nginx 访问）
     ports:
-      - "5000:5000"
+      - "5001:5000"
     environment:
       - HIK_APP_KEY=${HIK_APP_KEY}
       - HIK_APP_SECRET=${HIK_APP_SECRET}
@@ -21,37 +32,19 @@ services:
     depends_on:
       - redis
     networks:
+      # 加入 VideoPPT 的网络（关键！让 Nginx 能访问到）
+      - videoppt-network
       - hikvision-network
 
   # Redis 缓存
   redis:
     image: redis:7-alpine
-    container_name: hikvision-redis
+    container_name: animalwatch-redis
     restart: unless-stopped
     volumes:
       - redis-data:/data
     networks:
       - hikvision-network
 
-  # Nginx 反向代理（可选）
-  nginx:
-    image: nginx:alpine
-    container_name: hikvision-nginx
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/ssl:/etc/nginx/ssl
-    depends_on:
-      - hikvision-backend
-    networks:
-      - hikvision-network
-
 volumes:
   redis-data:
-
-networks:
-  hikvision-network:
-    driver: bridge
