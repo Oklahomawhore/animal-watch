@@ -89,25 +89,33 @@ class HikvisionMessageDecryptor:
         """
         解密海康推送的消息（完整消息格式）
         
+        海康使用 'encrypt' 字段（不是 'encryptData'）
+        
         Args:
-            encrypted_data: 加密的消息数据（包含 encryptData、encryptKey 等字段）
+            encrypted_data: 加密的消息数据（包含 encrypt 字段）
             
         Returns:
             dict: 解密后的消息内容
         """
         try:
-            # 获取加密数据
-            encrypt_data = encrypted_data.get('encryptData') or encrypted_data.get('encrypt_data')
+            # 获取加密数据（海康使用 'encrypt' 字段）
+            encrypt_data = (encrypted_data.get('encrypt') or 
+                           encrypted_data.get('encryptData') or 
+                           encrypted_data.get('encrypt_data'))
             
             if not encrypt_data:
                 logger.warning("没有加密数据，返回原始数据")
                 return encrypted_data
             
+            logger.info(f"开始解密，密文长度: {len(encrypt_data)}")
+            
             # 解密事件内容
             decrypted_message = self.decrypt_event(encrypt_data)
             if decrypted_message:
+                logger.info(f"解密成功: {decrypted_message[:200]}...")
                 return json.loads(decrypted_message)
             else:
+                logger.error("解密失败，返回原始数据")
                 return encrypted_data
                 
         except Exception as e:
@@ -195,13 +203,13 @@ class HikvisionMessageDecryptor:
         """
         加密响应内容（用于海康 URL 验证回调）
         
-        海康要求返回加密的 JSON 格式：{"encryptData": "xxx"}
+        海康要求返回加密的 JSON 格式：{"encrypt": "xxx"}
         
         Args:
             plaintext: 明文内容（如 "success"）
             
         Returns:
-            dict: 包含 encryptData 的字典
+            dict: 包含 encrypt 的字典
         """
         if not self._key_hash:
             logger.warning("没有配置 EncryptKey，返回明文")
@@ -227,7 +235,8 @@ class HikvisionMessageDecryptor:
             encrypted_bytes = iv + encrypted
             encrypted_base64 = base64.b64encode(encrypted_bytes).decode('utf-8')
             
-            return {"encryptData": encrypted_base64}
+            # 海康使用 'encrypt' 字段（不是 'encryptData'）
+            return {"encrypt": encrypted_base64}
             
         except Exception as e:
             logger.error(f"加密响应失败: {e}")

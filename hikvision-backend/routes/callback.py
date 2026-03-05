@@ -38,8 +38,8 @@ def handle_callback():
         logger.info(f"请求头: {dict(request.headers)}")
         logger.info(f"请求体: {json.dumps(data, ensure_ascii=False)}")
         
-        # 检查是否需要解密
-        is_encrypted = 'encryptData' in data or 'encrypt_data' in data
+        # 检查是否需要解密（海康使用 'encrypt' 字段）
+        is_encrypted = 'encrypt' in data or 'encryptData' in data or 'encrypt_data' in data
         if is_encrypted:
             logger.info("检测到加密消息，开始解密...")
             decrypted_data = decryptor.decrypt_message(data)
