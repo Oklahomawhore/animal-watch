@@ -4,13 +4,17 @@ FROM python:3.11-slim
 # 设置工作目录
 WORKDIR /app
 
-# 替换为阿里云 apt 镜像源
-RUN rm -rf /etc/apt/sources.list.d && \
-    mkdir -p /etc/apt/sources.list.d && \
-    echo "deb http://mirrors.aliyun.com/debian/ bookworm main contrib non-free non-free-firmware" > /etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/debian/ bookworm-updates main contrib non-free non-free-firmware" >> /etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/debian/ bookworm-backports main contrib non-free non-free-firmware" >> /etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/debian-security/ bookworm-security main contrib non-free non-free-firmware" >> /etc/apt/sources.list
+# 彻底清除所有旧源配置
+RUN echo "" > /etc/apt/sources.list && \
+    rm -rf /etc/apt/sources.list.d/*
+
+# 添加阿里云 Debian 13（trixie）镜像源
+RUN echo "deb http://mirrors.aliyun.com/debian/ trixie main non-free contrib" >> /etc/apt/sources.list && \
+    echo "deb-src http://mirrors.aliyun.com/debian/ trixie main non-free contrib" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/debian-security/ trixie-security main" >> /etc/apt/sources.list && \
+    echo "deb-src http://mirrors.aliyun.com/debian-security/ trixie-security main" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/debian/ trixie-updates main non-free contrib" >> /etc/apt/sources.list && \
+    echo "deb-src http://mirrors.aliyun.com/debian/ trixie-updates main non-free contrib" >> /etc/apt/sources.list
 
 # 安装系统依赖
 RUN apt-get update && apt-get install -y \
