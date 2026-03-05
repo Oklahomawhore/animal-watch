@@ -29,7 +29,7 @@ services:
       - SECRET_KEY=${SECRET_KEY}
       - FLASK_DEBUG=${FLASK_DEBUG:-False}
     volumes:
-      - ./data:/app/data
+      - animalwatch-data:/app/data
     depends_on:
       - redis
     networks:
@@ -49,3 +49,4 @@ services:
 
 volumes:
   redis-data:
+  animalwatch-data:
