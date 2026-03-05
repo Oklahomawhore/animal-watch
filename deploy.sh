@@ -12,7 +12,7 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-if ! command -v docker-compose &> /dev/null; then
+if ! docker compose version &> /dev/null; then
     echo "❌ Docker Compose 未安装"
     exit 1
 fi
@@ -30,7 +30,7 @@ fi
 mkdir -p data nginx/ssl
 
 echo "🐳 启动服务..."
-docker-compose up -d --build
+docker compose up -d --build
 
 echo ""
 echo "⏳ 等待服务启动..."
@@ -38,7 +38,7 @@ sleep 5
 
 # 检查服务状态
 echo "🔍 检查服务状态..."
-docker-compose ps
+docker compose ps
 
 echo ""
 echo "✅ 部署完成！"
@@ -48,6 +48,6 @@ echo "   - API 服务: http://localhost:5000"
 echo "   - Nginx: http://localhost:80"
 echo ""
 echo "📝 常用命令："
-echo "   查看日志: docker-compose logs -f"
-echo "   停止服务: docker-compose down"
-echo "   重启服务: docker-compose restart"
+echo "   查看日志: docker compose logs -f"
+echo "   停止服务: docker compose down"
+echo "   重启服务: docker compose restart"
