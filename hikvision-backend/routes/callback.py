@@ -55,7 +55,14 @@ def handle_callback():
         
         # 检查是否是 URL 验证请求（海康配置回调时的验证）
         # 海康 URL 验证可能通过不同的字段标识
-        event_type = decrypted_data.get('eventType') or decrypted_data.get('event_type')
+        # 解密后的事件结构: {"eventBase": {...}, "eventInfo": {...}}
+        event_base = decrypted_data.get('eventBase') or {}
+        event_info = decrypted_data.get('eventInfo') or {}
+        
+        event_type = (event_base.get('eventType') or 
+                     event_base.get('event_type') or
+                     decrypted_data.get('eventType') or 
+                     decrypted_data.get('event_type'))
         msg_type = decrypted_data.get('msgType') or decrypted_data.get('msg_type')
         
         # 处理 URL 验证请求 - 返回加密的 "success"
@@ -81,14 +88,17 @@ def handle_callback():
             return jsonify({'code': 0, 'msg': 'success'})
         
         # 处理不同类型的事件
+        # 从 eventInfo 中获取业务数据
+        event_data = event_info if event_info else decrypted_data
+        
         if event_type == 'motion_detection':
-            handle_motion_detection(decrypted_data)
+            handle_motion_detection(event_data)
         elif event_type == 'capture_result':
-            handle_capture_result(decrypted_data)
+            handle_capture_result(event_data)
         elif event_type == 'device_status':
-            handle_device_status(decrypted_data)
+            handle_device_status(event_data)
         elif event_type == 'grass_alarm':
-            handle_grass_alarm(decrypted_data)
+            handle_grass_alarm(event_data)
         else:
             logger.warning(f"未知事件类型: {event_type}")
         
@@ -146,9 +156,10 @@ def verify_callback():
 
 def handle_motion_detection(data):
     """处理移动检测告警"""
+    # 从 eventInfo 中获取数据，字段名可能是驼峰或下划线格式
     device_serial = data.get('deviceSerial') or data.get('device_serial')
     alarm_time = data.get('alarmTime') or data.get('alarm_time')
-    pic_url = data.get('alarmPicUrl') or data.get('alarm_pic_url')
+    pic_url = data.get('alarmPicUrl') or data.get('alarm_pic_url') or data.get('picUrl')
     
     logger.info(f"移动检测告警: 设备={device_serial}")
     
