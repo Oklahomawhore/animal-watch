@@ -5,6 +5,7 @@ networks:
   # 方式1: 如果 VideoPPT 在同一台机器上，使用外部网络
   videoppt-network:
     external: true
+    name: videoppt_videoppt-network
   
   # 方式2: 独立的网络（用于本地开发测试）
   hikvision-network:
