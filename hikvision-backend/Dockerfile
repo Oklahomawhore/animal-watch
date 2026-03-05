@@ -44,4 +44,5 @@ ENV PYTHONUNBUFFERED=1
 # 强制使用单 worker（SQLite 不支持多进程）
 # 使用绝对路径确保工作目录正确
 WORKDIR /app
-CMD ["gunicorn", "-w", "1", "--chdir", "/app", "-b", "0.0.0.0:5000", "app:app"]
+# 配置 gunicorn 日志输出到 stdout
+CMD ["gunicorn", "-w", "1", "--chdir", "/app", "-b", "0.0.0.0:5000", "--access-logfile", "-", "--error-logfile", "-", "--capture-output", "--enable-stdio-inheritance", "app:app"]

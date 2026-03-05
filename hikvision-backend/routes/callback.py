@@ -17,6 +17,21 @@ logger = logging.getLogger(__name__)
 callback_bp = Blueprint('callback', __name__)
 
 
+@callback_bp.route('/test', methods=['POST', 'GET'])
+def test_callback():
+    """
+    测试回调地址 - 不验证、不解密，直接返回 success
+    用于排查网络连通性问题
+    """
+    logger.info("=" * 50)
+    logger.info("收到测试请求")
+    logger.info(f"请求方法: {request.method}")
+    logger.info(f"请求头: {dict(request.headers)}")
+    logger.info(f"请求数据: {request.get_data(as_text=True)}")
+    logger.info("=" * 50)
+    return jsonify({"code": 0, "msg": "success", "data": "test ok"})
+
+
 @callback_bp.route('', methods=['POST'])
 def handle_callback():
     """
