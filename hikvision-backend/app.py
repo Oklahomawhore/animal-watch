@@ -105,10 +105,38 @@ def create_app():
 # 创建应用实例
 app = create_app()
 
-# 确保在应用上下文中创建数据库表
-with app.app_context():
-    db.create_all()
-    logger.info("数据库表已创建")
+# 延迟初始化数据库表，添加错误处理
+def init_database():
+    """初始化数据库表"""
+    max_retries = 5
+    retry_delay = 2
+    
+    for attempt in range(max_retries):
+        try:
+            with app.app_context():
+                # 确保数据目录存在
+                db_uri = app.config['SQLALCHEMY_DATABASE_URI']
+                if db_uri.startswith('sqlite:///'):
+                    db_path = db_uri.replace('sqlite:///', '')
+                    db_dir = os.path.dirname(db_path)
+                    if db_dir and not os.path.exists(db_dir):
+                        os.makedirs(db_dir, exist_ok=True)
+                        logger.info(f"创建数据目录: {db_dir}")
+                
+                db.create_all()
+                logger.info("数据库表已创建")
+                return True
+        except Exception as e:
+            logger.warning(f"数据库初始化失败 (尝试 {attempt + 1}/{max_retries}): {e}")
+            if attempt < max_retries - 1:
+                import time
+                time.sleep(retry_delay)
+            else:
+                logger.error("数据库初始化最终失败，但应用仍将继续启动")
+                return False
+
+# 在应用启动时初始化数据库
+init_database()
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
