@@ -26,6 +26,7 @@ def handle_callback():
     - motion_detection: 移动检测告警
     - capture_result: 抓拍结果
     - device_status: 设备状态变化
+    - url_verify: URL 验证（海康配置回调时发送）
     
     支持加密消息解密（需要配置 HIK_ENCRYPT_KEY 和 HIK_VERIFICATION_TOKEN）
     """
@@ -48,9 +49,20 @@ def handle_callback():
             logger.error("Verification Token 验证失败")
             return jsonify({'code': 403, 'msg': 'Verification failed'}), 403
         
-        # 获取事件类型
+        # 检查是否是 URL 验证请求（海康配置回调时的验证）
         event_type = decrypted_data.get('eventType') or decrypted_data.get('event_type')
-        device_serial = decrypted_data.get('deviceSerial') or decrypted_data.get('device_serial')
+        
+        # 处理 URL 验证请求 - 返回加密的 "success"
+        if event_type == 'url_verify' or decrypted_data.get('type') == 'url_verify':
+            logger.info("收到海康 URL 验证请求，返回加密响应...")
+            response_data = {"data": "success"}
+            
+            # 如果请求是加密的，响应也需要加密
+            if is_encrypted:
+                response_data = decryptor.encrypt_response("success")
+            
+            logger.info(f"URL 验证响应: {json.dumps(response_data)}")
+            return jsonify(response_data)
         
         if not event_type:
             return jsonify({'code': 400, 'msg': 'Missing eventType'}), 400

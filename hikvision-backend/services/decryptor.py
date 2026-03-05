@@ -190,6 +190,48 @@ class HikvisionMessageDecryptor:
         except Exception as e:
             logger.error(f"URL 验证失败: {e}")
             return None
+    
+    def encrypt_response(self, plaintext):
+        """
+        加密响应内容（用于海康 URL 验证回调）
+        
+        海康要求返回加密的 JSON 格式：{"encryptData": "xxx"}
+        
+        Args:
+            plaintext: 明文内容（如 "success"）
+            
+        Returns:
+            dict: 包含 encryptData 的字典
+        """
+        if not self._key_hash:
+            logger.warning("没有配置 EncryptKey，返回明文")
+            return {"data": plaintext}
+        
+        try:
+            from Crypto.Cipher import AES
+            from Crypto.Util.Padding import pad
+            import os
+            
+            # 生成随机 IV
+            iv = os.urandom(16)
+            
+            # PKCS7 填充
+            data_bytes = plaintext.encode('utf-8')
+            padded_data = pad(data_bytes, AES.block_size)
+            
+            # AES-256-CBC 加密
+            cipher = AES.new(self._key_hash, AES.MODE_CBC, iv)
+            encrypted = cipher.encrypt(padded_data)
+            
+            # iv + ciphertext，然后 Base64 编码
+            encrypted_bytes = iv + encrypted
+            encrypted_base64 = base64.b64encode(encrypted_bytes).decode('utf-8')
+            
+            return {"encryptData": encrypted_base64}
+            
+        except Exception as e:
+            logger.error(f"加密响应失败: {e}")
+            return {"data": plaintext}
 
 
 # 创建全局解密器实例
