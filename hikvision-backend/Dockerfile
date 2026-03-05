@@ -31,6 +31,9 @@ RUN pip install --no-cache-dir -i https://mirrors.aliyun.com/pypi/simple/ -r req
 # 复制应用代码
 COPY . .
 
+# 创建数据目录并设置权限
+RUN mkdir -p /app/data && chmod 777 /app/data
+
 # 暴露端口
 EXPOSE 5000
 
