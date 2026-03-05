@@ -10,6 +10,7 @@ import logging
 from flask import Blueprint, request, jsonify, current_app
 from datetime import datetime
 from models import db, AlarmRecord, Detection, Device
+from services.decryptor import decryptor
 
 logger = logging.getLogger(__name__)
 
@@ -25,11 +26,19 @@ def handle_callback():
     - motion_detection: 移动检测告警
     - capture_result: 抓拍结果
     - device_status: 设备状态变化
+    
+    支持加密消息解密（需要配置 HIK_ENCRYPT_KEY 和 HIK_VERIFICATION_TOKEN）
     """
     try:
         data = request.get_json() or {}
         
-        logger.info(f"收到海康回调: {json.dumps(data, ensure_ascii=False)}")
+        logger.info(f"收到海康回调（原始）: {json.dumps(data, ensure_ascii=False)}")
+        
+        # 检查是否需要解密
+        if 'encryptData' in data or 'encrypt_data' in data:
+            logger.info("检测到加密消息，开始解密...")
+            data = decryptor.decrypt_message(data)
+            logger.info(f"解密后数据: {json.dumps(data, ensure_ascii=False)}")
         
         # 获取事件类型
         event_type = data.get('eventType') or data.get('event_type')
@@ -68,16 +77,37 @@ def verify_callback():
     """
     验证回调地址
     海康互联配置回调URL时会先发送GET请求验证
+    支持海康的 URL 验证协议（msg_signature, timestamp, nonce, echo_str）
     """
-    return jsonify({
-        'code': 0,
-        'msg': 'Callback URL is valid',
-        'data': {
-            'service': 'Hikvision Cloud Backend',
-            'status': 'running',
-            'timestamp': datetime.now().isoformat()
-        }
-    })
+    try:
+        # 获取海康验证参数
+        msg_signature = request.args.get('msg_signature')
+        timestamp = request.args.get('timestamp')
+        nonce = request.args.get('nonce')
+        echo_str = request.args.get('echo_str')
+        
+        # 如果有海康验证参数，进行验证
+        if msg_signature and timestamp and nonce and echo_str:
+            logger.info(f"收到海康 URL 验证请求: timestamp={timestamp}")
+            decrypted_echo = decryptor.verify_url(msg_signature, timestamp, nonce, echo_str)
+            if decrypted_echo:
+                return decrypted_echo, 200
+            else:
+                return jsonify({'code': 400, 'msg': 'Verification failed'}), 400
+        
+        # 普通验证请求
+        return jsonify({
+            'code': 0,
+            'msg': 'Callback URL is valid',
+            'data': {
+                'service': 'Hikvision Cloud Backend',
+                'status': 'running',
+                'timestamp': datetime.now().isoformat()
+            }
+        })
+    except Exception as e:
+        logger.error(f"验证回调地址异常: {e}")
+        return jsonify({'code': 500, 'msg': str(e)}), 500
 
 
 def handle_motion_detection(data):
