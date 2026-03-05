@@ -41,5 +41,7 @@ EXPOSE 5000
 ENV FLASK_APP=app.py
 ENV PYTHONUNBUFFERED=1
 
-# 启动命令
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
+# 强制使用单 worker（SQLite 不支持多进程）
+# 使用绝对路径确保工作目录正确
+WORKDIR /app
+CMD ["gunicorn", "-w", "1", "--chdir", "/app", "-b", "0.0.0.0:5000", "app:app"]

@@ -40,7 +40,15 @@ def create_app():
     
     # 配置
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-key-change-in-production')
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///hikvision.db')
+    # 使用绝对路径避免工作目录问题
+    db_url = os.getenv('DATABASE_URL', 'sqlite:///app/data/hikvision.db')
+    if db_url.startswith('sqlite:///') and not db_url.startswith('sqlite:////'):
+        # 转换为绝对路径格式
+        db_path = db_url.replace('sqlite:///', '')
+        if not db_path.startswith('/'):
+            db_path = '/app/data/' + db_path
+        db_url = f'sqlite:///{db_path}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_url
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
     # 海康配置

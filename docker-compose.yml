@@ -30,6 +30,8 @@ services:
       - FLASK_DEBUG=${FLASK_DEBUG:-False}
     volumes:
       - animalwatch-data:/app/data
+    # 确保以 root 运行
+    user: "root:root"
     depends_on:
       - redis
     networks:
