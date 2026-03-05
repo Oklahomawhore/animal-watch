@@ -5,7 +5,8 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # 替换为阿里云 apt 镜像源
-RUN rm -f /etc/apt/sources.list.d/*.list && \
+RUN rm -rf /etc/apt/sources.list.d && \
+    mkdir -p /etc/apt/sources.list.d && \
     echo "deb http://mirrors.aliyun.com/debian/ bookworm main contrib non-free non-free-firmware" > /etc/apt/sources.list && \
     echo "deb http://mirrors.aliyun.com/debian/ bookworm-updates main contrib non-free non-free-firmware" >> /etc/apt/sources.list && \
     echo "deb http://mirrors.aliyun.com/debian/ bookworm-backports main contrib non-free non-free-firmware" >> /etc/apt/sources.list && \
