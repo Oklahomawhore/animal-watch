@@ -35,27 +35,35 @@ def handle_callback():
         logger.info(f"收到海康回调（原始）: {json.dumps(data, ensure_ascii=False)}")
         
         # 检查是否需要解密
-        if 'encryptData' in data or 'encrypt_data' in data:
+        is_encrypted = 'encryptData' in data or 'encrypt_data' in data
+        if is_encrypted:
             logger.info("检测到加密消息，开始解密...")
-            data = decryptor.decrypt_message(data)
-            logger.info(f"解密后数据: {json.dumps(data, ensure_ascii=False)}")
+            decrypted_data = decryptor.decrypt_message(data)
+            logger.info(f"解密后数据: {json.dumps(decrypted_data, ensure_ascii=False)}")
+        else:
+            decrypted_data = data
+        
+        # 验证 Verification Token
+        if not decryptor.verify_token(request.headers, decrypted_data if is_encrypted else None):
+            logger.error("Verification Token 验证失败")
+            return jsonify({'code': 403, 'msg': 'Verification failed'}), 403
         
         # 获取事件类型
-        event_type = data.get('eventType') or data.get('event_type')
-        device_serial = data.get('deviceSerial') or data.get('device_serial')
+        event_type = decrypted_data.get('eventType') or decrypted_data.get('event_type')
+        device_serial = decrypted_data.get('deviceSerial') or decrypted_data.get('device_serial')
         
         if not event_type:
             return jsonify({'code': 400, 'msg': 'Missing eventType'}), 400
         
         # 处理不同类型的事件
         if event_type == 'motion_detection':
-            handle_motion_detection(data)
+            handle_motion_detection(decrypted_data)
         elif event_type == 'capture_result':
-            handle_capture_result(data)
+            handle_capture_result(decrypted_data)
         elif event_type == 'device_status':
-            handle_device_status(data)
+            handle_device_status(decrypted_data)
         elif event_type == 'grass_alarm':
-            handle_grass_alarm(data)
+            handle_grass_alarm(decrypted_data)
         else:
             logger.warning(f"未知事件类型: {event_type}")
         

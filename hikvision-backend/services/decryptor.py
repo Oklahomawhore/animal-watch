@@ -2,7 +2,14 @@
 # -*- coding: utf-8 -*-
 """
 海康互联消息解密工具
-支持 AES 解密和签名验证
+支持 AES-256-CBC 解密和 Verification Token 校验
+
+加密原理（来自海康官方文档）：
+1. 使用 SHA256 对 Encrypt Key 进行哈希得到密钥 key
+2. 使用 PKCS7Padding 方式将事件内容进行填充
+3. 生成 16 字节的随机数作为初始向量 iv
+4. 使用 iv 和 key 对事件内容加密得到 encrypted_event
+5. 应用收到的密文为 base64(iv+encrypted_event)
 """
 
 import os
@@ -30,10 +37,57 @@ class HikvisionMessageDecryptor:
         """
         self.encrypt_key = encrypt_key or os.getenv('HIK_ENCRYPT_KEY')
         self.verification_token = verification_token or os.getenv('HIK_VERIFICATION_TOKEN')
+        
+        # 预计算 SHA256 密钥
+        if self.encrypt_key:
+            self._key_hash = hashlib.sha256(self.encrypt_key.encode('utf-8')).digest()
+        else:
+            self._key_hash = None
+    
+    def decrypt_event(self, encrypted_base64):
+        """
+        解密海康事件内容
+        
+        按照海康官方文档的 AES-256-CBC 解密流程：
+        1. Base64 解码得到 iv + encrypted_data
+        2. 使用 SHA256(EncryptKey) 作为密钥
+        3. AES-CBC 解密
+        4. PKCS7Padding 去填充
+        
+        Args:
+            encrypted_base64: Base64 编码的加密事件内容
+            
+        Returns:
+            str: 解密后的事件内容（JSON 字符串）
+        """
+        if not self._key_hash:
+            logger.warning("没有配置 EncryptKey，无法解密")
+            return None
+        
+        try:
+            # Base64 解码
+            encrypted_bytes = base64.b64decode(encrypted_base64)
+            
+            # 提取 IV（前 16 字节）和密文
+            iv = encrypted_bytes[:16]
+            ciphertext = encrypted_bytes[16:]
+            
+            # AES-256-CBC 解密（使用 SHA256(EncryptKey) 作为密钥）
+            cipher = AES.new(self._key_hash, AES.MODE_CBC, iv)
+            decrypted_bytes = cipher.decrypt(ciphertext)
+            
+            # PKCS7Padding 去填充
+            decrypted_bytes = unpad(decrypted_bytes, AES.block_size)
+            
+            return decrypted_bytes.decode('utf-8')
+            
+        except Exception as e:
+            logger.error(f"事件解密失败: {e}")
+            return None
     
     def decrypt_message(self, encrypted_data):
         """
-        解密海康推送的消息
+        解密海康推送的消息（完整消息格式）
         
         Args:
             encrypted_data: 加密的消息数据（包含 encryptData、encryptKey 等字段）
@@ -44,105 +98,60 @@ class HikvisionMessageDecryptor:
         try:
             # 获取加密数据
             encrypt_data = encrypted_data.get('encryptData') or encrypted_data.get('encrypt_data')
-            encrypt_key = encrypted_data.get('encryptKey') or encrypted_data.get('encrypt_key')
             
             if not encrypt_data:
                 logger.warning("没有加密数据，返回原始数据")
                 return encrypted_data
             
-            # 如果提供了 encryptKey，需要先用 EncryptKey 解密
-            if encrypt_key and self.encrypt_key:
-                # 解密 encryptKey（使用 HIK_ENCRYPT_KEY）
-                decrypted_key = self._decrypt_aes(encrypt_key, self.encrypt_key)
-            else:
-                decrypted_key = self.encrypt_key
-            
-            # 使用解密后的密钥解密消息内容
-            if decrypted_key:
-                decrypted_message = self._decrypt_aes(encrypt_data, decrypted_key)
+            # 解密事件内容
+            decrypted_message = self.decrypt_event(encrypt_data)
+            if decrypted_message:
                 return json.loads(decrypted_message)
             else:
-                logger.warning("没有解密密钥，返回原始数据")
                 return encrypted_data
                 
         except Exception as e:
             logger.error(f"解密消息失败: {e}")
             return encrypted_data
     
-    def _decrypt_aes(self, encrypted_data, key):
+    def verify_token(self, request_headers, decrypted_body=None):
         """
-        AES 解密
+        验证 Verification Token
+        
+        海康会在请求头中传递 Verification-Token：
+        - 如果是加密事件，需要从解密后的内容中获取 VerificationToken 进行校验
+        - 如果是未加密事件，直接从请求头中获取 VerificationToken 进行校验
         
         Args:
-            encrypted_data: Base64 编码的加密数据
-            key: 解密密钥
+            request_headers: 请求头字典
+            decrypted_body: 解密后的消息体（如果是加密事件）
             
         Returns:
-            str: 解密后的字符串
-        """
-        try:
-            # Base64 解码
-            encrypted_bytes = base64.b64decode(encrypted_data)
-            
-            # 准备密钥（确保 16/24/32 字节）
-            key_bytes = key.encode('utf-8')
-            if len(key_bytes) < 16:
-                key_bytes = key_bytes.ljust(16, b'\0')
-            elif len(key_bytes) > 32:
-                key_bytes = key_bytes[:32]
-            elif len(key_bytes) not in [16, 24, 32]:
-                # 补齐到最近的合法长度
-                if len(key_bytes) < 24:
-                    key_bytes = key_bytes.ljust(16, b'\0')
-                elif len(key_bytes) < 32:
-                    key_bytes = key_bytes.ljust(24, b'\0')
-                else:
-                    key_bytes = key_bytes.ljust(32, b'\0')
-            
-            # 提取 IV（前 16 字节）和密文
-            iv = encrypted_bytes[:16]
-            ciphertext = encrypted_bytes[16:]
-            
-            # 创建 AES 解密器
-            cipher = AES.new(key_bytes, AES.MODE_CBC, iv)
-            
-            # 解密并去除填充
-            decrypted_bytes = unpad(cipher.decrypt(ciphertext), AES.block_size)
-            
-            return decrypted_bytes.decode('utf-8')
-            
-        except Exception as e:
-            logger.error(f"AES 解密失败: {e}")
-            raise
-    
-    def verify_signature(self, data, signature):
-        """
-        验证消息签名
-        
-        Args:
-            data: 消息数据
-            signature: 签名
-            
-        Returns:
-            bool: 签名是否有效
+            bool: 验证是否通过
         """
         if not self.verification_token:
-            logger.warning("没有配置 VerificationToken，跳过签名验证")
+            logger.warning("没有配置 VerificationToken，跳过验证")
             return True
         
         try:
-            # 计算签名
-            message = json.dumps(data, sort_keys=True, ensure_ascii=False)
-            expected_signature = hmac.new(
-                self.verification_token.encode('utf-8'),
-                message.encode('utf-8'),
-                hashlib.sha256
-            ).hexdigest()
+            # 从请求头获取 Verification-Token
+            header_token = request_headers.get('Verification-Token') or request_headers.get('verification-token')
             
-            return hmac.compare_digest(signature, expected_signature)
+            # 如果是加密事件，从解密后的内容中获取 VerificationToken
+            if decrypted_body and isinstance(decrypted_body, dict):
+                body_token = decrypted_body.get('VerificationToken') or decrypted_body.get('verification_token')
+                if body_token:
+                    return hmac.compare_digest(body_token, self.verification_token)
+            
+            # 如果是未加密事件，直接比较请求头中的 Token
+            if header_token:
+                return hmac.compare_digest(header_token, self.verification_token)
+            
+            logger.warning("请求中没有找到 VerificationToken")
+            return False
             
         except Exception as e:
-            logger.error(f"签名验证失败: {e}")
+            logger.error(f"Token 验证失败: {e}")
             return False
     
     def verify_url(self, msg_signature, timestamp, nonce, echo_str):
@@ -163,17 +172,18 @@ class HikvisionMessageDecryptor:
                 logger.warning("没有配置 VerificationToken，直接返回 echo_str")
                 return echo_str
             
-            # 计算签名
+            # 计算签名（与海康保持一致）
             message = f"{self.verification_token}{timestamp}{nonce}{echo_str}"
             expected_signature = hashlib.sha1(message.encode('utf-8')).hexdigest()
             
             if msg_signature != expected_signature:
-                logger.error("URL 验证签名不匹配")
+                logger.error(f"URL 验证签名不匹配: expected={expected_signature}, got={msg_signature}")
                 return None
             
             # 解密 echo_str
             if self.encrypt_key:
-                return self._decrypt_aes(echo_str, self.encrypt_key)
+                decrypted = self.decrypt_event(echo_str)
+                return decrypted if decrypted else echo_str
             else:
                 return echo_str
                 
