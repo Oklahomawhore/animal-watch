@@ -47,14 +47,16 @@ def create_app():
     
     # 配置
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-key-change-in-production')
-    # 使用绝对路径避免工作目录问题
-    db_url = os.getenv('DATABASE_URL', 'sqlite:///app/data/hikvision.db')
+    # 数据库URL - 默认使用Docker容器内的绝对路径
+    db_url = os.getenv('DATABASE_URL', 'sqlite:////app/data/hikvision.db')
+    
+    # 如果是相对路径，转换为绝对路径
     if db_url.startswith('sqlite:///') and not db_url.startswith('sqlite:////'):
-        # 转换为绝对路径格式
         db_path = db_url.replace('sqlite:///', '')
         if not db_path.startswith('/'):
-            db_path = '/app/data/' + db_path
+            db_path = os.path.join('/app/data', db_path)
         db_url = f'sqlite:///{db_path}'
+    
     app.config['SQLALCHEMY_DATABASE_URI'] = db_url
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
@@ -188,11 +190,12 @@ def _init_database(app):
             with app.app_context():
                 # 确保数据目录存在
                 db_uri = app.config['SQLALCHEMY_DATABASE_URI']
-                if db_uri.startswith('sqlite:///') and not db_uri.startswith('sqlite:////'):
-                    # 处理相对路径
+                if db_uri.startswith('sqlite:///'):
+                    # 提取数据库文件路径
                     db_path = db_uri.replace('sqlite:///', '')
-                    if not db_path.startswith('/'):
-                        db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), db_path)
+                    # 去掉开头的 /（如果有4个/）
+                    if db_uri.startswith('sqlite:////'):
+                        db_path = db_path[1:]
                     db_dir = os.path.dirname(db_path)
                     if db_dir and not os.path.exists(db_dir):
                         os.makedirs(db_dir, exist_ok=True)
