@@ -30,8 +30,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# 初始化扩展 (使用 models 中的 db)
-from models import db
+# 初始化扩展
+# 使用 models_v2 的 db（支持多租户）
+from models_v2 import db
 migrate = Migrate()
 
 def create_app():
@@ -157,7 +158,7 @@ app = create_app()
 
 # 延迟初始化数据库表，添加错误处理
 def init_database():
-    """初始化数据库表"""
+    """初始化数据库表和初始数据"""
     max_retries = 5
     retry_delay = 2
     
@@ -166,17 +167,67 @@ def init_database():
             with app.app_context():
                 # 确保数据目录存在
                 db_uri = app.config['SQLALCHEMY_DATABASE_URI']
-                if db_uri.startswith('sqlite:///'):
+                if db_uri.startswith('sqlite:///') and not db_uri.startswith('sqlite:////'):
+                    # 处理相对路径
                     db_path = db_uri.replace('sqlite:///', '')
+                    if not db_path.startswith('/'):
+                        db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), db_path)
                     db_dir = os.path.dirname(db_path)
                     if db_dir and not os.path.exists(db_dir):
                         os.makedirs(db_dir, exist_ok=True)
                         logger.info(f"创建数据目录: {db_dir}")
                 
+                # 创建所有表
                 db.create_all()
                 logger.info("数据库表已创建")
+                
+                # 检查是否需要初始化数据
+                from models_v2 import Client, User, UserRole, UserStatus, VisibilityLevel
+                from werkzeug.security import generate_password_hash
+                
+                if not Client.query.first():
+                    logger.info("初始化默认数据...")
+                    
+                    # 创建默认客户
+                    client = Client(
+                        name="默认养殖场",
+                        code="default",
+                        contact_name="管理员",
+                        contact_phone="13800138000",
+                        config={},
+                        status=UserStatus.ACTIVE
+                    )
+                    db.session.add(client)
+                    db.session.flush()
+                    
+                    # 创建管理员账号
+                    admin = User(
+                        client_id=client.id,
+                        username="admin",
+                        password_hash=generate_password_hash("admin123"),
+                        nickname="系统管理员",
+                        phone="13800138000",
+                        role=UserRole.ADMIN,
+                        visibility_level=VisibilityLevel.FACTORY,
+                        notification_settings={"alarm": True, "offline": True, "medical": True},
+                        status=UserStatus.ACTIVE
+                    )
+                    db.session.add(admin)
+                    db.session.commit()
+                    
+                    logger.info("✅ 默认数据初始化完成")
+                    logger.info("   客户编码: default")
+                    logger.info("   管理员: admin / admin123")
+                
                 return True
         except Exception as e:
+            logger.warning(f"数据库初始化失败 (尝试 {attempt + 1}/{max_retries}): {e}")
+            if attempt < max_retries - 1:
+                import time
+                time.sleep(retry_delay)
+            else:
+                logger.error("数据库初始化最终失败，但应用仍将继续启动")
+                return False
             logger.warning(f"数据库初始化失败 (尝试 {attempt + 1}/{max_retries}): {e}")
             if attempt < max_retries - 1:
                 import time
