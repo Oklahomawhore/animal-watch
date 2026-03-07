@@ -62,7 +62,7 @@ def create_app():
     migrate.init_app(app, db)
     CORS(app)
     
-    # 注册蓝图
+    # 注册V1蓝图（兼容保留）
     from routes.callback import callback_bp
     from routes.device import device_bp
     from routes.detection import detection_bp
@@ -72,6 +72,21 @@ def create_app():
     app.register_blueprint(device_bp, url_prefix='/api/devices')
     app.register_blueprint(detection_bp, url_prefix='/api/detection')
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
+    
+    # 注册V2蓝图（SaaS多租户）
+    from routes.auth_v2 import auth_v2_bp
+    from routes.users_v2 import users_bp
+    from routes.platforms_v2 import platforms_bp
+    from routes.hierarchy_v2 import factories_bp, areas_bp, enclosures_bp
+    from routes.cameras_v2 import cameras_bp
+    
+    app.register_blueprint(auth_v2_bp, url_prefix='/api/v2/auth')
+    app.register_blueprint(users_bp, url_prefix='/api/v2/users')
+    app.register_blueprint(platforms_bp, url_prefix='/api/v2/platforms')
+    app.register_blueprint(factories_bp, url_prefix='/api/v2/factories')
+    app.register_blueprint(areas_bp, url_prefix='/api/v2/areas')
+    app.register_blueprint(enclosures_bp, url_prefix='/api/v2/enclosures')
+    app.register_blueprint(cameras_bp, url_prefix='/api/v2/cameras')
     
     # 错误处理
     @app.errorhandler(404)
@@ -102,13 +117,28 @@ def create_app():
             'code': 0,
             'msg': 'Hikvision Cloud Backend Service',
             'data': {
-                'endpoints': [
-                    '/api/callback - 海康互联回调',
-                    '/api/devices - 设备管理',
-                    '/api/detection - 检测服务',
-                    '/api/auth - 用户认证 (Token获取/刷新)',
-                    '/health - 健康检查'
-                ]
+                'version': '2.0.0',
+                'endpoints': {
+                    'v1_legacy': [
+                        '/api/callback - 海康互联回调',
+                        '/api/devices - 设备管理',
+                        '/api/detection - 检测服务',
+                        '/api/auth - 用户认证 (Token获取/刷新)',
+                    ],
+                    'v2_saas': [
+                        '/api/v2/auth/login - 登录',
+                        '/api/v2/auth/me - 当前用户',
+                        '/api/v2/users - 用户管理 (Admin)',
+                        '/api/v2/platforms - 平台授权管理',
+                        '/api/v2/factories - 厂区管理',
+                        '/api/v2/areas - 区域管理',
+                        '/api/v2/enclosures - 圈/个体管理',
+                        '/api/v2/cameras - 摄像头管理',
+                    ],
+                    'system': [
+                        '/health - 健康检查'
+                    ]
+                }
             }
         })
     
