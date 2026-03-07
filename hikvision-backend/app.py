@@ -81,6 +81,7 @@ def create_app():
     from routes.cameras_v2 import cameras_bp
     from routes.alarms_v2 import alarms_bp
     from routes.detections_v2 import detections_bp
+    from routes.miniprogram import miniprogram_bp
     
     app.register_blueprint(auth_v2_bp, url_prefix='/api/v2/auth')
     app.register_blueprint(users_bp, url_prefix='/api/v2/users')
@@ -91,6 +92,7 @@ def create_app():
     app.register_blueprint(cameras_bp, url_prefix='/api/v2/cameras')
     app.register_blueprint(alarms_bp, url_prefix='/api/v2/alarms')
     app.register_blueprint(detections_bp, url_prefix='/api/v2/detections')
+    app.register_blueprint(miniprogram_bp, url_prefix='/api/v2/mp')
     
     # 错误处理
     @app.errorhandler(404)

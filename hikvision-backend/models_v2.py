@@ -78,9 +78,12 @@ class Client(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)           # 客户名称
-    code = db.Column(db.String(50), unique=True, nullable=False, index=True)  # 客户编码
+    code = db.Column(db.String(50), unique=True, nullable=False, index=True)  # 客户编码（小程序登录用）
     contact_name = db.Column(db.String(50))                     # 联系人
     contact_phone = db.Column(db.String(20))                    # 联系电话
+    
+    # 微信配置（每个客户可以配置自己的小程序参数，也可以共用）
+    wechat_config = db.Column(db.JSON, default=dict)            # { "appid": "xxx", "secret": "xxx" }
     
     # 配置
     config = db.Column(db.JSON, default=dict)                   # 客户级配置（JSON）
@@ -122,6 +125,11 @@ class User(db.Model):
     phone = db.Column(db.String(20))
     email = db.Column(db.String(100))
     
+    # 微信信息（单小程序模式）
+    wechat_openid = db.Column(db.String(100), index=True)           # 微信openid
+    wechat_unionid = db.Column(db.String(100))                       # 微信unionid
+    wechat_session_key = db.Column(db.String(100))                   # 微信session_key
+    
     # 角色
     role = db.Column(db.Enum(UserRole), nullable=False)
     
@@ -131,6 +139,9 @@ class User(db.Model):
     
     # 权限（额外细粒度权限，JSON格式）
     permissions = db.Column(db.JSON, default=dict)  # { 'can_view_analytics': True, 'can_receive_alerts': ['motion', 'grass'] }
+    
+    # 消息订阅设置
+    notification_settings = db.Column(db.JSON, default=dict)  # { "alarm": true, "offline": true, "medical": true }
     
     # 上次登录
     last_login_at = db.Column(db.DateTime)
@@ -155,6 +166,7 @@ class User(db.Model):
             'role': self.role.value,
             'visibilityLevel': self.visibility_level.value if self.visibility_level else None,
             'visibilityScopeIds': self.visibility_scope_ids,
+            'notificationSettings': self.notification_settings,
             'status': self.status.value,
             'lastLoginAt': self.last_login_at.isoformat() if self.last_login_at else None,
             'createdAt': self.created_at.isoformat() if self.created_at else None
