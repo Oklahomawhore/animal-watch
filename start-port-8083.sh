@@ -4,7 +4,7 @@
 cd "$(dirname "$0")/hikvision-backend"
 
 # 设置端口
-export PORT=8083
+export PORT=5001
 
 # 检查虚拟环境
 if [ -d "venv" ]; then

@@ -19,7 +19,7 @@ services:
     restart: unless-stopped
     # 端口映射（仅用于本地测试，生产环境通过 VideoPPT 的 Nginx 访问）
     ports:
-      - "8083:5000"
+      - "5001:5000"
     environment:
       - HIK_APP_KEY=${HIK_APP_KEY}
       - HIK_APP_SECRET=${HIK_APP_SECRET}

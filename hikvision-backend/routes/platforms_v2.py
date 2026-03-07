@@ -229,6 +229,7 @@ def sync_platform_devices(platform):
                     enclosure_id=enclosure.id if enclosure else None,
                     platform_device_id=device.get('deviceSerial'),
                     device_serial=device_serial,
+                    channel_no=device.get('channelNum', 1),  # 从API获取通道数
                     unique_name=unique_name,
                     name=device_name,
                     status=CameraStatus.ONLINE if device.get('status') == 1 else CameraStatus.OFFLINE,
