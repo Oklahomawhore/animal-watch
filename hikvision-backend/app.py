@@ -30,8 +30,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# 初始化扩展
-db = SQLAlchemy()
+# 初始化扩展 (使用 models 中的 db)
+from models import db
 migrate = Migrate()
 
 def create_app():
@@ -55,6 +55,7 @@ def create_app():
     app.config['HIK_APP_KEY'] = os.getenv('HIK_APP_KEY', '')
     app.config['HIK_APP_SECRET'] = os.getenv('HIK_APP_SECRET', '')
     app.config['HIK_BASE_URL'] = os.getenv('HIK_BASE_URL', 'https://open-api.hikiot.com')
+    app.config['HIK_REDIRECT_URL'] = os.getenv('HIK_REDIRECT_URL', 'http://localhost:8080/callback')
     
     # 初始化扩展
     db.init_app(app)
@@ -65,10 +66,12 @@ def create_app():
     from routes.callback import callback_bp
     from routes.device import device_bp
     from routes.detection import detection_bp
+    from routes.auth import auth_bp
     
     app.register_blueprint(callback_bp, url_prefix='/api/callback')
     app.register_blueprint(device_bp, url_prefix='/api/devices')
     app.register_blueprint(detection_bp, url_prefix='/api/detection')
+    app.register_blueprint(auth_bp, url_prefix='/api/auth')
     
     # 错误处理
     @app.errorhandler(404)
@@ -103,6 +106,7 @@ def create_app():
                     '/api/callback - 海康互联回调',
                     '/api/devices - 设备管理',
                     '/api/detection - 检测服务',
+                    '/api/auth - 用户认证 (Token获取/刷新)',
                     '/health - 健康检查'
                 ]
             }

@@ -5,7 +5,10 @@
 """
 
 from datetime import datetime
-from app import db
+from flask_sqlalchemy import SQLAlchemy
+
+# 创建 SQLAlchemy 实例 (延迟初始化)
+db = SQLAlchemy()
 
 
 class Device(db.Model):
@@ -122,4 +125,48 @@ class AlarmRecord(db.Model):
             'alarmPicUrl': self.alarm_pic_url,
             'status': self.status,
             'remark': self.remark
+        }
+
+
+class UserAuth(db.Model):
+    """用户认证信息 - 存储海康互联用户Token"""
+    __tablename__ = 'user_auths'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    
+    # 用户标识 (小程序用户ID或账号)
+    user_id = db.Column(db.String(100), unique=True, nullable=False, index=True)
+    
+    # 海康互联账号信息
+    hik_account = db.Column(db.String(50))  # 海康通行证账号
+    team_no = db.Column(db.String(50))      # 团队编号
+    person_no = db.Column(db.String(50))    # 成员编号
+    
+    # Token 信息
+    user_access_token = db.Column(db.String(500), nullable=False)
+    refresh_user_token = db.Column(db.String(500))
+    token_expires_at = db.Column(db.DateTime)  # Token 过期时间
+    
+    # 临时授权码 (用于授权过程中)
+    temp_auth_code = db.Column(db.String(128))
+    temp_auth_expires = db.Column(db.DateTime)
+    
+    # 状态
+    status = db.Column(db.String(20), default='active')  # active/expired
+    
+    # 时间戳
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'userId': self.user_id,
+            'hikAccount': self.hik_account,
+            'teamNo': self.team_no,
+            'personNo': self.person_no,
+            'tokenExpiresAt': self.token_expires_at.isoformat() if self.token_expires_at else None,
+            'status': self.status,
+            'createdAt': self.created_at.isoformat() if self.created_at else None,
+            'updatedAt': self.updated_at.isoformat() if self.updated_at else None
         }

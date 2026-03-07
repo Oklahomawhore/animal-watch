@@ -118,3 +118,100 @@ class HikvisionCloudAPI:
                 logger.debug(f"{path} 失败: {e}")
         
         return None
+    
+    # ========== 用户认证相关 API ==========
+    
+    def apply_auth_code(self, user_name: str, password: str, redirect_url: str, state: str = '') -> Dict:
+        """
+        申请授权码
+        https://open-api.hikiot.com/auth/third/applyAuthCode
+        """
+        url = f"{self.BASE_URL}/auth/third/applyAuthCode"
+        
+        payload = {
+            "appKey": self.app_key,
+            "userName": user_name,
+            "password": password,
+            "redirectUrl": redirect_url
+        }
+        
+        if state:
+            payload["state"] = state
+        
+        headers = {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        }
+        
+        resp = requests.post(url, headers=headers, json=payload, timeout=30, verify=False)
+        result = resp.json()
+        
+        if result.get("code") == 0:
+            logger.info(f"授权码申请成功: {result['data'].get('authCode')}")
+        else:
+            logger.warning(f"授权码申请失败: {result.get('msg')}")
+        
+        return result
+    
+    def code2token(self, auth_code: str) -> Dict:
+        """
+        授权码换取 User Access Token
+        https://open-api.hikiot.com/auth/third/code2Token
+        """
+        url = f"{self.BASE_URL}/auth/third/code2Token"
+        
+        params = {
+            "authCode": auth_code
+        }
+        
+        headers = {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "App-Access-Token": self.app_token
+        }
+        
+        resp = requests.get(url, headers=headers, params=params, timeout=30, verify=False)
+        result = resp.json()
+        
+        if result.get("code") == 0:
+            logger.info("User Access Token 获取成功")
+            # 存储 user_token 供后续 API 调用使用
+            self.user_token = result["data"]["userAccessToken"]
+        else:
+            logger.warning(f"User Access Token 获取失败: {result.get('msg')}")
+        
+        return result
+    
+    def refresh_user_token(self, user_access_token: str, refresh_user_token: str) -> Dict:
+        """
+        刷新 User Access Token
+        https://open-api.hikiot.com/auth/third/refreshUserAccessToken
+        """
+        url = f"{self.BASE_URL}/auth/third/refreshUserAccessToken"
+        
+        payload = {
+            "userAccessToken": user_access_token,
+            "refreshUserToken": refresh_user_token
+        }
+        
+        headers = {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "App-Access-Token": self.app_token
+        }
+        
+        resp = requests.post(url, headers=headers, json=payload, timeout=30, verify=False)
+        result = resp.json()
+        
+        if result.get("code") == 0:
+            logger.info("User Access Token 刷新成功")
+            # 更新 user_token
+            self.user_token = result["data"]["userAccessToken"]
+        else:
+            logger.warning(f"User Access Token 刷新失败: {result.get('msg')}")
+        
+        return result
+    
+    def set_user_token(self, user_token: str):
+        """设置 User Access Token"""
+        self.user_token = user_token

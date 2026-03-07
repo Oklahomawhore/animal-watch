@@ -5,6 +5,7 @@
 """
 
 import logging
+from datetime import datetime
 from flask import Blueprint, request, jsonify
 from models import db, Device
 from services.hikcloud import HikvisionCloudAPI
@@ -91,20 +92,97 @@ def capture_device(device_serial):
         if not device:
             return jsonify({'code': 404, 'msg': 'Device not found'}), 404
         
-        # TODO: 调用海康云API进行抓拍
-        # 需要确认正确的API路径
+        # 获取 User Access Token
+        data = request.get_json() or {}
+        user_id = data.get('userId')
+        
+        if not user_id:
+            return jsonify({'code': 400, 'msg': 'Missing parameter: userId'}), 400
+        
+        # 从数据库获取用户 Token
+        from models import UserAuth
+        user_auth = UserAuth.query.filter_by(user_id=user_id).first()
+        
+        if not user_auth:
+            return jsonify({'code': 401, 'msg': 'User not bound to Hikvision'}), 401
+        
+        if user_auth.status != 'active':
+            return jsonify({'code': 401, 'msg': 'Token expired, please re-authenticate'}), 401
+        
+        # 调用海康云 API 进行抓拍
+        from services.hikcloud import HikvisionCloudAPI
+        from flask import current_app
+        
+        app_key = current_app.config.get('HIK_APP_KEY')
+        app_secret = current_app.config.get('HIK_APP_SECRET')
+        hik_api = HikvisionCloudAPI(app_key, app_secret)
+        hik_api.set_user_token(user_auth.user_access_token)
+        
+        pic_url = hik_api.capture_device(device_serial, device.channel_no)
+        
+        if pic_url:
+            return jsonify({
+                'code': 0,
+                'msg': 'success',
+                'data': {
+                    'deviceSerial': device_serial,
+                    'picUrl': pic_url,
+                    'timestamp': datetime.utcnow().isoformat()
+                }
+            })
+        else:
+            return jsonify({
+                'code': 500,
+                'msg': 'Capture failed, please check device status'
+            }), 500
+        
+    except Exception as e:
+        logger.error(f"设备抓拍失败: {e}")
+        return jsonify({'code': 500, 'msg': str(e)}), 500
+
+
+@device_bp.route('/cloud/list', methods=['GET'])
+def get_cloud_devices():
+    """从海康云获取设备列表"""
+    try:
+        # 获取 User Access Token
+        user_id = request.args.get('userId')
+        
+        if not user_id:
+            return jsonify({'code': 400, 'msg': 'Missing parameter: userId'}), 400
+        
+        # 从数据库获取用户 Token
+        from models import UserAuth
+        user_auth = UserAuth.query.filter_by(user_id=user_id).first()
+        
+        if not user_auth:
+            return jsonify({'code': 401, 'msg': 'User not bound to Hikvision'}), 401
+        
+        if user_auth.status != 'active':
+            return jsonify({'code': 401, 'msg': 'Token expired, please re-authenticate'}), 401
+        
+        # 调用海康云 API 获取设备列表
+        from services.hikcloud import HikvisionCloudAPI
+        from flask import current_app
+        
+        app_key = current_app.config.get('HIK_APP_KEY')
+        app_secret = current_app.config.get('HIK_APP_SECRET')
+        hik_api = HikvisionCloudAPI(app_key, app_secret)
+        hik_api.set_user_token(user_auth.user_access_token)
+        
+        devices = hik_api.get_device_list()
         
         return jsonify({
             'code': 0,
-            'msg': 'Capture request sent',
+            'msg': 'success',
             'data': {
-                'deviceSerial': device_serial,
-                'status': 'processing'
+                'list': devices,
+                'total': len(devices)
             }
         })
         
     except Exception as e:
-        logger.error(f"设备抓拍失败: {e}")
+        logger.error(f"获取云端设备列表失败: {e}")
         return jsonify({'code': 500, 'msg': str(e)}), 500
 
 
