@@ -12,33 +12,24 @@ networks:
     driver: bridge
 
 services:
-  # 海康互联后端服务
-  animalwatch:
-    build: ./hikvision-backend
-    container_name: animalwatch
+  # PostgreSQL 数据库
+  postgres:
+    image: postgres:15-alpine
+    container_name: animalwatch-postgres
     restart: unless-stopped
-    # 端口映射（仅用于本地测试，生产环境通过 VideoPPT 的 Nginx 访问）
-    ports:
-      - "5001:5000"
     environment:
-      - HIK_APP_KEY=${HIK_APP_KEY}
-      - HIK_APP_SECRET=${HIK_APP_SECRET}
-      - HIK_BASE_URL=${HIK_BASE_URL:-https://open-api.hikiot.com}
-      - DATABASE_URL=${DATABASE_URL:-sqlite:///data/hikvision.db}
-      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
-      - SECRET_KEY=${SECRET_KEY}
-      - FLASK_DEBUG=${FLASK_DEBUG:-False}
+      - POSTGRES_USER=animalwatch
+      - POSTGRES_PASSWORD=animalwatch123
+      - POSTGRES_DB=animalwatch
     volumes:
-      - animalwatch-data:/app/data
-      - ./admin-web:/app/admin-web:ro  # 挂载前端静态文件
-    # 确保以 root 运行
-    user: "root:root"
-    depends_on:
-      - redis
+      - postgres-data:/var/lib/postgresql/data
     networks:
-      # 加入 VideoPPT 的网络（关键！让 Nginx 能访问到）
-      - videoppt-network
       - hikvision-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U animalwatch"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   # Redis 缓存
   redis:
@@ -50,6 +41,32 @@ services:
     networks:
       - hikvision-network
 
+  # 海康互联后端服务
+  animalwatch:
+    build: ./hikvision-backend
+    container_name: animalwatch
+    restart: unless-stopped
+    ports:
+      - "5001:5000"
+    environment:
+      - HIK_APP_KEY=${HIK_APP_KEY}
+      - HIK_APP_SECRET=${HIK_APP_SECRET}
+      - HIK_BASE_URL=${HIK_BASE_URL:-https://open-api.hikiot.com}
+      - DATABASE_URL=${DATABASE_URL:-postgresql://animalwatch:animalwatch123@postgres:5432/animalwatch}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+      - SECRET_KEY=${SECRET_KEY}
+      - FLASK_DEBUG=${FLASK_DEBUG:-False}
+    volumes:
+      - ./admin-web:/app/admin-web:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    networks:
+      - videoppt-network
+      - hikvision-network
+
 volumes:
+  postgres-data:
   redis-data:
-  animalwatch-data:
