@@ -171,12 +171,14 @@ def create_app():
             return app.send_static_file(f'pages/{filename}')
         except:
             return jsonify({'code': 404, 'msg': 'Page not found'}), 404
+    
+    # 在应用创建完成后初始化数据库
+    _init_database(app)
+    
+    return app
 
-# 创建应用实例
-app = create_app()
 
-# 延迟初始化数据库表，添加错误处理
-def init_database():
+def _init_database(app):
     """初始化数据库表和初始数据"""
     max_retries = 5
     retry_delay = 2
@@ -247,16 +249,9 @@ def init_database():
             else:
                 logger.error("数据库初始化最终失败，但应用仍将继续启动")
                 return False
-            logger.warning(f"数据库初始化失败 (尝试 {attempt + 1}/{max_retries}): {e}")
-            if attempt < max_retries - 1:
-                import time
-                time.sleep(retry_delay)
-            else:
-                logger.error("数据库初始化最终失败，但应用仍将继续启动")
-                return False
 
-# 在应用启动时初始化数据库
-init_database()
+# 创建应用实例
+app = create_app()
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
