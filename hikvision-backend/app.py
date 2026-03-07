@@ -79,6 +79,8 @@ def create_app():
     from routes.platforms_v2 import platforms_bp
     from routes.hierarchy_v2 import factories_bp, areas_bp, enclosures_bp
     from routes.cameras_v2 import cameras_bp
+    from routes.alarms_v2 import alarms_bp
+    from routes.detections_v2 import detections_bp
     
     app.register_blueprint(auth_v2_bp, url_prefix='/api/v2/auth')
     app.register_blueprint(users_bp, url_prefix='/api/v2/users')
@@ -87,6 +89,8 @@ def create_app():
     app.register_blueprint(areas_bp, url_prefix='/api/v2/areas')
     app.register_blueprint(enclosures_bp, url_prefix='/api/v2/enclosures')
     app.register_blueprint(cameras_bp, url_prefix='/api/v2/cameras')
+    app.register_blueprint(alarms_bp, url_prefix='/api/v2/alarms')
+    app.register_blueprint(detections_bp, url_prefix='/api/v2/detections')
     
     # 错误处理
     @app.errorhandler(404)
@@ -134,6 +138,8 @@ def create_app():
                         '/api/v2/areas - 区域管理',
                         '/api/v2/enclosures - 圈/个体管理',
                         '/api/v2/cameras - 摄像头管理',
+                        '/api/v2/alarms - 告警管理',
+                        '/api/v2/detections - 检测记录',
                     ],
                     'system': [
                         '/health - 健康检查'
