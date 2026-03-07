@@ -16,11 +16,35 @@
         .platform-card { border: 2px solid transparent; transition: all 0.2s; }
         .platform-card:hover { border-color: #3b82f6; }
         .platform-card.active { border-color: #3b82f6; background: rgba(59,130,246,0.05); }
+        .loading { animation: spin 1s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="bg-gray-50">
+    <!-- 登录弹窗 -->
+    <div id="loginModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-xl w-full max-w-md mx-4 p-6">
+            <h2 class="text-xl font-bold mb-4">管理员登录</h2>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">客户编码</label>
+                    <input type="text" id="loginClientCode" value="default" class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">用户名</label>
+                    <input type="text" id="loginUsername" value="admin" class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">密码</label>
+                    <input type="password" id="loginPassword" value="admin123" class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                </div>
+                <button onclick="doLogin()" class="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">登录</button>
+            </div>
+        </div>
+    </div>
+
     <!-- 顶部导航 -->
-    <nav class="bg-white shadow-sm border-b h-16 flex items-center justify-between px-6 sticky top-0 z-50">
+    <nav class="bg-white shadow-sm border-b h-16 flex items-center justify-between px-6 sticky top-0 z-40">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
                 <i class="fas fa-paw text-white text-lg"></i>
@@ -31,15 +55,17 @@
         <div class="flex items-center gap-4">
             <div class="flex items-center gap-2 text-sm text-gray-600">
                 <i class="fas fa-building"></i>
-                <span>养殖场A</span>
+                <span id="currentClient">未登录</span>
             </div>
             <div class="h-6 w-px bg-gray-300"></div>
             <div class="flex items-center gap-2">
                 <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                     <i class="fas fa-user text-blue-600 text-sm"></i>
                 </div>
-                <span class="text-sm font-medium">管理员</span>
-                <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+                <span id="currentUser" class="text-sm font-medium">未登录</span>
+                <button onclick="logout()" class="text-gray-400 hover:text-red-500 ml-2">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
             </div>
         </div>
     </nav>
@@ -54,7 +80,6 @@
                     <span>数据大盘</span>
                 </a>
             </div>
-
             <div class="p-4 pt-0">
                 <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">基础管理</div>
                 <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700">
@@ -70,7 +95,6 @@
                     <span>圈舍管理</span>
                 </a>
             </div>
-
             <div class="p-4 pt-0">
                 <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">设备管理</div>
                 <a href="#" class="sidebar-item active flex items-center gap-3 px-3 py-2.5 rounded-lg text-blue-600 font-medium">
@@ -82,7 +106,6 @@
                     <span>摄像头管理</span>
                 </a>
             </div>
-
             <div class="p-4 pt-0">
                 <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">系统</div>
                 <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700">
@@ -114,98 +137,14 @@
                 </button>
             </div>
 
+            <!-- 加载状态 -->
+            <div id="loadingState" class="hidden flex justify-center py-12">
+                <i class="fas fa-spinner loading text-3xl text-blue-600"></i>
+            </div>
+
             <!-- 渠道列表 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- 海康威视 - 已授权 -->
-                <div class="card bg-white rounded-xl p-5">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-video text-red-500 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800">总部海康账号</h3>
-                                <span class="text-xs text-green-600 bg-green-50 px-2 py-0.5 rounded-full">已授权</span>
-                            </div>
-                        </div>
-                        <div class="flex gap-1">
-                            <button class="p-2 text-gray-400 hover:text-blue-600" title="同步设备">
-                                <i class="fas fa-sync-alt"></i>
-                            </button>
-                            <button class="p-2 text-gray-400 hover:text-red-600" title="删除">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="space-y-2 text-sm text-gray-600 mb-4">
-                        <div class="flex justify-between">
-                            <span>厂商</span>
-                            <span class="font-medium">海康威视</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>账号</span>
-                            <span class="font-medium">138****8888</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>设备数</span>
-                            <span class="font-medium text-blue-600">12台</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>授权过期</span>
-                            <span class="font-medium">2024-04-15</span>
-                        </div>
-                    </div>
-                    <button onclick="openQRModal('hikvision', '总部海康账号')" class="w-full py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 flex items-center justify-center gap-2">
-                        <i class="fas fa-qrcode"></i>
-                        <span>重新授权</span>
-                    </button>
-                </div>
-
-                <!-- 大华 - 未授权 -->
-                <div class="card bg-white rounded-xl p-5 opacity-75">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-video text-gray-400 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800">分部大华账号</h3>
-                                <span class="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">未授权</span>
-                            </div>
-                        </div>
-                        <button class="p-2 text-gray-400 hover:text-red-600">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                    <div class="space-y-2 text-sm text-gray-600 mb-4">
-                        <div class="flex justify-between">
-                            <span>厂商</span>
-                            <span class="font-medium">大华</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>账号</span>
-                            <span class="font-medium">-</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>设备数</span>
-                            <span class="font-medium">0台</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>状态</span>
-                            <span class="font-medium text-orange-500">待授权</span>
-                        </div>
-                    </div>
-                    <button onclick="openQRModal('dahua', '分部大华账号')" class="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2">
-                        <i class="fas fa-qrcode"></i>
-                        <span>扫码授权</span>
-                    </button>
-                </div>
-
-                <!-- 添加占位 -->
-                <div class="border-2 border-dashed border-gray-300 rounded-xl p-5 flex flex-col items-center justify-center text-gray-400 hover:border-blue-400 hover:text-blue-500 cursor-pointer min-h-[280px]" onclick="openAddModal()">
-                    <i class="fas fa-plus-circle text-4xl mb-3"></i>
-                    <span class="font-medium">添加新渠道</span>
-                </div>
+            <div id="platformList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 动态加载 -->
             </div>
         </main>
     </div>
@@ -222,20 +161,21 @@
             <div class="p-5 space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">渠道名称</label>
-                    <input type="text" placeholder="如：总部海康账号" class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <input type="text" id="platformName" placeholder="如：总部海康账号" class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">选择厂商</label>
                     <div class="grid grid-cols-3 gap-3">
-                        <div class="provider-tab active flex flex-col items-center gap-2 p-3 border rounded-lg cursor-pointer" onclick="selectProvider(this, 'hikvision')">
+                        <div class="provider-tab active flex flex-col items-center gap-2 p-3 border rounded-lg cursor-pointer" onclick="selectProvider(this, 'hikvision')" data-provider="hikvision">
                             <i class="fas fa-video text-red-500 text-xl"></i>
                             <span class="text-sm">海康威视</span>
                         </div>
-                        <div class="provider-tab flex flex-col items-center gap-2 p-3 border rounded-lg cursor-pointer" onclick="selectProvider(this, 'dahua')">
+                        <div class="provider-tab flex flex-col items-center gap-2 p-3 border rounded-lg cursor-pointer opacity-50" data-provider="dahua">
                             <i class="fas fa-video text-blue-500 text-xl"></i>
                             <span class="text-sm">大华</span>
+                            <span class="text-xs text-gray-400">敬请期待</span>
                         </div>
-                        <div class="provider-tab flex flex-col items-center gap-2 p-3 border rounded-lg cursor-pointer opacity-50">
+                        <div class="provider-tab flex flex-col items-center gap-2 p-3 border rounded-lg cursor-pointer opacity-50" data-provider="uniview">
                             <i class="fas fa-video text-gray-400 text-xl"></i>
                             <span class="text-sm">宇视</span>
                             <span class="text-xs text-gray-400">敬请期待</span>
@@ -245,7 +185,7 @@
             </div>
             <div class="flex justify-end gap-3 p-5 border-t">
                 <button onclick="closeAddModal()" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">取消</button>
-                <button onclick="addPlatform()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">添加</button>
+                <button onclick="addPlatform()" id="addBtn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">添加</button>
             </div>
         </div>
     </div>
@@ -260,18 +200,15 @@
                 </button>
             </div>
             <div class="p-5">
-                <!-- 渠道信息 -->
                 <div class="flex items-center gap-3 mb-5 p-3 bg-gray-50 rounded-lg">
-                    <div id="qrProviderIcon" class="w-10 h-12 bg-red-50 rounded-lg flex items-center justify-center">
+                    <div id="qrProviderIcon" class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center">
                         <i class="fas fa-video text-red-500"></i>
                     </div>
                     <div>
-                        <div id="qrPlatformName" class="font-medium">总部海康账号</div>
+                        <div id="qrPlatformName" class="font-medium">渠道名称</div>
                         <div class="text-sm text-gray-500">请使用微信扫码完成授权</div>
                     </div>
                 </div>
-
-                <!-- 二维码区域 -->
                 <div class="flex flex-col items-center">
                     <div class="bg-white p-4 rounded-xl shadow-lg border">
                         <div id="qrcode" class="w-48 h-48"></div>
@@ -281,12 +218,10 @@
                         登录成功后自动返回本系统
                     </p>
                 </div>
-
-                <!-- 备用链接 -->
                 <div class="mt-5 p-3 bg-blue-50 rounded-lg">
                     <div class="text-sm text-blue-800 font-medium mb-2">或在浏览器中打开：</div>
                     <div class="flex gap-2">
-                        <input id="loginUrl" type="text" readonly class="flex-1 px-3 py-2 text-sm bg-white border rounded" value="https://open.hikiot.com/oauth/thirdpart?appKey=xxx&...">
+                        <input id="loginUrl" type="text" readonly class="flex-1 px-3 py-2 text-sm bg-white border rounded text-xs">
                         <button onclick="copyUrl()" class="px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
                             <i class="fas fa-copy"></i>
                         </button>
@@ -300,10 +235,298 @@
     </div>
 
     <script>
-        // 模拟 loginUrl
-        const mockLoginUrl = 'https://open.hikiot.com/oauth/thirdpart?appKey=AK123456789&redirectUrl=https%3A%2F%2Fyour-domain.com%2Fapi%2Fv2%2Fplatforms%2F1%2Foauth-callback&state=1%7C1';
+        // API基础URL
+        const API_BASE = window.location.origin;
+        let authToken = localStorage.getItem('authToken');
+        let currentPlatformId = null;
+        let selectedProvider = 'hikvision';
 
+        // 检查登录状态
+        if (!authToken) {
+            document.getElementById('loginModal').classList.remove('hidden');
+        } else {
+            document.getElementById('loginModal').classList.add('hidden');
+            loadPlatforms();
+            loadUserInfo();
+        }
+
+        // 登录
+        async function doLogin() {
+            const clientCode = document.getElementById('loginClientCode').value;
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/v2/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password, clientCode })
+                });
+                const data = await res.json();
+                
+                if (data.code === 0) {
+                    authToken = data.data.token;
+                    localStorage.setItem('authToken', authToken);
+                    localStorage.setItem('clientCode', clientCode);
+                    document.getElementById('loginModal').classList.add('hidden');
+                    loadPlatforms();
+                    loadUserInfo();
+                } else {
+                    alert(data.msg || '登录失败');
+                }
+            } catch (e) {
+                alert('登录请求失败: ' + e.message);
+            }
+        }
+
+        // 获取用户信息
+        async function loadUserInfo() {
+            try {
+                const res = await fetch(`${API_BASE}/api/v2/auth/me`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                const data = await res.json();
+                if (data.code === 0) {
+                    document.getElementById('currentUser').textContent = data.data.nickname || data.data.username;
+                    document.getElementById('currentClient').textContent = localStorage.getItem('clientCode') || 'default';
+                }
+            } catch (e) {
+                console.error('获取用户信息失败', e);
+            }
+        }
+
+        // 退出登录
+        function logout() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('clientCode');
+            location.reload();
+        }
+
+        // 加载渠道列表
+        async function loadPlatforms() {
+            document.getElementById('loadingState').classList.remove('hidden');
+            document.getElementById('platformList').innerHTML = '';
+
+            try {
+                const res = await fetch(`${API_BASE}/api/v2/platforms`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                const data = await res.json();
+                
+                if (data.code === 0) {
+                    renderPlatforms(data.data);
+                } else {
+                    alert(data.msg || '加载失败');
+                }
+            } catch (e) {
+                alert('加载渠道列表失败: ' + e.message);
+            } finally {
+                document.getElementById('loadingState').classList.add('hidden');
+            }
+        }
+
+        // 渲染渠道列表
+        function renderPlatforms(platforms) {
+            const container = document.getElementById('platformList');
+            
+            if (platforms.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-3 text-center py-12 text-gray-500">
+                        <i class="fas fa-inbox text-4xl mb-4"></i>
+                        <p>暂无渠道，请点击右上角添加</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = platforms.map(p => `
+                <div class="card bg-white rounded-xl p-5">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 ${p.provider === 'hikvision' ? 'bg-red-50' : 'bg-gray-100'} rounded-xl flex items-center justify-center">
+                                <i class="fas fa-video ${p.provider === 'hikvision' ? 'text-red-500' : 'text-gray-400'} text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">${p.name}</h3>
+                                <span class="text-xs ${p.status === 'active' ? 'text-green-600 bg-green-50' : 'text-gray-500 bg-gray-100'} px-2 py-0.5 rounded-full">
+                                    ${p.status === 'active' ? '已授权' : '未授权'}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex gap-1">
+                            ${p.status === 'active' ? `
+                                <button onclick="syncPlatform(${p.id})" class="p-2 text-gray-400 hover:text-blue-600" title="同步设备">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                            ` : ''}
+                            <button onclick="deletePlatform(${p.id})" class="p-2 text-gray-400 hover:text-red-600" title="删除">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-600 mb-4">
+                        <div class="flex justify-between">
+                            <span>厂商</span>
+                            <span class="font-medium">${p.provider === 'hikvision' ? '海康威视' : p.provider}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>账号</span>
+                            <span class="font-medium">${p.platformAccount || '-'}</span>
+                        </div>
+                        ${p.status === 'active' ? `
+                            <div class="flex justify-between">
+                                <span>授权过期</span>
+                                <span class="font-medium">${p.tokenExpiresAt ? new Date(p.tokenExpiresAt).toLocaleDateString() : '-'}</span>
+                            </div>
+                        ` : `
+                            <div class="flex justify-between">
+                                <span>状态</span>
+                                <span class="font-medium text-orange-500">待授权</span>
+                            </div>
+                        `}
+                    </div>
+                    <button onclick="${p.status === 'active' ? `reauthPlatform(${p.id}, '${p.name}')` : `authPlatform(${p.id}, '${p.name}')`}" 
+                            class="w-full py-2 ${p.status === 'active' ? 'border border-blue-600 text-blue-600 hover:bg-blue-50' : 'bg-blue-600 text-white hover:bg-blue-700'} rounded-lg flex items-center justify-center gap-2">
+                        <i class="fas fa-qrcode"></i>
+                        <span>${p.status === 'active' ? '重新授权' : '扫码授权'}</span>
+                    </button>
+                </div>
+            `).join('');
+
+            // 添加占位
+            container.innerHTML += `
+                <div class="border-2 border-dashed border-gray-300 rounded-xl p-5 flex flex-col items-center justify-center text-gray-400 hover:border-blue-400 hover:text-blue-500 cursor-pointer min-h-[280px]" onclick="openAddModal()">
+                    <i class="fas fa-plus-circle text-4xl mb-3"></i>
+                    <span class="font-medium">添加新渠道</span>
+                </div>
+            `;
+        }
+
+        // 添加渠道
+        async function addPlatform() {
+            const name = document.getElementById('platformName').value;
+            if (!name) {
+                alert('请输入渠道名称');
+                return;
+            }
+
+            document.getElementById('addBtn').disabled = true;
+            document.getElementById('addBtn').textContent = '添加中...';
+
+            try {
+                const res = await fetch(`${API_BASE}/api/v2/platforms`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({ name, provider: selectedProvider })
+                });
+                const data = await res.json();
+
+                if (data.code === 0) {
+                    closeAddModal();
+                    loadPlatforms();
+                    // 自动打开授权弹窗
+                    setTimeout(() => authPlatform(data.data.id, name), 300);
+                } else {
+                    alert(data.msg || '添加失败');
+                }
+            } catch (e) {
+                alert('添加渠道失败: ' + e.message);
+            } finally {
+                document.getElementById('addBtn').disabled = false;
+                document.getElementById('addBtn').textContent = '添加';
+            }
+        }
+
+        // 获取授权链接
+        async function authPlatform(id, name) {
+            currentPlatformId = id;
+            document.getElementById('qrPlatformName').textContent = name;
+            
+            try {
+                const res = await fetch(`${API_BASE}/api/v2/auth/hikvision/login-url?platformId=${id}`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                const data = await res.json();
+
+                if (data.code === 0) {
+                    const loginUrl = data.data.loginUrl;
+                    
+                    // 生成二维码
+                    document.getElementById('qrcode').innerHTML = '';
+                    new QRCode(document.getElementById('qrcode'), {
+                        text: loginUrl,
+                        width: 192,
+                        height: 192,
+                        colorDark: '#000000',
+                        colorLight: '#ffffff',
+                        correctLevel: QRCode.CorrectLevel.M
+                    });
+
+                    document.getElementById('loginUrl').value = loginUrl;
+                    document.getElementById('qrModal').classList.remove('hidden');
+                    document.getElementById('qrModal').classList.add('flex');
+                } else {
+                    alert(data.msg || '获取授权链接失败');
+                }
+            } catch (e) {
+                alert('获取授权链接失败: ' + e.message);
+            }
+        }
+
+        // 重新授权
+        function reauthPlatform(id, name) {
+            authPlatform(id, name);
+        }
+
+        // 同步设备
+        async function syncPlatform(id) {
+            if (!confirm('确定要同步设备列表吗？')) return;
+            
+            try {
+                const res = await fetch(`${API_BASE}/api/v2/platforms/${id}/sync`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                const data = await res.json();
+                
+                if (data.code === 0) {
+                    alert(`同步完成！共 ${data.data.totalCameras} 个摄像头`);
+                    loadPlatforms();
+                } else {
+                    alert(data.msg || '同步失败');
+                }
+            } catch (e) {
+                alert('同步失败: ' + e.message);
+            }
+        }
+
+        // 删除渠道
+        async function deletePlatform(id) {
+            if (!confirm('确定要删除这个渠道吗？相关摄像头也会被删除。')) return;
+            
+            try {
+                const res = await fetch(`${API_BASE}/api/v2/platforms/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                const data = await res.json();
+                
+                if (data.code === 0) {
+                    loadPlatforms();
+                } else {
+                    alert(data.msg || '删除失败');
+                }
+            } catch (e) {
+                alert('删除失败: ' + e.message);
+            }
+        }
+
+        // UI函数
         function openAddModal() {
+            document.getElementById('platformName').value = '';
             document.getElementById('addModal').classList.remove('hidden');
             document.getElementById('addModal').classList.add('flex');
         }
@@ -313,50 +536,16 @@
             document.getElementById('addModal').classList.remove('flex');
         }
 
-        function selectProvider(el, provider) {
-            document.querySelectorAll('.provider-tab').forEach(tab => tab.classList.remove('active'));
-            el.classList.add('active');
-        }
-
-        function addPlatform() {
-            closeAddModal();
-            // 实际项目中这里会调用API创建平台，然后打开二维码
-            setTimeout(() => openQRModal('hikvision', '新渠道'), 300);
-        }
-
-        function openQRModal(provider, platformName) {
-            document.getElementById('qrModal').classList.remove('hidden');
-            document.getElementById('qrModal').classList.add('flex');
-            document.getElementById('qrPlatformName').textContent = platformName;
-            
-            // 更新图标颜色
-            const iconContainer = document.getElementById('qrProviderIcon');
-            if (provider === 'hikvision') {
-                iconContainer.className = 'w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center';
-                iconContainer.innerHTML = '<i class="fas fa-video text-red-500"></i>';
-            } else {
-                iconContainer.className = 'w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center';
-                iconContainer.innerHTML = '<i class="fas fa-video text-blue-500"></i>';
-            }
-
-            // 生成二维码
-            document.getElementById('qrcode').innerHTML = '';
-            new QRCode(document.getElementById('qrcode'), {
-                text: mockLoginUrl,
-                width: 192,
-                height: 192,
-                colorDark: '#000000',
-                colorLight: '#ffffff',
-                correctLevel: QRCode.CorrectLevel.M
-            });
-
-            // 更新链接
-            document.getElementById('loginUrl').value = mockLoginUrl;
-        }
-
         function closeQRModal() {
             document.getElementById('qrModal').classList.add('hidden');
             document.getElementById('qrModal').classList.remove('flex');
+            loadPlatforms(); // 刷新列表查看授权状态
+        }
+
+        function selectProvider(el, provider) {
+            document.querySelectorAll('.provider-tab').forEach(tab => tab.classList.remove('active'));
+            el.classList.add('active');
+            selectedProvider = provider;
         }
 
         function copyUrl() {
