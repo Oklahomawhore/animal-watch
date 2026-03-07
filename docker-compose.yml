@@ -30,6 +30,7 @@ services:
       - FLASK_DEBUG=${FLASK_DEBUG:-False}
     volumes:
       - animalwatch-data:/app/data
+      - ./admin-web:/app/admin-web:ro  # 挂载前端静态文件
     # 确保以 root 运行
     user: "root:root"
     depends_on:

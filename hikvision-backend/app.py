@@ -37,7 +37,13 @@ migrate = Migrate()
 
 def create_app():
     """创建 Flask 应用"""
-    app = Flask(__name__)
+    # 根据环境判断静态文件路径
+    if os.path.exists('/app/admin-web'):  # Docker环境
+        static_folder = '/app/admin-web'
+    else:  # 本地开发环境
+        static_folder = '../admin-web'
+    
+    app = Flask(__name__, static_folder=static_folder, static_url_path='/admin-web')
     
     # 配置
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-key-change-in-production')
@@ -151,7 +157,20 @@ def create_app():
             }
         })
     
-    return app
+    # 管理后台首页
+    @app.route('/admin')
+    @app.route('/admin/')
+    def admin_index():
+        """重定向到渠道管理页面"""
+        return app.send_static_file('pages/platforms.html')
+    
+    @app.route('/admin/<path:filename>')
+    def admin_pages(filename):
+        """提供管理后台静态页面"""
+        try:
+            return app.send_static_file(f'pages/{filename}')
+        except:
+            return jsonify({'code': 404, 'msg': 'Page not found'}), 404
 
 # 创建应用实例
 app = create_app()
