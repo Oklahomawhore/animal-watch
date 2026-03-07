@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-数据库初始化脚本
-创建初始客户和管理员账号
+数据库初始化脚本（备用）
+
+注意：Docker部署时不需要运行此脚本！
+应用启动时会自动初始化数据库。
+
+此脚本仅用于：
+1. 本地开发环境手动初始化
+2. 需要自定义初始数据时
 """
 
 import os
@@ -33,12 +39,8 @@ def init_database():
             code="default",
             contact_name="管理员",
             contact_phone="13800138000",
-            config={
-                "wechat": {},
-                "notification": {
-                    "enabled_types": ["motion", "grass_low", "offline"]
-                }
-            }
+            config={},
+            status=UserStatus.ACTIVE
         )
         db.session.add(client)
         db.session.flush()  # 获取client.id
@@ -55,18 +57,14 @@ def init_database():
             role=UserRole.ADMIN,
             visibility_level=VisibilityLevel.FACTORY,
             visibility_scope_ids=[],
-            permissions={
-                "can_manage_users": True,
-                "can_manage_platforms": True,
-                "can_view_analytics": True,
-                "can_receive_alerts": True
-            },
+            permissions={},
+            notification_settings={"alarm": True, "offline": True, "medical": True},
             status=UserStatus.ACTIVE
         )
         db.session.add(admin)
         db.session.commit()
         
-        print(f"✅ 管理员账号创建完成: {admin.username}")
+        logger.info(f"✅ 管理员账号创建完成: {admin.username}")
         print("⚠️  请登录后立即修改默认密码！")
         print("\n初始账号信息:")
         print(f"  客户编码: {client.code}")
@@ -74,4 +72,13 @@ def init_database():
         print(f"  密码: admin123")
 
 if __name__ == '__main__':
+    print("=" * 50)
+    print("数据库初始化脚本")
+    print("=" * 50)
+    print("\n注意：Docker部署时不需要运行此脚本！")
+    print("应用启动时会自动初始化数据库。\n")
+    
+    import logging
+    logging.basicConfig(level=logging.INFO)
+    
     init_database()
