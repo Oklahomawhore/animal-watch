@@ -88,13 +88,12 @@ class HikvisionCloudAPI:
         url = f"{self.BASE_URL}{path}"
         
         # 判断是否需要加密（这些接口不需要）
-        # 注意：根据海康文档，/auth/third/code2Token 可能需要加密
-        # 但当前报错 "无法识别的加密内容"，先尝试不加密
+        # 根据海康文档，以下接口不需要 RSA 加密
         no_encrypt_paths = [
             '/auth/exchangeAppToken',
-            '/auth/refreshAppToken', 
-            '/auth/third/applyAuthCode',
-            '/auth/third/code2Token'  # 尝试不加密
+            '/auth/refreshAppToken',
+            '/auth/third/applyAuthCode'
+            # 注意：/auth/third/code2Token 需要加密
         ]
         need_encrypt = path not in no_encrypt_paths and self._encryptor._private_key is not None
         
