@@ -64,32 +64,37 @@ class HikvisionRSAEncryptor:
     def _load_key(self):
         """加载 RSA 私钥"""
         try:
-            if CRYPTO_LIB == 'pycryptodome':
-                # 处理可能缺少换行的情况
-                key_content = self.private_key_pem.strip()
-                if '-----BEGIN' not in key_content:
-                    # 纯 base64 字符串，需要包装
-                    key_content = f"-----BEGIN RSA PRIVATE KEY-----\n{key_content}\n-----END RSA PRIVATE KEY-----"
+            key_content = self.private_key_pem.strip()
+            
+            if '-----BEGIN' not in key_content:
+                # 纯 base64 字符串，需要包装成 PEM 格式
+                # 每 64 字符换行（PEM 标准格式）
+                key_lines = []
+                for i in range(0, len(key_content), 64):
+                    key_lines.append(key_content[i:i+64])
+                key_with_newlines = '\n'.join(key_lines)
                 
+                key_content = f"-----BEGIN RSA PRIVATE KEY-----\n{key_with_newlines}\n-----END RSA PRIVATE KEY-----"
+                logger.info("[RSA初始化] 纯 key 字符串，已包装为 PEM 格式")
+                logger.info(f"[RSA初始化] 包装后前100字符:\n{key_content[:100]}...")
+            
+            if CRYPTO_LIB == 'pycryptodome':
                 self._private_key = RSA.import_key(key_content)
                 logger.info(f"[RSA初始化] 私钥加载成功 (pycryptodome)")
                 logger.info(f"[RSA初始化] 密钥大小: {self._private_key.size_in_bits()} bits")
                 
             elif CRYPTO_LIB == 'cryptography':
-                key_content = self.private_key_pem.strip()
-                if '-----BEGIN' not in key_content:
-                    key_content = f"-----BEGIN RSA PRIVATE KEY-----\n{key_content}\n-----END RSA PRIVATE KEY-----"
-                
                 self._private_key = serialization.load_pem_private_key(
                     key_content.encode('utf-8'),
                     password=None
                 )
-                logger.info("RSA 私钥加载成功 (cryptography)")
+                logger.info("[RSA初始化] 私钥加载成功 (cryptography)")
             else:
                 raise ImportError("未安装加密库，请安装 pycryptodome 或 cryptography")
                 
         except Exception as e:
-            logger.error(f"RSA 私钥加载失败: {e}")
+            logger.error(f"[RSA初始化] RSA 私钥加载失败: {e}")
+            logger.error(f"[RSA初始化] 私钥内容前50字符: {self.private_key_pem[:50]}...")
             raise
     
     def _encrypt_block_pycryptodome(self, data: bytes) -> bytes:
