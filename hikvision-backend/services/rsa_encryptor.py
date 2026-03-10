@@ -216,7 +216,10 @@ class HikvisionRSAEncryptor:
         """
         解密响应数据（海康返回的加密 data 字段）
         
-        注意：海康用公钥加密响应，需要用私钥解密
+        按照海康官方文档的解密流程:
+        1. Base64 解码
+        2. 分段 RSA 解密（每段 128 字节）
+        3. URL decode
         
         Args:
             encrypted_data: Base64 编码的加密数据
@@ -229,35 +232,47 @@ class HikvisionRSAEncryptor:
         
         try:
             # Base64 解码
-            encrypted_bytes = base64.b64decode(encrypted_data)
+            encrypted_bytes = base64.b64decode(encrypted_data.encode('utf-8'))
             
             # 分段解密
-            decrypted_blocks = []
+            decrypted_data = b""
+            input_len = len(encrypted_bytes)
+            offset = 0
             
             if CRYPTO_LIB == 'pycryptodome':
                 cipher = PKCS1_v1_5.new(self._private_key)
                 
-                for i in range(0, len(encrypted_bytes), self.MAX_DECRYPT_BLOCK):
-                    block = encrypted_bytes[i:i + self.MAX_DECRYPT_BLOCK]
-                    decrypted_block = cipher.decrypt(block, sentinel=None)
-                    if decrypted_block:
-                        decrypted_blocks.append(decrypted_block)
+                while input_len - offset > 0:
+                    if input_len - offset > self.MAX_DECRYPT_BLOCK:
+                        block = encrypted_bytes[offset:offset + self.MAX_DECRYPT_BLOCK]
+                    else:
+                        block = encrypted_bytes[offset:input_len]
+                    
+                    # 使用 None 作为 sentinel（与官方代码一致）
+                    cache = cipher.decrypt(block, None)
+                    if cache:
+                        decrypted_data += cache
+                    offset += self.MAX_DECRYPT_BLOCK
             
             elif CRYPTO_LIB == 'cryptography':
                 from cryptography.hazmat.primitives.asymmetric import padding as asym_padding
                 
-                for i in range(0, len(encrypted_bytes), self.MAX_DECRYPT_BLOCK):
-                    block = encrypted_bytes[i:i + self.MAX_DECRYPT_BLOCK]
+                while input_len - offset > 0:
+                    if input_len - offset > self.MAX_DECRYPT_BLOCK:
+                        block = encrypted_bytes[offset:offset + self.MAX_DECRYPT_BLOCK]
+                    else:
+                        block = encrypted_bytes[offset:input_len]
+                    
                     decrypted_block = self._private_key.decrypt(
                         block,
                         asym_padding.PKCS1v15()
                     )
-                    decrypted_blocks.append(decrypted_block)
+                    decrypted_data += decrypted_block
+                    offset += self.MAX_DECRYPT_BLOCK
             
-            # 拼接并 URL decode
-            decrypted_bytes = b''.join(decrypted_blocks)
-            decrypted_str = decrypted_bytes.decode('utf-8')
-            plaintext = urllib.parse.unquote(decrypted_str)
+            # URL decode
+            decoded_data = decrypted_data.decode('utf-8')
+            plaintext = urllib.parse.unquote(decoded_data)
             
             return plaintext
             

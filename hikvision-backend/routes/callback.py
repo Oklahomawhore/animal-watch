@@ -57,7 +57,10 @@ def handle_callback():
         is_encrypted = 'encrypt' in data or 'encryptData' in data or 'encrypt_data' in data
         if is_encrypted:
             logger.info("检测到加密消息，开始解密...")
+            
+            # 事件回调使用 AES-256-CBC 解密（Encrypt Key）
             decrypted_data = decryptor.decrypt_message(data)
+            
             logger.info(f"解密后数据: {json.dumps(decrypted_data, ensure_ascii=False)}")
         else:
             decrypted_data = data
@@ -87,7 +90,7 @@ def handle_callback():
             
             logger.info("收到海康 URL 验证请求，返回加密响应...")
             
-            # 如果请求是加密的，响应也需要加密
+            # 如果请求是加密的，响应也需要加密（使用 AES，与事件加密一致）
             if is_encrypted:
                 response_data = decryptor.encrypt_response("success")
                 logger.info(f"URL 验证响应(加密): {json.dumps(response_data)}")
