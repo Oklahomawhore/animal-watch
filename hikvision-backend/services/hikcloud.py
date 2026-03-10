@@ -87,15 +87,18 @@ class HikvisionCloudAPI:
         """
         url = f"{self.BASE_URL}{path}"
         
-        # 判断是否需要加密（这些接口不需要）
-        # 根据海康文档，以下接口不需要 RSA 加密
+        # 判断是否需要加密
+        # 暂时禁用所有加密，使用明文测试
         no_encrypt_paths = [
             '/auth/exchangeAppToken',
             '/auth/refreshAppToken',
-            '/auth/third/applyAuthCode'
-            # 注意：/auth/third/code2Token 需要加密
+            '/auth/third/applyAuthCode',
+            '/auth/third/code2Token',  # 禁用加密测试
+            '/device/v1/cameras',       # 设备列表接口
+            '/device/camera/v1/page',   # 设备分页接口
         ]
-        need_encrypt = path not in no_encrypt_paths and self._encryptor._private_key is not None
+        # 强制禁用加密：need_encrypt 始终为 False
+        need_encrypt = False
         
         headers = kwargs.pop('headers', {})
         headers['Accept'] = 'application/json'
