@@ -22,6 +22,7 @@ from typing import Dict, Optional, Union
 try:
     from Crypto.PublicKey import RSA
     from Crypto.Cipher import PKCS1_v1_5
+    from Crypto.Util.number import bytes_to_long, long_to_bytes
     CRYPTO_LIB = 'pycryptodome'
 except ImportError:
     CRYPTO_LIB = None
@@ -85,6 +86,26 @@ class HikvisionRSAEncryptor:
         """URL decode"""
         return urllib.parse.unquote(data)
     
+    def _rsa_private_encrypt_block(self, block: bytes) -> bytes:
+        """
+        对应 OpenSSL 的 RSA_private_encrypt + RSA_PKCS1_PADDING
+        PKCS#1 v1.5 Type 1 填充 + 私钥指数运算
+        """
+        k = self._key_size  # 密钥字节长度
+        
+        # PKCS#1 v1.5 Type 1 填充: 0x00 || 0x01 || PS(0xFF) || 0x00 || M
+        ps_len = k - len(block) - 3
+        if ps_len < 8:
+            raise ValueError(f"数据块过长: {len(block)} > {k - 11}")
+        
+        em = b'\x00\x01' + b'\xff' * ps_len + b'\x00' + block
+        
+        # 私钥运算: s = m^d mod n
+        em_int = bytes_to_long(em)
+        s_int = pow(em_int, self._private_key.d, self._private_key.n)
+        
+        return long_to_bytes(s_int, k)
+    
     def encrypt(self, plain_text: str) -> str:
         """
         RSA 加密（OpenSSL 兼容）
@@ -114,13 +135,11 @@ class HikvisionRSAEncryptor:
             plain_bytes = url_encoded.encode('utf-8')
             logger.info(f"[RSA加密] 数据长度: {len(plain_bytes)} 字节, 块大小: {self._max_encrypt_block}")
             
-            # 3. RSA 加密（PKCS1_v1_5 对应 OpenSSL 的 RSA_PKCS1_PADDING）
-            cipher = PKCS1_v1_5.new(self._private_key)
-            
+            # 3. RSA 私钥加密（对应 OpenSSL 的 RSA_private_encrypt + RSA_PKCS1_PADDING）
             encrypted_blocks = []
             for i in range(0, len(plain_bytes), self._max_encrypt_block):
                 block = plain_bytes[i:i + self._max_encrypt_block]
-                encrypted_block = cipher.encrypt(block)
+                encrypted_block = self._rsa_private_encrypt_block(block)
                 encrypted_blocks.append(encrypted_block)
                 logger.info(f"[RSA加密] 块 {len(encrypted_blocks)}: {len(block)} -> {len(encrypted_block)} 字节")
             
@@ -206,12 +225,10 @@ class HikvisionRSAEncryptor:
         
         # 加密（内部会做 URL encode）
         encrypted_b64 = self.encrypt(param_string)
+        logger.info(f"[RSA加密GET] querySecret: {encrypted_b64[:80]}...")
         
-        # URL encode 用于 GET 请求
-        url_encoded = urllib.parse.quote(encrypted_b64, safe='')
-        logger.info(f"[RSA加密GET] querySecret: {url_encoded[:80]}...")
-        
-        return url_encoded
+        # 注意：不在此处做 URL encode，由调用方（如 requests 库）负责
+        return encrypted_b64
     
     def encrypt_post_body(self, body: Union[Dict, str]) -> Dict:
         """
@@ -233,6 +250,10 @@ class HikvisionRSAEncryptor:
         encrypted_b64 = self.encrypt(body_str)
         
         return {"bodySecret": encrypted_b64}
+    
+    def decrypt_response(self, encrypted_b64: str) -> str:
+        """解密响应数据（decrypt 的别名，供 hikcloud.py 调用）"""
+        return self.decrypt(encrypted_b64)
 
 
 # 全局实例
