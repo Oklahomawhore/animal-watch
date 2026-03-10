@@ -23,24 +23,25 @@ class HikvisionCloudAPI:
     
     BASE_URL = "https://open-api.hikiot.com"
     
-    def __init__(self, app_key: str, app_secret: str, public_key: Optional[str] = None):
+    def __init__(self, app_key: str, app_secret: str, private_key: Optional[str] = None):
         """
         初始化 API 客户端
         
         Args:
             app_key: 应用 Key
-            app_secret: 应用 Secret
-            public_key: RSA 公钥（用于加密请求，从环境变量 HIK_PUBLIC_KEY 读取或传入）
+            app_secret: 应用 Secret（同时也是 RSA 私钥）
+            private_key: RSA 私钥（可选，如果不提供则使用 app_secret）
         """
         self.app_key = app_key
         self.app_secret = app_secret
         self.app_token: Optional[str] = None
         self.user_token: Optional[str] = None
         
-        # 初始化 RSA 加密器（使用公钥！）
-        # 从环境变量 HIK_PUBLIC_KEY 或传入参数获取
+        # 初始化 RSA 加密器（使用私钥）
+        # 优先使用传入的 private_key，其次使用 app_secret
+        rsa_key = private_key or app_secret
         from services.rsa_encryptor import HikvisionRSAEncryptor
-        self._encryptor = HikvisionRSAEncryptor(public_key)
+        self._encryptor = HikvisionRSAEncryptor(rsa_key)
         
         self._refresh_app_token()
     
@@ -94,7 +95,7 @@ class HikvisionCloudAPI:
             '/auth/third/applyAuthCode'
             # 注意：/auth/third/code2Token 需要加密
         ]
-        need_encrypt = path not in no_encrypt_paths and self._encryptor._public_key is not None
+        need_encrypt = path not in no_encrypt_paths and self._encryptor._private_key is not None
         
         headers = kwargs.pop('headers', {})
         headers['Accept'] = 'application/json'
