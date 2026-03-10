@@ -105,17 +105,18 @@ class HikvisionRSAEncryptor:
             hashes.SHA256()
         )
     
-    def encrypt(self, plaintext: str) -> str:
+    def encrypt(self, plaintext: str, url_encode_input: bool = True) -> str:
         """
         RSA 加密字符串
         
         按照海康文档要求:
-        1. 先对明文进行 URL encode
+        1. 先对明文进行 URL encode（可选，GET参数加密时不需要）
         2. 分段 RSA 加密（每段不超过 117 字节）
         3. Base64 编码结果
         
         Args:
             plaintext: 待加密的明文字符串
+            url_encode_input: 是否对输入做URL encode（GET参数加密时应为False）
             
         Returns:
             Base64 编码的加密结果
@@ -124,12 +125,16 @@ class HikvisionRSAEncryptor:
             raise ValueError("RSA 私钥未配置，无法加密")
         
         try:
-            # 1. URL encode
-            url_encoded = urllib.parse.quote(plaintext, safe='')
-            data_bytes = url_encoded.encode('utf-8')
+            # 1. 可选：URL encode
+            if url_encode_input:
+                url_encoded = urllib.parse.quote(plaintext, safe='')
+                data_bytes = url_encoded.encode('utf-8')
+                logger.info(f"[RSA加密] URL编码后: {url_encoded}")
+            else:
+                data_bytes = plaintext.encode('utf-8')
+                logger.info(f"[RSA加密] 不做URL编码，直接加密")
             
             logger.info(f"[RSA加密] 原始明文: {plaintext}")
-            logger.info(f"[RSA加密] URL编码后: {url_encoded}")
             logger.info(f"[RSA加密] 数据长度: {len(data_bytes)} 字节")
             
             # 2. 分段加密
@@ -177,6 +182,14 @@ class HikvisionRSAEncryptor:
         """
         加密 GET 请求参数
         
+        按照海康官方文档:
+        1. 获取所有GET请求参数（?后面的字符串，不包含?）
+        2. 将请求参数组合成 参数=参数值 的格式，并且把这些参数用&字符连接起来
+           ⚠️ 注意：这里不需要对参数值做URL encode！
+        3. 用RSA加密
+        4. 将加密后的字符串做url encode操作
+        5. 拼接成querySecret=url encode后字符串
+        
         Args:
             params: 参数字典，如 {"departNos": "BM0001", "beginDate": "2024-08-01"}
             
@@ -184,18 +197,18 @@ class HikvisionRSAEncryptor:
             加密后的 querySecret 值（已 URL encode）
         """
         # 1. 构建参数字符串 "key1=value1&key2=value2"
-        # 注意：海康要求参数值也要 URL encode
+        # ⚠️ 关键：海康官方示例中，参数值是明文，不做URL encode！
         param_pairs = []
         for key, value in sorted(params.items()):  # 按 key 排序确保一致性
             if value is not None:
-                encoded_value = urllib.parse.quote(str(value), safe='')
-                param_pairs.append(f"{key}={encoded_value}")
+                # 不做 URL encode，直接使用原始值
+                param_pairs.append(f"{key}={value}")
         
         param_string = "&".join(param_pairs)
         logger.info(f"[RSA加密GET] 原始参数字符串: {param_string}")
         
-        # 2. RSA 加密
-        encrypted = self.encrypt(param_string)
+        # 2. RSA 加密（GET参数不需要内部URL encode）
+        encrypted = self.encrypt(param_string, url_encode_input=False)
         
         # 3. URL encode 加密结果
         query_secret = urllib.parse.quote(encrypted, safe='')
