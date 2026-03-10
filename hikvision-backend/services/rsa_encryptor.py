@@ -53,9 +53,13 @@ class HikvisionRSAEncryptor:
         self._private_key = None
         
         if self.private_key_pem:
+            key_preview = self.private_key_pem[:50] if len(self.private_key_pem) > 50 else self.private_key_pem
+            logger.info(f"[RSA初始化] 私钥来源: {'传入参数' if private_key_pem else '环境变量'}")
+            logger.info(f"[RSA初始化] 私钥前50字符: {key_preview}...")
+            logger.info(f"[RSA初始化] 私钥总长度: {len(self.private_key_pem)} 字符")
             self._load_key()
         else:
-            logger.warning("未配置 RSA 私钥（HIK_PRIVATE_KEY 或 HIK_APP_SECRET），无法进行请求加密")
+            logger.warning("[RSA初始化] 未配置 RSA 私钥（HIK_PRIVATE_KEY 或 HIK_APP_SECRET），无法进行请求加密")
     
     def _load_key(self):
         """加载 RSA 私钥"""
@@ -68,7 +72,8 @@ class HikvisionRSAEncryptor:
                     key_content = f"-----BEGIN RSA PRIVATE KEY-----\n{key_content}\n-----END RSA PRIVATE KEY-----"
                 
                 self._private_key = RSA.import_key(key_content)
-                logger.info("RSA 私钥加载成功 (pycryptodome)")
+                logger.info(f"[RSA初始化] 私钥加载成功 (pycryptodome)")
+                logger.info(f"[RSA初始化] 密钥大小: {self._private_key.size_in_bits()} bits")
                 
             elif CRYPTO_LIB == 'cryptography':
                 key_content = self.private_key_pem.strip()
@@ -123,6 +128,10 @@ class HikvisionRSAEncryptor:
             url_encoded = urllib.parse.quote(plaintext, safe='')
             data_bytes = url_encoded.encode('utf-8')
             
+            logger.info(f"[RSA加密] 原始明文: {plaintext}")
+            logger.info(f"[RSA加密] URL编码后: {url_encoded}")
+            logger.info(f"[RSA加密] 数据长度: {len(data_bytes)} 字节")
+            
             # 2. 分段加密
             encrypted_blocks = []
             
@@ -131,8 +140,10 @@ class HikvisionRSAEncryptor:
                 
                 for i in range(0, len(data_bytes), self.MAX_ENCRYPT_BLOCK):
                     block = data_bytes[i:i + self.MAX_ENCRYPT_BLOCK]
+                    logger.info(f"[RSA加密] 加密块 {i//self.MAX_ENCRYPT_BLOCK + 1}: {len(block)} 字节")
                     encrypted_block = cipher.encrypt(block)
                     encrypted_blocks.append(encrypted_block)
+                    logger.info(f"[RSA加密] 块加密结果长度: {len(encrypted_block)} 字节")
             
             elif CRYPTO_LIB == 'cryptography':
                 from cryptography.hazmat.primitives.asymmetric import padding as asym_padding
@@ -153,10 +164,13 @@ class HikvisionRSAEncryptor:
             encrypted_data = b''.join(encrypted_blocks)
             encrypted_base64 = base64.b64encode(encrypted_data).decode('utf-8')
             
+            logger.info(f"[RSA加密] 最终密文长度: {len(encrypted_base64)} 字符")
+            logger.info(f"[RSA加密] 密文前100字符: {encrypted_base64[:100]}...")
+            
             return encrypted_base64
             
         except Exception as e:
-            logger.error(f"RSA 加密失败: {e}")
+            logger.error(f"[RSA加密] 加密失败: {e}")
             raise
     
     def encrypt_get_params(self, params: Dict[str, Union[str, int, bool]]) -> str:
@@ -178,13 +192,15 @@ class HikvisionRSAEncryptor:
                 param_pairs.append(f"{key}={encoded_value}")
         
         param_string = "&".join(param_pairs)
-        logger.debug(f"待加密的 GET 参数字符串: {param_string}")
+        logger.info(f"[RSA加密GET] 原始参数字符串: {param_string}")
         
         # 2. RSA 加密
         encrypted = self.encrypt(param_string)
         
         # 3. URL encode 加密结果
         query_secret = urllib.parse.quote(encrypted, safe='')
+        
+        logger.info(f"[RSA加密GET] 最终 querySecret 长度: {len(query_secret)} 字符")
         
         return query_secret
     
@@ -231,53 +247,73 @@ class HikvisionRSAEncryptor:
             raise ValueError("RSA 私钥未配置，无法解密")
         
         try:
+            logger.info(f"[RSA解密] 密文长度: {len(encrypted_data)} 字符")
+            logger.info(f"[RSA解密] 密文前100字符: {encrypted_data[:100]}...")
+            
             # Base64 解码
             encrypted_bytes = base64.b64decode(encrypted_data.encode('utf-8'))
+            logger.info(f"[RSA解密] Base64解码后长度: {len(encrypted_bytes)} 字节")
             
             # 分段解密
             decrypted_data = b""
             input_len = len(encrypted_bytes)
             offset = 0
+            block_count = 0
             
             if CRYPTO_LIB == 'pycryptodome':
                 cipher = PKCS1_v1_5.new(self._private_key)
                 
                 while input_len - offset > 0:
+                    block_count += 1
                     if input_len - offset > self.MAX_DECRYPT_BLOCK:
                         block = encrypted_bytes[offset:offset + self.MAX_DECRYPT_BLOCK]
                     else:
                         block = encrypted_bytes[offset:input_len]
                     
+                    logger.info(f"[RSA解密] 解密块 {block_count}: {len(block)} 字节")
+                    
                     # 使用 None 作为 sentinel（与官方代码一致）
                     cache = cipher.decrypt(block, None)
                     if cache:
                         decrypted_data += cache
+                        logger.info(f"[RSA解密] 块 {block_count} 解密成功: {len(cache)} 字节")
+                    else:
+                        logger.warning(f"[RSA解密] 块 {block_count} 解密返回 None")
                     offset += self.MAX_DECRYPT_BLOCK
             
             elif CRYPTO_LIB == 'cryptography':
                 from cryptography.hazmat.primitives.asymmetric import padding as asym_padding
                 
                 while input_len - offset > 0:
+                    block_count += 1
                     if input_len - offset > self.MAX_DECRYPT_BLOCK:
                         block = encrypted_bytes[offset:offset + self.MAX_DECRYPT_BLOCK]
                     else:
                         block = encrypted_bytes[offset:input_len]
+                    
+                    logger.info(f"[RSA解密] 解密块 {block_count}: {len(block)} 字节")
                     
                     decrypted_block = self._private_key.decrypt(
                         block,
                         asym_padding.PKCS1v15()
                     )
                     decrypted_data += decrypted_block
+                    logger.info(f"[RSA解密] 块 {block_count} 解密成功: {len(decrypted_block)} 字节")
                     offset += self.MAX_DECRYPT_BLOCK
             
             # URL decode
             decoded_data = decrypted_data.decode('utf-8')
+            logger.info(f"[RSA解密] URL解码前: {decoded_data[:200]}...")
+            
             plaintext = urllib.parse.unquote(decoded_data)
+            logger.info(f"[RSA解密] 最终明文: {plaintext[:200]}...")
             
             return plaintext
             
         except Exception as e:
-            logger.error(f"RSA 解密失败: {e}")
+            logger.error(f"[RSA解密] 解密失败: {e}")
+            import traceback
+            logger.error(f"[RSA解密] 异常堆栈: {traceback.format_exc()}")
             raise
 
 

@@ -123,20 +123,32 @@ class HikvisionCloudAPI:
                 logger.debug(f"POST 请求体已加密: {path}")
         
         # 发送请求
+        logger.info(f"[API请求] {method} {url}")
+        logger.info(f"[API请求] Headers: {headers}")
+        logger.info(f"[API请求] 需要加密: {need_encrypt}")
+        if 'params' in kwargs:
+            logger.info(f"[API请求] Params: {kwargs['params']}")
+        if 'json' in kwargs:
+            logger.info(f"[API请求] Body: {kwargs['json']}")
+        
         resp = requests.request(method, url, headers=headers, **kwargs, timeout=30, verify=False)
         result = resp.json()
+        
+        logger.info(f"[API响应] Status: {resp.status_code}")
+        logger.info(f"[API响应] Result: {json.dumps(result, ensure_ascii=False)[:500]}...")
         
         # 处理响应解密
         if result.get("code") == 0 and 'data' in result and need_encrypt:
             encrypted_data = result['data']
+            logger.info(f"[API响应] 需要解密的数据: {str(encrypted_data)[:200]}...")
             if encrypted_data and isinstance(encrypted_data, str):
                 try:
                     # 解密响应数据
                     decrypted = self._encryptor.decrypt_response(encrypted_data)
                     result['data'] = json.loads(decrypted)
-                    logger.debug(f"响应数据已解密: {path}")
+                    logger.info(f"[API响应] 解密成功: {path}")
                 except Exception as e:
-                    logger.warning(f"响应解密失败: {e}，返回原始数据")
+                    logger.error(f"[API响应] 解密失败: {e}，返回原始数据")
         
         return result
     
@@ -249,6 +261,8 @@ class HikvisionCloudAPI:
         授权码换取 User Access Token
         https://open.hikiot.com/documents/detail/11?docId=1825505782565777436
         """
+        logger.info(f"[code2token] 开始换取 Token, authCode: {auth_code[:20]}...")
+        
         params = {
             "authCode": auth_code
         }
@@ -256,10 +270,11 @@ class HikvisionCloudAPI:
         result = self._request("GET", "/auth/third/code2Token", params=params)
         
         if result.get("code") == 0:
-            logger.info("User Access Token 获取成功")
+            logger.info("[code2token] User Access Token 获取成功")
             self.user_token = result["data"]["userAccessToken"]
         else:
-            logger.warning(f"User Access Token 获取失败: {result.get('msg')}")
+            logger.error(f"[code2token] User Access Token 获取失败: {result.get('msg')}")
+            logger.error(f"[code2token] 完整响应: {json.dumps(result, ensure_ascii=False)}")
         
         return result
     
