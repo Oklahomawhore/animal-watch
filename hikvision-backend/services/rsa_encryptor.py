@@ -221,6 +221,11 @@ class HikvisionRSAEncryptor:
         """
         加密 POST 请求体
         
+        按照海康官方文档:
+        1. 获取 POST 请求参数（request body 中的内容）
+        2. 直接用 RSA 加密（不做 URL encode）
+        3. 拼接成 {"bodySecret": "加密后字符串"}
+        
         Args:
             body: 请求体（字典或 JSON 字符串）
             
@@ -233,12 +238,14 @@ class HikvisionRSAEncryptor:
         else:
             body_str = body
         
-        logger.debug(f"待加密的 POST 请求体: {body_str}")
+        logger.info(f"[RSA加密POST] JSON字符串: {body_str}")
         
-        # 2. RSA 加密
-        encrypted = self.encrypt(body_str)
+        # 2. RSA 加密（POST body 也不需要内部 URL encode）
+        encrypted = self.encrypt(body_str, url_encode_input=False)
         
         # 3. 返回 bodySecret 格式
+        logger.info(f"[RSA加密POST] 最终 bodySecret 长度: {len(encrypted)} 字符")
+        
         return {"bodySecret": encrypted}
     
     def decrypt_response(self, encrypted_data: str) -> str:
