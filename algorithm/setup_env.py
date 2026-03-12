@@ -65,6 +65,7 @@ def get_device_list():
 
 def capture_image(device_serial, channel_no=1):
     """抓拍设备图片"""
+    # 海康 API: POST /device/camera/v1/capture
     url = f"{BASE_URL}/device/camera/v1/capture"
     headers = {
         **BROWSER_HEADERS,
@@ -83,10 +84,10 @@ def capture_image(device_serial, channel_no=1):
         if result.get("code") == 0:
             return result["data"].get("picUrl")
         else:
-            print(f"抓拍失败 [{device_serial}]: {result.get('msg')}")
+            print(f"  抓拍失败 [{device_serial}]: {result.get('msg')} (code: {result.get('code')})")
             return None
     except Exception as e:
-        print(f"请求失败 [{device_serial}]: {e}")
+        print(f"  请求失败 [{device_serial}]: {e}")
         return None
 
 
