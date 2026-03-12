@@ -1,0 +1,20 @@
+# 林麝检测算法 - 依赖列表
+# 安装: pip install -r requirements.txt
+
+# 深度学习
+ultralytics>=8.0.0
+torch>=2.0.0
+torchvision>=0.15.0
+
+# 图像处理
+opencv-python>=4.8.0
+Pillow>=10.0.0
+numpy>=1.24.0
+scikit-image>=0.21.0
+
+# 数据处理和可视化
+matplotlib>=3.7.0
+tqdm>=4.65.0
+
+# 工具
+requests>=2.31.0
