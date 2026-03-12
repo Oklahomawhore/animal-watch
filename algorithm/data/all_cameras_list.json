@@ -1,0 +1,2245 @@
+{
+  "total": 320,
+  "cameras": [
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 1,
+      "cameraId": "GF6830765_1",
+      "cameraName": "2区母麝圈_通道1"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 2,
+      "cameraId": "GF6830765_2",
+      "cameraName": "2区母麝圈_通道2"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 3,
+      "cameraId": "GF6830765_3",
+      "cameraName": "2区母麝圈_通道3"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 4,
+      "cameraId": "GF6830765_4",
+      "cameraName": "2区母麝圈_通道4"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 5,
+      "cameraId": "GF6830765_5",
+      "cameraName": "2区母麝圈_通道5"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 6,
+      "cameraId": "GF6830765_6",
+      "cameraName": "2区母麝圈_通道6"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 7,
+      "cameraId": "GF6830765_7",
+      "cameraName": "2区母麝圈_通道7"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 8,
+      "cameraId": "GF6830765_8",
+      "cameraName": "2区母麝圈_通道8"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 9,
+      "cameraId": "GF6830765_9",
+      "cameraName": "2区母麝圈_通道9"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 10,
+      "cameraId": "GF6830765_10",
+      "cameraName": "2区母麝圈_通道10"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 11,
+      "cameraId": "GF6830765_11",
+      "cameraName": "2区母麝圈_通道11"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 12,
+      "cameraId": "GF6830765_12",
+      "cameraName": "2区母麝圈_通道12"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 13,
+      "cameraId": "GF6830765_13",
+      "cameraName": "2区母麝圈_通道13"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 14,
+      "cameraId": "GF6830765_14",
+      "cameraName": "2区母麝圈_通道14"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 15,
+      "cameraId": "GF6830765_15",
+      "cameraName": "2区母麝圈_通道15"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 16,
+      "cameraId": "GF6830765_16",
+      "cameraName": "2区母麝圈_通道16"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 17,
+      "cameraId": "GF6830765_17",
+      "cameraName": "2区母麝圈_通道17"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 18,
+      "cameraId": "GF6830765_18",
+      "cameraName": "2区母麝圈_通道18"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 19,
+      "cameraId": "GF6830765_19",
+      "cameraName": "2区母麝圈_通道19"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 20,
+      "cameraId": "GF6830765_20",
+      "cameraName": "2区母麝圈_通道20"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 21,
+      "cameraId": "GF6830765_21",
+      "cameraName": "2区母麝圈_通道21"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 22,
+      "cameraId": "GF6830765_22",
+      "cameraName": "2区母麝圈_通道22"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 23,
+      "cameraId": "GF6830765_23",
+      "cameraName": "2区母麝圈_通道23"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 24,
+      "cameraId": "GF6830765_24",
+      "cameraName": "2区母麝圈_通道24"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 25,
+      "cameraId": "GF6830765_25",
+      "cameraName": "2区母麝圈_通道25"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 26,
+      "cameraId": "GF6830765_26",
+      "cameraName": "2区母麝圈_通道26"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 27,
+      "cameraId": "GF6830765_27",
+      "cameraName": "2区母麝圈_通道27"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 28,
+      "cameraId": "GF6830765_28",
+      "cameraName": "2区母麝圈_通道28"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 29,
+      "cameraId": "GF6830765_29",
+      "cameraName": "2区母麝圈_通道29"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 30,
+      "cameraId": "GF6830765_30",
+      "cameraName": "2区母麝圈_通道30"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 31,
+      "cameraId": "GF6830765_31",
+      "cameraName": "2区母麝圈_通道31"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 32,
+      "cameraId": "GF6830765_32",
+      "cameraName": "2区母麝圈_通道32"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 33,
+      "cameraId": "GF6830765_33",
+      "cameraName": "2区母麝圈_通道33"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 34,
+      "cameraId": "GF6830765_34",
+      "cameraName": "2区母麝圈_通道34"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 35,
+      "cameraId": "GF6830765_35",
+      "cameraName": "2区母麝圈_通道35"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 36,
+      "cameraId": "GF6830765_36",
+      "cameraName": "2区母麝圈_通道36"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 37,
+      "cameraId": "GF6830765_37",
+      "cameraName": "2区母麝圈_通道37"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 38,
+      "cameraId": "GF6830765_38",
+      "cameraName": "2区母麝圈_通道38"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 39,
+      "cameraId": "GF6830765_39",
+      "cameraName": "2区母麝圈_通道39"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 40,
+      "cameraId": "GF6830765_40",
+      "cameraName": "2区母麝圈_通道40"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 41,
+      "cameraId": "GF6830765_41",
+      "cameraName": "2区母麝圈_通道41"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 42,
+      "cameraId": "GF6830765_42",
+      "cameraName": "2区母麝圈_通道42"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 43,
+      "cameraId": "GF6830765_43",
+      "cameraName": "2区母麝圈_通道43"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 44,
+      "cameraId": "GF6830765_44",
+      "cameraName": "2区母麝圈_通道44"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 45,
+      "cameraId": "GF6830765_45",
+      "cameraName": "2区母麝圈_通道45"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 46,
+      "cameraId": "GF6830765_46",
+      "cameraName": "2区母麝圈_通道46"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 47,
+      "cameraId": "GF6830765_47",
+      "cameraName": "2区母麝圈_通道47"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 48,
+      "cameraId": "GF6830765_48",
+      "cameraName": "2区母麝圈_通道48"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 49,
+      "cameraId": "GF6830765_49",
+      "cameraName": "2区母麝圈_通道49"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 50,
+      "cameraId": "GF6830765_50",
+      "cameraName": "2区母麝圈_通道50"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 51,
+      "cameraId": "GF6830765_51",
+      "cameraName": "2区母麝圈_通道51"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 52,
+      "cameraId": "GF6830765_52",
+      "cameraName": "2区母麝圈_通道52"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 53,
+      "cameraId": "GF6830765_53",
+      "cameraName": "2区母麝圈_通道53"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 54,
+      "cameraId": "GF6830765_54",
+      "cameraName": "2区母麝圈_通道54"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 55,
+      "cameraId": "GF6830765_55",
+      "cameraName": "2区母麝圈_通道55"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 56,
+      "cameraId": "GF6830765_56",
+      "cameraName": "2区母麝圈_通道56"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 57,
+      "cameraId": "GF6830765_57",
+      "cameraName": "2区母麝圈_通道57"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 58,
+      "cameraId": "GF6830765_58",
+      "cameraName": "2区母麝圈_通道58"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 59,
+      "cameraId": "GF6830765_59",
+      "cameraName": "2区母麝圈_通道59"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 60,
+      "cameraId": "GF6830765_60",
+      "cameraName": "2区母麝圈_通道60"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 61,
+      "cameraId": "GF6830765_61",
+      "cameraName": "2区母麝圈_通道61"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 62,
+      "cameraId": "GF6830765_62",
+      "cameraName": "2区母麝圈_通道62"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 63,
+      "cameraId": "GF6830765_63",
+      "cameraName": "2区母麝圈_通道63"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 64,
+      "cameraId": "GF6830765_64",
+      "cameraName": "2区母麝圈_通道64"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 1,
+      "cameraId": "GG3425740_1",
+      "cameraName": "2区公麝圈_通道1"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 2,
+      "cameraId": "GG3425740_2",
+      "cameraName": "2区公麝圈_通道2"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 3,
+      "cameraId": "GG3425740_3",
+      "cameraName": "2区公麝圈_通道3"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 4,
+      "cameraId": "GG3425740_4",
+      "cameraName": "2区公麝圈_通道4"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 5,
+      "cameraId": "GG3425740_5",
+      "cameraName": "2区公麝圈_通道5"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 6,
+      "cameraId": "GG3425740_6",
+      "cameraName": "2区公麝圈_通道6"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 7,
+      "cameraId": "GG3425740_7",
+      "cameraName": "2区公麝圈_通道7"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 8,
+      "cameraId": "GG3425740_8",
+      "cameraName": "2区公麝圈_通道8"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 9,
+      "cameraId": "GG3425740_9",
+      "cameraName": "2区公麝圈_通道9"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 10,
+      "cameraId": "GG3425740_10",
+      "cameraName": "2区公麝圈_通道10"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 11,
+      "cameraId": "GG3425740_11",
+      "cameraName": "2区公麝圈_通道11"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 12,
+      "cameraId": "GG3425740_12",
+      "cameraName": "2区公麝圈_通道12"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 13,
+      "cameraId": "GG3425740_13",
+      "cameraName": "2区公麝圈_通道13"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 14,
+      "cameraId": "GG3425740_14",
+      "cameraName": "2区公麝圈_通道14"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 15,
+      "cameraId": "GG3425740_15",
+      "cameraName": "2区公麝圈_通道15"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 16,
+      "cameraId": "GG3425740_16",
+      "cameraName": "2区公麝圈_通道16"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 17,
+      "cameraId": "GG3425740_17",
+      "cameraName": "2区公麝圈_通道17"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 18,
+      "cameraId": "GG3425740_18",
+      "cameraName": "2区公麝圈_通道18"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 19,
+      "cameraId": "GG3425740_19",
+      "cameraName": "2区公麝圈_通道19"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 20,
+      "cameraId": "GG3425740_20",
+      "cameraName": "2区公麝圈_通道20"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 21,
+      "cameraId": "GG3425740_21",
+      "cameraName": "2区公麝圈_通道21"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 22,
+      "cameraId": "GG3425740_22",
+      "cameraName": "2区公麝圈_通道22"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 23,
+      "cameraId": "GG3425740_23",
+      "cameraName": "2区公麝圈_通道23"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 24,
+      "cameraId": "GG3425740_24",
+      "cameraName": "2区公麝圈_通道24"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 25,
+      "cameraId": "GG3425740_25",
+      "cameraName": "2区公麝圈_通道25"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 26,
+      "cameraId": "GG3425740_26",
+      "cameraName": "2区公麝圈_通道26"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 27,
+      "cameraId": "GG3425740_27",
+      "cameraName": "2区公麝圈_通道27"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 28,
+      "cameraId": "GG3425740_28",
+      "cameraName": "2区公麝圈_通道28"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 29,
+      "cameraId": "GG3425740_29",
+      "cameraName": "2区公麝圈_通道29"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 30,
+      "cameraId": "GG3425740_30",
+      "cameraName": "2区公麝圈_通道30"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 31,
+      "cameraId": "GG3425740_31",
+      "cameraName": "2区公麝圈_通道31"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 32,
+      "cameraId": "GG3425740_32",
+      "cameraName": "2区公麝圈_通道32"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 33,
+      "cameraId": "GG3425740_33",
+      "cameraName": "2区公麝圈_通道33"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 34,
+      "cameraId": "GG3425740_34",
+      "cameraName": "2区公麝圈_通道34"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 35,
+      "cameraId": "GG3425740_35",
+      "cameraName": "2区公麝圈_通道35"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 36,
+      "cameraId": "GG3425740_36",
+      "cameraName": "2区公麝圈_通道36"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 37,
+      "cameraId": "GG3425740_37",
+      "cameraName": "2区公麝圈_通道37"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 38,
+      "cameraId": "GG3425740_38",
+      "cameraName": "2区公麝圈_通道38"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 39,
+      "cameraId": "GG3425740_39",
+      "cameraName": "2区公麝圈_通道39"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 40,
+      "cameraId": "GG3425740_40",
+      "cameraName": "2区公麝圈_通道40"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 41,
+      "cameraId": "GG3425740_41",
+      "cameraName": "2区公麝圈_通道41"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 42,
+      "cameraId": "GG3425740_42",
+      "cameraName": "2区公麝圈_通道42"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 43,
+      "cameraId": "GG3425740_43",
+      "cameraName": "2区公麝圈_通道43"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 44,
+      "cameraId": "GG3425740_44",
+      "cameraName": "2区公麝圈_通道44"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 45,
+      "cameraId": "GG3425740_45",
+      "cameraName": "2区公麝圈_通道45"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 46,
+      "cameraId": "GG3425740_46",
+      "cameraName": "2区公麝圈_通道46"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 47,
+      "cameraId": "GG3425740_47",
+      "cameraName": "2区公麝圈_通道47"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 48,
+      "cameraId": "GG3425740_48",
+      "cameraName": "2区公麝圈_通道48"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 49,
+      "cameraId": "GG3425740_49",
+      "cameraName": "2区公麝圈_通道49"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 50,
+      "cameraId": "GG3425740_50",
+      "cameraName": "2区公麝圈_通道50"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 51,
+      "cameraId": "GG3425740_51",
+      "cameraName": "2区公麝圈_通道51"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 52,
+      "cameraId": "GG3425740_52",
+      "cameraName": "2区公麝圈_通道52"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 53,
+      "cameraId": "GG3425740_53",
+      "cameraName": "2区公麝圈_通道53"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 54,
+      "cameraId": "GG3425740_54",
+      "cameraName": "2区公麝圈_通道54"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 55,
+      "cameraId": "GG3425740_55",
+      "cameraName": "2区公麝圈_通道55"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 56,
+      "cameraId": "GG3425740_56",
+      "cameraName": "2区公麝圈_通道56"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 57,
+      "cameraId": "GG3425740_57",
+      "cameraName": "2区公麝圈_通道57"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 58,
+      "cameraId": "GG3425740_58",
+      "cameraName": "2区公麝圈_通道58"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 59,
+      "cameraId": "GG3425740_59",
+      "cameraName": "2区公麝圈_通道59"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 60,
+      "cameraId": "GG3425740_60",
+      "cameraName": "2区公麝圈_通道60"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 61,
+      "cameraId": "GG3425740_61",
+      "cameraName": "2区公麝圈_通道61"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 62,
+      "cameraId": "GG3425740_62",
+      "cameraName": "2区公麝圈_通道62"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 63,
+      "cameraId": "GG3425740_63",
+      "cameraName": "2区公麝圈_通道63"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 64,
+      "cameraId": "GG3425740_64",
+      "cameraName": "2区公麝圈_通道64"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 1,
+      "cameraId": "FU7533003_1",
+      "cameraName": "1区A1侧✕共同区域_通道1"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 2,
+      "cameraId": "FU7533003_2",
+      "cameraName": "1区A1侧✕共同区域_通道2"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 3,
+      "cameraId": "FU7533003_3",
+      "cameraName": "1区A1侧✕共同区域_通道3"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 4,
+      "cameraId": "FU7533003_4",
+      "cameraName": "1区A1侧✕共同区域_通道4"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 5,
+      "cameraId": "FU7533003_5",
+      "cameraName": "1区A1侧✕共同区域_通道5"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 6,
+      "cameraId": "FU7533003_6",
+      "cameraName": "1区A1侧✕共同区域_通道6"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 7,
+      "cameraId": "FU7533003_7",
+      "cameraName": "1区A1侧✕共同区域_通道7"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 8,
+      "cameraId": "FU7533003_8",
+      "cameraName": "1区A1侧✕共同区域_通道8"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 9,
+      "cameraId": "FU7533003_9",
+      "cameraName": "1区A1侧✕共同区域_通道9"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 10,
+      "cameraId": "FU7533003_10",
+      "cameraName": "1区A1侧✕共同区域_通道10"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 11,
+      "cameraId": "FU7533003_11",
+      "cameraName": "1区A1侧✕共同区域_通道11"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 12,
+      "cameraId": "FU7533003_12",
+      "cameraName": "1区A1侧✕共同区域_通道12"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 13,
+      "cameraId": "FU7533003_13",
+      "cameraName": "1区A1侧✕共同区域_通道13"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 14,
+      "cameraId": "FU7533003_14",
+      "cameraName": "1区A1侧✕共同区域_通道14"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 15,
+      "cameraId": "FU7533003_15",
+      "cameraName": "1区A1侧✕共同区域_通道15"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 16,
+      "cameraId": "FU7533003_16",
+      "cameraName": "1区A1侧✕共同区域_通道16"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 17,
+      "cameraId": "FU7533003_17",
+      "cameraName": "1区A1侧✕共同区域_通道17"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 18,
+      "cameraId": "FU7533003_18",
+      "cameraName": "1区A1侧✕共同区域_通道18"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 19,
+      "cameraId": "FU7533003_19",
+      "cameraName": "1区A1侧✕共同区域_通道19"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 20,
+      "cameraId": "FU7533003_20",
+      "cameraName": "1区A1侧✕共同区域_通道20"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 21,
+      "cameraId": "FU7533003_21",
+      "cameraName": "1区A1侧✕共同区域_通道21"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 22,
+      "cameraId": "FU7533003_22",
+      "cameraName": "1区A1侧✕共同区域_通道22"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 23,
+      "cameraId": "FU7533003_23",
+      "cameraName": "1区A1侧✕共同区域_通道23"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 24,
+      "cameraId": "FU7533003_24",
+      "cameraName": "1区A1侧✕共同区域_通道24"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 25,
+      "cameraId": "FU7533003_25",
+      "cameraName": "1区A1侧✕共同区域_通道25"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 26,
+      "cameraId": "FU7533003_26",
+      "cameraName": "1区A1侧✕共同区域_通道26"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 27,
+      "cameraId": "FU7533003_27",
+      "cameraName": "1区A1侧✕共同区域_通道27"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 28,
+      "cameraId": "FU7533003_28",
+      "cameraName": "1区A1侧✕共同区域_通道28"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 29,
+      "cameraId": "FU7533003_29",
+      "cameraName": "1区A1侧✕共同区域_通道29"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 30,
+      "cameraId": "FU7533003_30",
+      "cameraName": "1区A1侧✕共同区域_通道30"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 31,
+      "cameraId": "FU7533003_31",
+      "cameraName": "1区A1侧✕共同区域_通道31"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 32,
+      "cameraId": "FU7533003_32",
+      "cameraName": "1区A1侧✕共同区域_通道32"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 33,
+      "cameraId": "FU7533003_33",
+      "cameraName": "1区A1侧✕共同区域_通道33"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 34,
+      "cameraId": "FU7533003_34",
+      "cameraName": "1区A1侧✕共同区域_通道34"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 35,
+      "cameraId": "FU7533003_35",
+      "cameraName": "1区A1侧✕共同区域_通道35"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 36,
+      "cameraId": "FU7533003_36",
+      "cameraName": "1区A1侧✕共同区域_通道36"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 37,
+      "cameraId": "FU7533003_37",
+      "cameraName": "1区A1侧✕共同区域_通道37"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 38,
+      "cameraId": "FU7533003_38",
+      "cameraName": "1区A1侧✕共同区域_通道38"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 39,
+      "cameraId": "FU7533003_39",
+      "cameraName": "1区A1侧✕共同区域_通道39"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 40,
+      "cameraId": "FU7533003_40",
+      "cameraName": "1区A1侧✕共同区域_通道40"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 41,
+      "cameraId": "FU7533003_41",
+      "cameraName": "1区A1侧✕共同区域_通道41"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 42,
+      "cameraId": "FU7533003_42",
+      "cameraName": "1区A1侧✕共同区域_通道42"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 43,
+      "cameraId": "FU7533003_43",
+      "cameraName": "1区A1侧✕共同区域_通道43"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 44,
+      "cameraId": "FU7533003_44",
+      "cameraName": "1区A1侧✕共同区域_通道44"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 45,
+      "cameraId": "FU7533003_45",
+      "cameraName": "1区A1侧✕共同区域_通道45"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 46,
+      "cameraId": "FU7533003_46",
+      "cameraName": "1区A1侧✕共同区域_通道46"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 47,
+      "cameraId": "FU7533003_47",
+      "cameraName": "1区A1侧✕共同区域_通道47"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 48,
+      "cameraId": "FU7533003_48",
+      "cameraName": "1区A1侧✕共同区域_通道48"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 49,
+      "cameraId": "FU7533003_49",
+      "cameraName": "1区A1侧✕共同区域_通道49"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 50,
+      "cameraId": "FU7533003_50",
+      "cameraName": "1区A1侧✕共同区域_通道50"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 51,
+      "cameraId": "FU7533003_51",
+      "cameraName": "1区A1侧✕共同区域_通道51"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 52,
+      "cameraId": "FU7533003_52",
+      "cameraName": "1区A1侧✕共同区域_通道52"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 53,
+      "cameraId": "FU7533003_53",
+      "cameraName": "1区A1侧✕共同区域_通道53"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 54,
+      "cameraId": "FU7533003_54",
+      "cameraName": "1区A1侧✕共同区域_通道54"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 55,
+      "cameraId": "FU7533003_55",
+      "cameraName": "1区A1侧✕共同区域_通道55"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 56,
+      "cameraId": "FU7533003_56",
+      "cameraName": "1区A1侧✕共同区域_通道56"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 57,
+      "cameraId": "FU7533003_57",
+      "cameraName": "1区A1侧✕共同区域_通道57"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 58,
+      "cameraId": "FU7533003_58",
+      "cameraName": "1区A1侧✕共同区域_通道58"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 59,
+      "cameraId": "FU7533003_59",
+      "cameraName": "1区A1侧✕共同区域_通道59"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 60,
+      "cameraId": "FU7533003_60",
+      "cameraName": "1区A1侧✕共同区域_通道60"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 61,
+      "cameraId": "FU7533003_61",
+      "cameraName": "1区A1侧✕共同区域_通道61"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 62,
+      "cameraId": "FU7533003_62",
+      "cameraName": "1区A1侧✕共同区域_通道62"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 63,
+      "cameraId": "FU7533003_63",
+      "cameraName": "1区A1侧✕共同区域_通道63"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 64,
+      "cameraId": "FU7533003_64",
+      "cameraName": "1区A1侧✕共同区域_通道64"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 1,
+      "cameraId": "FT3193224_1",
+      "cameraName": "1区A1侧_通道1"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 2,
+      "cameraId": "FT3193224_2",
+      "cameraName": "1区A1侧_通道2"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 3,
+      "cameraId": "FT3193224_3",
+      "cameraName": "1区A1侧_通道3"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 4,
+      "cameraId": "FT3193224_4",
+      "cameraName": "1区A1侧_通道4"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 5,
+      "cameraId": "FT3193224_5",
+      "cameraName": "1区A1侧_通道5"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 6,
+      "cameraId": "FT3193224_6",
+      "cameraName": "1区A1侧_通道6"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 7,
+      "cameraId": "FT3193224_7",
+      "cameraName": "1区A1侧_通道7"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 8,
+      "cameraId": "FT3193224_8",
+      "cameraName": "1区A1侧_通道8"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 9,
+      "cameraId": "FT3193224_9",
+      "cameraName": "1区A1侧_通道9"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 10,
+      "cameraId": "FT3193224_10",
+      "cameraName": "1区A1侧_通道10"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 11,
+      "cameraId": "FT3193224_11",
+      "cameraName": "1区A1侧_通道11"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 12,
+      "cameraId": "FT3193224_12",
+      "cameraName": "1区A1侧_通道12"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 13,
+      "cameraId": "FT3193224_13",
+      "cameraName": "1区A1侧_通道13"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 14,
+      "cameraId": "FT3193224_14",
+      "cameraName": "1区A1侧_通道14"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 15,
+      "cameraId": "FT3193224_15",
+      "cameraName": "1区A1侧_通道15"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 16,
+      "cameraId": "FT3193224_16",
+      "cameraName": "1区A1侧_通道16"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 17,
+      "cameraId": "FT3193224_17",
+      "cameraName": "1区A1侧_通道17"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 18,
+      "cameraId": "FT3193224_18",
+      "cameraName": "1区A1侧_通道18"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 19,
+      "cameraId": "FT3193224_19",
+      "cameraName": "1区A1侧_通道19"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 20,
+      "cameraId": "FT3193224_20",
+      "cameraName": "1区A1侧_通道20"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 21,
+      "cameraId": "FT3193224_21",
+      "cameraName": "1区A1侧_通道21"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 22,
+      "cameraId": "FT3193224_22",
+      "cameraName": "1区A1侧_通道22"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 23,
+      "cameraId": "FT3193224_23",
+      "cameraName": "1区A1侧_通道23"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 24,
+      "cameraId": "FT3193224_24",
+      "cameraName": "1区A1侧_通道24"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 25,
+      "cameraId": "FT3193224_25",
+      "cameraName": "1区A1侧_通道25"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 26,
+      "cameraId": "FT3193224_26",
+      "cameraName": "1区A1侧_通道26"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 27,
+      "cameraId": "FT3193224_27",
+      "cameraName": "1区A1侧_通道27"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 28,
+      "cameraId": "FT3193224_28",
+      "cameraName": "1区A1侧_通道28"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 29,
+      "cameraId": "FT3193224_29",
+      "cameraName": "1区A1侧_通道29"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 30,
+      "cameraId": "FT3193224_30",
+      "cameraName": "1区A1侧_通道30"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 31,
+      "cameraId": "FT3193224_31",
+      "cameraName": "1区A1侧_通道31"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 32,
+      "cameraId": "FT3193224_32",
+      "cameraName": "1区A1侧_通道32"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 33,
+      "cameraId": "FT3193224_33",
+      "cameraName": "1区A1侧_通道33"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 34,
+      "cameraId": "FT3193224_34",
+      "cameraName": "1区A1侧_通道34"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 35,
+      "cameraId": "FT3193224_35",
+      "cameraName": "1区A1侧_通道35"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 36,
+      "cameraId": "FT3193224_36",
+      "cameraName": "1区A1侧_通道36"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 37,
+      "cameraId": "FT3193224_37",
+      "cameraName": "1区A1侧_通道37"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 38,
+      "cameraId": "FT3193224_38",
+      "cameraName": "1区A1侧_通道38"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 39,
+      "cameraId": "FT3193224_39",
+      "cameraName": "1区A1侧_通道39"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 40,
+      "cameraId": "FT3193224_40",
+      "cameraName": "1区A1侧_通道40"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 41,
+      "cameraId": "FT3193224_41",
+      "cameraName": "1区A1侧_通道41"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 42,
+      "cameraId": "FT3193224_42",
+      "cameraName": "1区A1侧_通道42"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 43,
+      "cameraId": "FT3193224_43",
+      "cameraName": "1区A1侧_通道43"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 44,
+      "cameraId": "FT3193224_44",
+      "cameraName": "1区A1侧_通道44"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 45,
+      "cameraId": "FT3193224_45",
+      "cameraName": "1区A1侧_通道45"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 46,
+      "cameraId": "FT3193224_46",
+      "cameraName": "1区A1侧_通道46"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 47,
+      "cameraId": "FT3193224_47",
+      "cameraName": "1区A1侧_通道47"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 48,
+      "cameraId": "FT3193224_48",
+      "cameraName": "1区A1侧_通道48"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 49,
+      "cameraId": "FT3193224_49",
+      "cameraName": "1区A1侧_通道49"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 50,
+      "cameraId": "FT3193224_50",
+      "cameraName": "1区A1侧_通道50"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 51,
+      "cameraId": "FT3193224_51",
+      "cameraName": "1区A1侧_通道51"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 52,
+      "cameraId": "FT3193224_52",
+      "cameraName": "1区A1侧_通道52"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 53,
+      "cameraId": "FT3193224_53",
+      "cameraName": "1区A1侧_通道53"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 54,
+      "cameraId": "FT3193224_54",
+      "cameraName": "1区A1侧_通道54"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 55,
+      "cameraId": "FT3193224_55",
+      "cameraName": "1区A1侧_通道55"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 56,
+      "cameraId": "FT3193224_56",
+      "cameraName": "1区A1侧_通道56"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 57,
+      "cameraId": "FT3193224_57",
+      "cameraName": "1区A1侧_通道57"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 58,
+      "cameraId": "FT3193224_58",
+      "cameraName": "1区A1侧_通道58"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 59,
+      "cameraId": "FT3193224_59",
+      "cameraName": "1区A1侧_通道59"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 60,
+      "cameraId": "FT3193224_60",
+      "cameraName": "1区A1侧_通道60"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 61,
+      "cameraId": "FT3193224_61",
+      "cameraName": "1区A1侧_通道61"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 62,
+      "cameraId": "FT3193224_62",
+      "cameraName": "1区A1侧_通道62"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 63,
+      "cameraId": "FT3193224_63",
+      "cameraName": "1区A1侧_通道63"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 64,
+      "cameraId": "FT3193224_64",
+      "cameraName": "1区A1侧_通道64"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 1,
+      "cameraId": "FT4704701_1",
+      "cameraName": "1区A2侧_通道1"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 2,
+      "cameraId": "FT4704701_2",
+      "cameraName": "1区A2侧_通道2"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 3,
+      "cameraId": "FT4704701_3",
+      "cameraName": "1区A2侧_通道3"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 4,
+      "cameraId": "FT4704701_4",
+      "cameraName": "1区A2侧_通道4"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 5,
+      "cameraId": "FT4704701_5",
+      "cameraName": "1区A2侧_通道5"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 6,
+      "cameraId": "FT4704701_6",
+      "cameraName": "1区A2侧_通道6"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 7,
+      "cameraId": "FT4704701_7",
+      "cameraName": "1区A2侧_通道7"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 8,
+      "cameraId": "FT4704701_8",
+      "cameraName": "1区A2侧_通道8"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 9,
+      "cameraId": "FT4704701_9",
+      "cameraName": "1区A2侧_通道9"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 10,
+      "cameraId": "FT4704701_10",
+      "cameraName": "1区A2侧_通道10"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 11,
+      "cameraId": "FT4704701_11",
+      "cameraName": "1区A2侧_通道11"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 12,
+      "cameraId": "FT4704701_12",
+      "cameraName": "1区A2侧_通道12"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 13,
+      "cameraId": "FT4704701_13",
+      "cameraName": "1区A2侧_通道13"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 14,
+      "cameraId": "FT4704701_14",
+      "cameraName": "1区A2侧_通道14"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 15,
+      "cameraId": "FT4704701_15",
+      "cameraName": "1区A2侧_通道15"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 16,
+      "cameraId": "FT4704701_16",
+      "cameraName": "1区A2侧_通道16"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 17,
+      "cameraId": "FT4704701_17",
+      "cameraName": "1区A2侧_通道17"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 18,
+      "cameraId": "FT4704701_18",
+      "cameraName": "1区A2侧_通道18"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 19,
+      "cameraId": "FT4704701_19",
+      "cameraName": "1区A2侧_通道19"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 20,
+      "cameraId": "FT4704701_20",
+      "cameraName": "1区A2侧_通道20"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 21,
+      "cameraId": "FT4704701_21",
+      "cameraName": "1区A2侧_通道21"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 22,
+      "cameraId": "FT4704701_22",
+      "cameraName": "1区A2侧_通道22"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 23,
+      "cameraId": "FT4704701_23",
+      "cameraName": "1区A2侧_通道23"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 24,
+      "cameraId": "FT4704701_24",
+      "cameraName": "1区A2侧_通道24"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 25,
+      "cameraId": "FT4704701_25",
+      "cameraName": "1区A2侧_通道25"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 26,
+      "cameraId": "FT4704701_26",
+      "cameraName": "1区A2侧_通道26"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 27,
+      "cameraId": "FT4704701_27",
+      "cameraName": "1区A2侧_通道27"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 28,
+      "cameraId": "FT4704701_28",
+      "cameraName": "1区A2侧_通道28"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 29,
+      "cameraId": "FT4704701_29",
+      "cameraName": "1区A2侧_通道29"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 30,
+      "cameraId": "FT4704701_30",
+      "cameraName": "1区A2侧_通道30"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 31,
+      "cameraId": "FT4704701_31",
+      "cameraName": "1区A2侧_通道31"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 32,
+      "cameraId": "FT4704701_32",
+      "cameraName": "1区A2侧_通道32"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 33,
+      "cameraId": "FT4704701_33",
+      "cameraName": "1区A2侧_通道33"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 34,
+      "cameraId": "FT4704701_34",
+      "cameraName": "1区A2侧_通道34"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 35,
+      "cameraId": "FT4704701_35",
+      "cameraName": "1区A2侧_通道35"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 36,
+      "cameraId": "FT4704701_36",
+      "cameraName": "1区A2侧_通道36"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 37,
+      "cameraId": "FT4704701_37",
+      "cameraName": "1区A2侧_通道37"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 38,
+      "cameraId": "FT4704701_38",
+      "cameraName": "1区A2侧_通道38"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 39,
+      "cameraId": "FT4704701_39",
+      "cameraName": "1区A2侧_通道39"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 40,
+      "cameraId": "FT4704701_40",
+      "cameraName": "1区A2侧_通道40"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 41,
+      "cameraId": "FT4704701_41",
+      "cameraName": "1区A2侧_通道41"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 42,
+      "cameraId": "FT4704701_42",
+      "cameraName": "1区A2侧_通道42"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 43,
+      "cameraId": "FT4704701_43",
+      "cameraName": "1区A2侧_通道43"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 44,
+      "cameraId": "FT4704701_44",
+      "cameraName": "1区A2侧_通道44"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 45,
+      "cameraId": "FT4704701_45",
+      "cameraName": "1区A2侧_通道45"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 46,
+      "cameraId": "FT4704701_46",
+      "cameraName": "1区A2侧_通道46"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 47,
+      "cameraId": "FT4704701_47",
+      "cameraName": "1区A2侧_通道47"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 48,
+      "cameraId": "FT4704701_48",
+      "cameraName": "1区A2侧_通道48"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 49,
+      "cameraId": "FT4704701_49",
+      "cameraName": "1区A2侧_通道49"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 50,
+      "cameraId": "FT4704701_50",
+      "cameraName": "1区A2侧_通道50"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 51,
+      "cameraId": "FT4704701_51",
+      "cameraName": "1区A2侧_通道51"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 52,
+      "cameraId": "FT4704701_52",
+      "cameraName": "1区A2侧_通道52"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 53,
+      "cameraId": "FT4704701_53",
+      "cameraName": "1区A2侧_通道53"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 54,
+      "cameraId": "FT4704701_54",
+      "cameraName": "1区A2侧_通道54"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 55,
+      "cameraId": "FT4704701_55",
+      "cameraName": "1区A2侧_通道55"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 56,
+      "cameraId": "FT4704701_56",
+      "cameraName": "1区A2侧_通道56"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 57,
+      "cameraId": "FT4704701_57",
+      "cameraName": "1区A2侧_通道57"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 58,
+      "cameraId": "FT4704701_58",
+      "cameraName": "1区A2侧_通道58"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 59,
+      "cameraId": "FT4704701_59",
+      "cameraName": "1区A2侧_通道59"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 60,
+      "cameraId": "FT4704701_60",
+      "cameraName": "1区A2侧_通道60"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 61,
+      "cameraId": "FT4704701_61",
+      "cameraName": "1区A2侧_通道61"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 62,
+      "cameraId": "FT4704701_62",
+      "cameraName": "1区A2侧_通道62"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 63,
+      "cameraId": "FT4704701_63",
+      "cameraName": "1区A2侧_通道63"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 64,
+      "cameraId": "FT4704701_64",
+      "cameraName": "1区A2侧_通道64"
+    }
+  ]
+}
