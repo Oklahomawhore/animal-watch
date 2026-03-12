@@ -64,9 +64,12 @@ def get_device_list():
 
 
 def capture_image(device_serial, channel_no=1):
-    """抓拍设备图片"""
-    # 海康 API: POST /device/camera/v1/capture
-    url = f"{BASE_URL}/device/camera/v1/capture"
+    """
+    抓拍设备图片
+    API: POST /device/direct/v1/captureImage/captureImage
+    文档: https://open.hikiot.com/documents/detail/11?docId=1934920493241249867
+    """
+    url = f"{BASE_URL}/device/direct/v1/captureImage/captureImage"
     headers = {
         **BROWSER_HEADERS,
         "App-Access-Token": APP_TOKEN,
@@ -75,19 +78,23 @@ def capture_image(device_serial, channel_no=1):
     }
     data = {
         "deviceSerial": device_serial,
-        "channelNo": channel_no
+        "payload": {
+            "channelNo": channel_no
+        }
     }
     
     try:
         resp = requests.post(url, headers=headers, json=data, timeout=30)
         result = resp.json()
         if result.get("code") == 0:
-            return result["data"].get("picUrl")
+            capture_url = result["data"].get("captureUrl")
+            print(f"  ✓ 抓拍成功: {capture_url[:80]}...")
+            return capture_url
         else:
-            print(f"  抓拍失败 [{device_serial}]: {result.get('msg')} (code: {result.get('code')})")
+            print(f"  ✗ 抓拍失败 [{device_serial}]: {result.get('msg')} (code: {result.get('code')})")
             return None
     except Exception as e:
-        print(f"  请求失败 [{device_serial}]: {e}")
+        print(f"  ✗ 请求失败 [{device_serial}]: {e}")
         return None
 
 
