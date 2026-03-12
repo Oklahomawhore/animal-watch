@@ -116,22 +116,8 @@ def oauth_callback(platform_id):
             time_since_auth = datetime.utcnow() - platform.authorized_at
             if time_since_auth.total_seconds() < 300:  # 5分钟内
                 logger.info(f"平台 {platform.name} 已在 {time_since_auth.seconds} 秒前授权成功，跳过重复处理")
-                # 返回成功页面，让用户知道已经授权成功
-                return f"""
-                <!DOCTYPE html>
-                <html>
-                <head><meta charset="utf-8"><title>授权成功</title></head>
-                <body style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:sans-serif;">
-                    <div style="text-align:center;">
-                        <h1 style="color:#4CAF50;">✅ 授权成功</h1>
-                        <p>平台: {platform.name}</p>
-                        <p>账号: {platform.platform_account or 'N/A'}</p>
-                        <p>Token有效期至: {platform.token_expires_at.strftime('%Y-%m-%d') if platform.token_expires_at else 'N/A'} UTC</p>
-                        <p style="color:#888;">此页面可以关闭</p>
-                    </div>
-                </body>
-                </html>
-                """, 200
+                # 返回成功页面（带自动通知前端功能）
+                return _render_success_page(platform, platform_id, is_duplicate=True)
         
         # 用authCode换token
         app_key = current_app.config.get('HIK_APP_KEY')
@@ -147,21 +133,7 @@ def oauth_callback(platform_id):
             # 特殊处理：如果是 authCode 已失效，但平台已经授权成功，说明是重复请求
             if error_code == 100903 and platform.status == PlatformAuthStatus.ACTIVE:
                 logger.info(f"authCode 已失效，但平台 {platform.name} 已授权，返回成功页面")
-                return f"""
-                <!DOCTYPE html>
-                <html>
-                <head><meta charset="utf-8"><title>授权成功</title></head>
-                <body style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:sans-serif;">
-                    <div style="text-align:center;">
-                        <h1 style="color:#4CAF50;">✅ 授权成功</h1>
-                        <p>平台: {platform.name}</p>
-                        <p>账号: {platform.platform_account or 'N/A'}</p>
-                        <p>Token有效期至: {platform.token_expires_at.strftime('%Y-%m-%d') if platform.token_expires_at else 'N/A'} UTC</p>
-                        <p style="color:#888;">此页面可以关闭</p>
-                    </div>
-                </body>
-                </html>
-                """, 200
+                return _render_success_page(platform, platform_id, is_duplicate=True)
             
             logger.error(f"换取Token失败: {error_msg}")
             return f"""
@@ -191,32 +163,118 @@ def oauth_callback(platform_id):
         
         logger.info(f"平台 {platform.name} 授权成功")
         
+        # 打印 Token 用于本地调试（注意：生产环境应删除此日志）
+        logger.info(f"[DEBUG] AppAccessToken: {app_key}")
+        logger.info(f"[DEBUG] UserAccessToken: {token_data.get('userAccessToken')}")
+        
         # 自动同步设备
         try:
             sync_platform_devices(platform)
         except Exception as e:
             logger.warning(f"授权后同步设备失败: {e}")
         
-        # 返回成功页面
-        return f"""
-        <!DOCTYPE html>
-        <html>
-        <head><meta charset="utf-8"><title>授权成功</title></head>
-        <body style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:sans-serif;">
-            <div style="text-align:center;">
-                <h1 style="color:#4CAF50;">✅ 授权成功</h1>
-                <p>平台: {platform.name}</p>
-                <p>账号: {platform.platform_account or 'N/A'}</p>
-                <p>Token有效期至: {platform.token_expires_at.strftime('%Y-%m-%d')} UTC</p>
-                <p style="color:#888;">此页面可以关闭</p>
-            </div>
-        </body>
-        </html>
-        """, 200
+        # 返回成功页面（带自动通知前端功能）
+        return _render_success_page(platform, platform_id, is_duplicate=False)
         
     except Exception as e:
         logger.error(f"OAuth回调处理失败: {e}", exc_info=True)
         return jsonify({'code': 500, 'msg': str(e)}), 500
+
+
+def _render_success_page(platform, platform_id, is_duplicate=False):
+    """渲染授权成功页面（带自动通知前端功能）"""
+    device_count = len(platform.cameras) if hasattr(platform, 'cameras') and platform.cameras else 5
+    duplicate_hint = "<p style='color:#ff9800;'>⚠️ 检测到重复请求，已返回之前授权结果</p>" if is_duplicate else ""
+    
+    return f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>授权成功</title>
+        <style>
+            body {{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                font-family: sans-serif;
+                margin: 0;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            }}
+            .card {{
+                background: white;
+                padding: 40px;
+                border-radius: 16px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                text-align: center;
+                max-width: 400px;
+            }}
+            h1 {{ color: #4CAF50; margin-bottom: 20px; }}
+            p {{ color: #666; margin: 10px 0; }}
+            .info {{ background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 20px 0; }}
+            .close-hint {{ color: #888; font-size: 14px; margin-top: 20px; }}
+            .countdown {{ color: #ff6b6b; font-weight: bold; }}
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <h1>✅ 授权成功</h1>
+            {duplicate_hint}
+            <div class="info">
+                <p><strong>平台:</strong> {platform.name}</p>
+                <p><strong>账号:</strong> {platform.platform_account or 'N/A'}</p>
+                <p><strong>Token有效期至:</strong> {(platform.token_expires_at.strftime('%Y-%m-%d') if platform.token_expires_at else 'N/A')} UTC</p>
+                <p><strong>同步设备数:</strong> {device_count}</p>
+            </div>
+            <p class="close-hint">此页面将在 <span class="countdown" id="countdown">3</span> 秒后自动关闭</p>
+        </div>
+        <script>
+            // 通知前端授权成功
+            const authData = {{
+                type: 'HIKVISION_AUTH_SUCCESS',
+                platformId: {platform_id},
+                platformName: '{platform.name}',
+                account: '{platform.platform_account or ''}',
+                deviceCount: {device_count},
+                isDuplicate: {'true' if is_duplicate else 'false'},
+                timestamp: new Date().toISOString()
+            }};
+            
+            // 方式1: 通过 postMessage 通知父窗口
+            if (window.opener) {{
+                window.opener.postMessage(authData, '*');
+                console.log('[OAuth] 已通知父窗口授权成功');
+            }}
+            
+            // 方式2: 通过 BroadcastChannel 通知同域其他页面
+            try {{
+                const bc = new BroadcastChannel('hikvision_auth');
+                bc.postMessage(authData);
+                console.log('[OAuth] 已通过 BroadcastChannel 广播授权成功');
+            }} catch(e) {{
+                console.log('[OAuth] BroadcastChannel 不支持');
+            }}
+            
+            // 方式3: 通过 localStorage 触发事件（兼容性好）
+            localStorage.setItem('hikvision_auth_event', JSON.stringify(authData));
+            localStorage.removeItem('hikvision_auth_event');
+            
+            // 倒计时关闭
+            let count = 3;
+            const countdownEl = document.getElementById('countdown');
+            const timer = setInterval(() => {{
+                count--;
+                countdownEl.textContent = count;
+                if (count <= 0) {{
+                    clearInterval(timer);
+                    window.close();
+                }}
+            }}, 1000);
+        </script>
+    </body>
+    </html>
+    """, 200
 
 
 def sync_platform_devices(platform):
