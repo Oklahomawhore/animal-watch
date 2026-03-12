@@ -110,6 +110,29 @@ def oauth_callback(platform_id):
         if not platform:
             return jsonify({'code': 404, 'msg': 'Platform not found'}), 404
         
+        # 防重放：检查该平台是否已授权且 authCode 已使用过
+        # 如果平台状态已经是 ACTIVE 且授权时间很近（5分钟内），可能是重复回调
+        if platform.status == PlatformAuthStatus.ACTIVE and platform.authorized_at:
+            time_since_auth = datetime.utcnow() - platform.authorized_at
+            if time_since_auth.total_seconds() < 300:  # 5分钟内
+                logger.info(f"平台 {platform.name} 已在 {time_since_auth.seconds} 秒前授权成功，跳过重复处理")
+                # 返回成功页面，让用户知道已经授权成功
+                return f"""
+                <!DOCTYPE html>
+                <html>
+                <head><meta charset="utf-8"><title>授权成功</title></head>
+                <body style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:sans-serif;">
+                    <div style="text-align:center;">
+                        <h1 style="color:#4CAF50;">✅ 授权成功</h1>
+                        <p>平台: {platform.name}</p>
+                        <p>账号: {platform.platform_account or 'N/A'}</p>
+                        <p>Token有效期至: {platform.token_expires_at.strftime('%Y-%m-%d') if platform.token_expires_at else 'N/A'} UTC</p>
+                        <p style="color:#888;">此页面可以关闭</p>
+                    </div>
+                </body>
+                </html>
+                """, 200
+        
         # 用authCode换token
         app_key = current_app.config.get('HIK_APP_KEY')
         app_secret = current_app.config.get('HIK_APP_SECRET')
@@ -118,14 +141,36 @@ def oauth_callback(platform_id):
         result = hik_api.code2token(auth_code)
         
         if result.get('code') != 0:
-            logger.error(f"换取Token失败: {result.get('msg')}")
+            error_code = result.get('code')
+            error_msg = result.get('msg', 'Unknown error')
+            
+            # 特殊处理：如果是 authCode 已失效，但平台已经授权成功，说明是重复请求
+            if error_code == 100903 and platform.status == PlatformAuthStatus.ACTIVE:
+                logger.info(f"authCode 已失效，但平台 {platform.name} 已授权，返回成功页面")
+                return f"""
+                <!DOCTYPE html>
+                <html>
+                <head><meta charset="utf-8"><title>授权成功</title></head>
+                <body style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:sans-serif;">
+                    <div style="text-align:center;">
+                        <h1 style="color:#4CAF50;">✅ 授权成功</h1>
+                        <p>平台: {platform.name}</p>
+                        <p>账号: {platform.platform_account or 'N/A'}</p>
+                        <p>Token有效期至: {platform.token_expires_at.strftime('%Y-%m-%d') if platform.token_expires_at else 'N/A'} UTC</p>
+                        <p style="color:#888;">此页面可以关闭</p>
+                    </div>
+                </body>
+                </html>
+                """, 200
+            
+            logger.error(f"换取Token失败: {error_msg}")
             return f"""
             <!DOCTYPE html>
             <html><head><meta charset="utf-8"><title>授权失败</title></head>
             <body style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:sans-serif;">
                 <div style="text-align:center;">
                     <h1 style="color:#f44336;">❌ 授权失败</h1>
-                    <p>{result.get('msg', 'Unknown error')}</p>
+                    <p>{error_msg}</p>
                 </div>
             </body></html>
             """, 400
