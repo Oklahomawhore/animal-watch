@@ -28,10 +28,23 @@ DEVICES = [
 ]
 
 
+# 模拟浏览器的请求头（避免被 WAF 拦截）
+BROWSER_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Origin": "https://open.hikiot.com",
+    "Referer": "https://open.hikiot.com/",
+    "Connection": "keep-alive",
+}
+
+
 def get_device_list():
     """获取设备列表"""
     url = f"{BASE_URL}/device/v1/page"
     headers = {
+        **BROWSER_HEADERS,
         "App-Access-Token": APP_TOKEN,
         "User-Access-Token": USER_TOKEN,
     }
@@ -54,6 +67,7 @@ def capture_image(device_serial, channel_no=1):
     """抓拍设备图片"""
     url = f"{BASE_URL}/device/camera/v1/capture"
     headers = {
+        **BROWSER_HEADERS,
         "App-Access-Token": APP_TOKEN,
         "User-Access-Token": USER_TOKEN,
         "Content-Type": "application/json"
@@ -79,7 +93,11 @@ def capture_image(device_serial, channel_no=1):
 def download_image(url, save_path):
     """下载图片"""
     try:
-        resp = requests.get(url, timeout=30)
+        headers = {
+            **BROWSER_HEADERS,
+            "Accept": "image/webp,image/apng,image/*,*/*;q=0.8",
+        }
+        resp = requests.get(url, headers=headers, timeout=30)
         if resp.status_code == 200:
             with open(save_path, 'wb') as f:
                 f.write(resp.content)
