@@ -1,188 +1,161 @@
-# 林麝检测算法 - 冷启动方案
+# 林麝行为检测 - 冷启动方案
 
-**目标**: 无人工标注，复用已有模型，快速完成冷启动  
-**策略**: 迁移学习 + 无监督检测 + 规则引擎
+## 🎯 核心目标
 
----
+将视频截图转化为结构化 events 流：
+- **movement** - 移动
+- **eating** - 进食  
+- **drinking** - 饮水
+- **resting** - 休息
+- **interaction** - 社交互动
+- **alert** - 警觉/异常
 
-## 核心策略
-
-使用**无监督方法** + **迁移学习**，无需7天标注期即可启动检测。
-
-| 模块 | 方法 | 预期准确率 | 数据需求 |
-|------|------|-----------|---------|
-| 林麝检测 | YOLOv8 COCO迁移 | mAP@0.5: 0.65 | 0张标注 |
-| 食槽检测 | CV矩形+颜色分割 | 准确率: 75% | 0张标注 |
-| 饮水检测 | CV颜色+规则 | 准确率: 70% | 0张标注 |
-| 运动量计算 | IOU追踪+位移 | 相对误差<15% | 0张标注 |
-| 异常检测 | 统计学习+动态基线 | 召回率>80% | 0张标注 |
-
----
-
-## 快速开始
-
-### 1. 环境安装
+## 🚀 快速开始
 
 ```bash
-cd lin-she-health-monitor/algorithm
+# 进入算法目录
+cd algorithm/
 
-# 使用 uv 安装依赖
-uv pip install -r requirements.txt
+# 运行快速验证
+python quick_test.py
+
+# 运行完整演示
+python demo_cold_start.py
+```
+
+## 📦 依赖安装
+
+```bash
+# 使用 uv（推荐）
+uv pip install opencv-python numpy scikit-learn ultralytics
 
 # 或使用 pip
-pip install -r requirements.txt
+pip install opencv-python numpy scikit-learn ultralytics
 ```
 
-### 2. 运行检测
+## 🔧 核心组件
 
-```bash
-# 林麝检测（使用YOLOv8 COCO预训练权重）
-python scripts/detect_animal.py --image data/images/test.jpg --output output/
+### 1. ColdStartDetector - 冷启动检测器
 
-# 食槽检测
-python scripts/detect_trough.py --image data/images/test.jpg --output output/
+无需预训练模型，使用纯CV方法：
 
-# 运动量计算
-python scripts/calculate_activity.py --video data/videos/test.mp4 --output output/
-
-# 完整流程
-python scripts/pipeline.py --config config/cold_start.yaml
-```
-
----
-
-## 算法模块说明
-
-### 1. 林麝检测 (detect_animal.py)
-
-**原理**: 使用YOLOv8 COCO预训练权重，检测动物类别后通过规则过滤
+- **背景减除** - 检测移动目标
+- **轮廓分析** - 识别动物形状
+- **颜色分割** - 检测食槽（绿色）、水盆（蓝色）
+- **区域重叠** - 判断进食/饮水行为
 
 ```python
-from scripts.detect_animal import AnimalDetector
+from cold_start_detector import ColdStartDetector
 
-detector = AnimalDetector(model_path='yolov8n.pt')
-results = detector.detect('image.jpg')
+detector = ColdStartDetector()
+result = detector.process_frame(frame)
 
-# 返回格式
-[
-  {
-    'bbox': [x1, y1, x2, y2],
-    'confidence': 0.85,
-    'class': 'animal',
-    'estimated_size': 'medium'  # 基于bbox估算体型
-  }
-]
+print(f"动物数量: {result['animal_count']}")
+print(f"运动量: {result['movement_score']}")
+print(f"事件: {result['events']}")
 ```
 
-### 2. 食槽检测 (detect_trough.py)
+### 2. EventStreamGenerator - 事件流生成器
 
-**原理**: 霍夫变换检测矩形 + HSV颜色空间绿色像素分析
+将连续帧转换为去重的事件流：
 
 ```python
-from scripts.detect_trough import TroughDetector
+from cold_start_detector import EventStreamGenerator
 
-detector = TroughDetector()
-troughs = detector.detect('image.jpg')
+stream_gen = EventStreamGenerator(detector)
+new_events = stream_gen.process_frame(frame)
 
-# 返回格式
-[
-  {
-    'bbox': [x, y, w, h],
-    'green_ratio': 0.45,  # 绿色像素占比
-    'status': 'has_food'  # has_food / empty / unknown
-  }
-]
+# 获取统计
+stats = stream_gen.get_statistics(time_window=3600)
 ```
 
-### 3. 运动量计算 (calculate_activity.py)
+## 📊 事件格式
 
-**原理**: IOU匹配追踪 + 中心点位移计算
-
-```python
-from scripts.calculate_activity import ActivityCalculator
-
-calculator = ActivityCalculator()
-activity_score = calculator.calculate(video_path='video.mp4')
-
-# 返回格式
+```json
 {
-  'total_movement': 1250.5,  # 总位移像素
-  'avg_movement': 15.2,      # 平均每帧位移
-  'activity_level': 'high',  # high / medium / low
-  'score': 78                # 0-100活动评分
+  "event_type": "eating",
+  "timestamp": 1710312345.123,
+  "confidence": 0.85,
+  "bbox": {
+    "x1": 100, "y1": 200,
+    "x2": 200, "y2": 350,
+    "confidence": 0.92
+  },
+  "metadata": {
+    "feeding_roi": [100, 300, 150, 100],
+    "overlap_ratio": 0.65
+  }
 }
 ```
 
-### 4. 异常检测 (detect_anomaly.py)
+## 🎨 工作原理
 
-**原理**: 动态基线 + 统计学习（Z-Score + IQR）
-
-```python
-from scripts.detect_anomaly import AnomalyDetector
-
-detector = AnomalyDetector(window_size=60)  # 60分钟窗口
-is_anomaly, info = detector.detect(current_activity=25.0)
-
-# 返回格式
-{
-  'is_anomaly': True,
-  'type': 'activity_low',
-  'z_score': -2.8,
-  'baseline': 45.0,
-  'threshold': 30.0
-}
+```
+视频截图/帧
+    ↓
+背景减除 → 检测移动目标
+    ↓
+轮廓分析 → 识别动物（长宽比、面积过滤）
+    ↓
+颜色分割 → 检测食槽（HSV绿色）、水盆（HSV蓝色）
+    ↓
+区域重叠计算 → 判断进食/饮水行为
+    ↓
+运动量计算 → IOU追踪 + 位移统计
+    ↓
+事件去重 → 基于冷却时间避免重复上报
+    ↓
+结构化 Events 流
 ```
 
----
+## ✅ 验证结果
 
-## 目录结构
+运行 `quick_test.py` 输出：
+
+```
+✅ 检测器初始化成功
+
+模拟处理视频帧序列...
+  帧 0: 动物=0, 运动=0.0, 新事件=0
+  帧 1: 动物=2, 运动=0.0, 新事件=0
+  ...
+  帧 6: 动物=2, 运动=20.0, 新事件=1
+  帧 8: 动物=1, 运动=28.0, 新事件=1
+
+✅ 共生成 3 个原子事件
+
+事件统计:
+  - movement: 1
+  - eating: 1
+  - resting: 1
+```
+
+## 🔮 后续优化
+
+1. **YOLOv8 迁移学习** - 使用 COCO 预训练权重提升检测精度
+2. **时序模型** - 添加 LSTM/Transformer 分析行为序列
+3. **多目标跟踪** - DeepSORT 实现个体识别
+4. **在线学习** - 根据反馈持续优化检测器
+
+## 📁 文件结构
 
 ```
 algorithm/
-├── scripts/              # 算法脚本
-│   ├── detect_animal.py      # 林麝检测
-│   ├── detect_trough.py      # 食槽检测
-│   ├── detect_water.py       # 饮水检测
-│   ├── calculate_activity.py # 运动量计算
-│   ├── detect_anomaly.py     # 异常检测
-│   └── pipeline.py           # 完整流程
-├── models/               # 模型文件
-│   └── yolov8n.pt       # YOLOv8预训练权重
-├── data/                 # 数据目录
-│   ├── images/          # 测试图片
-│   └── videos/          # 测试视频
-├── output/               # 输出目录
-├── config/               # 配置文件
-│   └── cold_start.yaml
-├── requirements.txt      # Python依赖
-└── README.md            # 本文档
+├── cold_start_detector.py    # 核心检测器
+├── quick_test.py              # 快速验证
+├── demo_cold_start.py         # 完整演示
+└── README.md                  # 本文档
 ```
 
----
+## 📝 注意事项
 
-## 性能指标
+1. **食槽/水盆区域** - 首次使用需要手动标注或自动检测
+2. **光照变化** - 背景减除对光照敏感，可能需要定期更新背景模型
+3. **遮挡处理** - 动物重叠时检测精度会下降
 
-| 指标 | 目标值 | 实际值 |
-|------|--------|--------|
-| 林麝检测 mAP@0.5 | > 0.60 | 待测试 |
-| 食槽检测准确率 | > 70% | 待测试 |
-| 运动量计算误差 | < 20% | 待测试 |
-| 异常检测召回率 | > 80% | 待测试 |
-| 单帧处理时间 | < 100ms | 待测试 |
+## 🏆 优势
 
----
-
-## 下一步优化
-
-1. **收集真实数据**: 抓拍100-500张现场图片验证算法效果
-2. **微调模型**: 如有条件，用50-100张标注数据微调YOLOv8
-3. **参数调优**: 根据实际场景调整颜色阈值、检测区域等参数
-4. **集成部署**: 将算法集成到后端服务，提供API接口
-
----
-
-## 参考
-
-- [YOLOv8 Documentation](https://docs.ultralytics.com/)
-- [OpenCV Documentation](https://docs.opencv.org/)
-- [冷启动方案详细设计](../docs/COLD_START_PLAN.md)
+- ✅ **零标注成本** - 无需人工标注数据
+- ✅ **即开即用** - 无需训练，直接运行
+- ✅ **可解释性强** - 基于规则的检测逻辑清晰
+- ✅ **易于部署** - 纯Python + OpenCV，无复杂依赖
