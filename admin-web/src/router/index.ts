@@ -23,6 +23,12 @@ const router = createRouter({
           meta: { title: '仪表盘' }
         },
         {
+          path: 'sheds',
+          name: 'Sheds',
+          component: () => import('@/views/Sheds.vue'),
+          meta: { title: '圈舍管理' }
+        },
+        {
           path: 'devices',
           name: 'Devices',
           component: () => import('@/views/Devices.vue'),

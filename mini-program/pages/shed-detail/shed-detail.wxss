@@ -1,0 +1,325 @@
+/* pages/shed-detail/shed-detail.wxss */
+.container {
+  min-height: 100vh;
+  background: #F5F5F5;
+  padding-bottom: 40rpx;
+}
+
+/* 加载状态 */
+.loading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #E0E0E0;
+  border-top-color: #4CAF50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20rpx;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 圈舍头部 */
+.shed-header {
+  background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+  padding: 40rpx 30rpx;
+  color: #fff;
+}
+
+.shed-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.shed-title .name {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.env-tags {
+  display: flex;
+  gap: 12rpx;
+}
+
+.env-tags .tag {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.manager {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  opacity: 0.9;
+}
+
+.manager .label {
+  margin-right: 10rpx;
+}
+
+/* 区块标题 */
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-header .more {
+  font-size: 26rpx;
+  color: #4CAF50;
+}
+
+/* 实时数据区域 */
+.realtime-section {
+  margin: -30rpx 30rpx 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.realtime-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.data-card {
+  background: #F8F9FA;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.data-card .card-icon {
+  font-size: 48rpx;
+}
+
+.data-card .card-content {
+  flex: 1;
+}
+
+.data-card .value {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+}
+
+.data-card .label {
+  font-size: 24rpx;
+  color: #666;
+  display: block;
+  margin-top: 4rpx;
+}
+
+.data-card .status {
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  margin-top: 8rpx;
+  display: inline-block;
+}
+
+.data-card .status.good {
+  background: #E8F5E9;
+  color: #2E7D32;
+}
+
+.data-card .status.warning {
+  background: #FFF3E0;
+  color: #E65100;
+}
+
+.data-card .sub {
+  font-size: 22rpx;
+  color: #999;
+  display: block;
+  margin-top: 4rpx;
+}
+
+/* 图表区域 */
+.chart-section {
+  margin: 0 30rpx 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.time-range-tabs {
+  display: flex;
+  background: #F0F0F0;
+  border-radius: 8rpx;
+  padding: 4rpx;
+}
+
+.time-range-tabs .tab {
+  padding: 8rpx 24rpx;
+  font-size: 24rpx;
+  color: #666;
+  border-radius: 6rpx;
+  transition: all 0.3s;
+}
+
+.time-range-tabs .tab.active {
+  background: #fff;
+  color: #4CAF50;
+  font-weight: bold;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.chart-container {
+  width: 100%;
+  height: 400rpx;
+}
+
+/* 吃草记录 */
+.eating-section {
+  margin: 0 30rpx 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.eating-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.eating-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  background: #F8F9FA;
+  border-radius: 16rpx;
+  border-left: 6rpx solid #4CAF50;
+}
+
+.eating-item.warning {
+  border-left-color: #FF9800;
+  background: #FFF8E1;
+}
+
+.eating-item .time-badge {
+  background: #4CAF50;
+  color: #fff;
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  margin-right: 20rpx;
+}
+
+.eating-item.warning .time-badge {
+  background: #FF9800;
+}
+
+.eating-info {
+  flex: 1;
+}
+
+.eating-info .duration {
+  font-size: 28rpx;
+  color: #333;
+  display: block;
+}
+
+.eating-info .amount {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.status-icon {
+  font-size: 36rpx;
+}
+
+/* 异常告警 */
+.alert-section {
+  margin: 0 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.alert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.alert-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: #F8F9FA;
+  border-radius: 12rpx;
+}
+
+.alert-item.warning {
+  background: #FFF8E1;
+}
+
+.alert-item.error {
+  background: #FFEBEE;
+}
+
+.alert-icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+}
+
+.alert-content {
+  flex: 1;
+}
+
+.alert-content .message {
+  font-size: 28rpx;
+  color: #333;
+  display: block;
+}
+
+.alert-content .time {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.bottom-spacer {
+  height: 40rpx;
+}
