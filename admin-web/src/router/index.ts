@@ -37,7 +37,7 @@ const router = createRouter({
         {
           path: 'alerts',
           name: 'Alerts',
-          component: () => import('@/views/Alerts.vue'),
+          component: () => import('@/views/alerts/index.vue'),
           meta: { title: '报警中心' }
         },
         {
@@ -55,7 +55,7 @@ const router = createRouter({
         {
           path: 'users',
           name: 'Users',
-          component: () => import('@/views/Users.vue'),
+          component: () => import('@/views/users/index.vue'),
           meta: { title: '用户管理' }
         },
         {
