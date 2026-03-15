@@ -42,3 +42,7 @@ project.config.json
 temp/
 tmp/
 *.tmp
+
+# ECharts - should be installed via npm
+# The echarts.js file should be generated from node_modules during build
+components/ec-canvas/echarts.js

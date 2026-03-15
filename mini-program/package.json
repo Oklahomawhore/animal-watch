@@ -1,0 +1,17 @@
+{
+  "name": "mini-program",
+  "version": "1.0.0",
+  "description": "灵麝健康监测小程序",
+  "main": "app.js",
+  "scripts": {
+    "build": "npm run copy:echarts",
+    "copy:echarts": "cp node_modules/echarts/dist/echarts.simple.min.js components/ec-canvas/echarts.js",
+    "postinstall": "npm run copy:echarts"
+  },
+  "keywords": ["wechat", "miniprogram", "echarts"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "echarts": "^5.6.0"
+  }
+}
