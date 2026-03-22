@@ -1,0 +1,149 @@
+<!-- pages/add-record/add-record.wxml -->
+<view class="container">
+  <!-- 记录类型选择 -->
+  <view class="type-section">
+    <view class="section-title">记录类型</view>
+    <view class="type-list">
+      <view 
+        class="type-item {{recordType === item.value ? 'active' : ''}}"
+        wx:for="{{recordTypes}}"
+        wx:key="value"
+        data-type="{{item.value}}"
+        bindtap="switchRecordType"
+      >
+        <text class="icon">{{item.icon}}</text>
+        <text class="label">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 动物选择（如果从圈舍进入） -->
+  <view class="animal-section" wx:if="{{shedId && !animalId}}">
+    <view class="section-header">
+      <text class="section-title">选择动物</text>
+      <text class="selected-count" wx:if="{{selectedAnimals.length > 0}}">已选 {{selectedAnimals.length}} 只</text>
+    </view>
+    <view class="animal-selector" bindtap="showAnimalSelector">
+      <view class="selector-content" wx:if="{{selectedAnimals.length === 0}}">
+        <text class="placeholder">点击选择动物</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="selected-list" wx:else>
+        <view class="selected-tag" wx:for="{{selectedAnimals}}" wx:key="id">
+          {{item.name}}
+        </view>
+        <text class="arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 日期显示 -->
+  <view class="date-section">
+    <view class="section-title">记录日期</view>
+    <view class="date-display">{{date}}</view>
+  </view>
+
+  <!-- 文本输入 -->
+  <view class="content-section">
+    <view class="section-title">记录内容</view>
+    <textarea 
+      class="content-input"
+      placeholder="请输入记录内容..."
+      value="{{formData.content}}"
+      bindinput="onContentInput"
+      maxlength="500"
+    />
+    <view class="char-count">{{formData.content.length}}/500</view>
+  </view>
+
+  <!-- 图片上传 -->
+  <view class="image-section">
+    <view class="section-header">
+      <text class="section-title">图片</text>
+      <text class="count">{{formData.images.length}}/9</text>
+    </view>
+    <view class="image-list">
+      <view class="image-item" wx:for="{{formData.images}}" wx:key="*this">
+        <image src="{{item}}" mode="aspectFill" bindtap="previewImage" data-index="{{index}}" />
+        <view class="delete-btn" catchtap="deleteImage" data-index="{{index}}">×</view>
+      </view>
+      <view class="add-image" bindtap="chooseImage" wx:if="{{formData.images.length < 9}}">
+        <text class="icon">+</text>
+        <text class="label">添加图片</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 语音录制 -->
+  <view class="voice-section">
+    <view class="section-title">语音</view>
+    
+    <!-- 录音按钮 -->
+    <view class="voice-recorder" wx:if="{{!formData.voiceUrl}}">
+      <view 
+        class="record-btn {{isRecording ? 'recording' : ''}}"
+        bindtap="{{isRecording ? 'stopRecord' : 'startRecord'}}"
+      >
+        <text class="icon">{{isRecording ? '⏹️' : '🎤'}}</text>
+        <text class="label">{{isRecording ? '点击结束' : '按住说话'}}</text>
+      </view>
+      <view class="record-hint" wx:if="{{isRecording}}">
+        正在录音 {{formatRecordTime(recordingTime)}}
+      </view>
+    </view>
+
+    <!-- 已录制的语音 -->
+    <view class="voice-player" wx:if="{{formData.voiceUrl}}">
+      <view class="voice-wave">
+        <view class="wave-bar" wx:for="{{[1,2,3,4,5,6,7,8]}}" wx:key="*this" style="height: {{20 + Math.random() * 40}}rpx"></view>
+      </view>
+      <view class="voice-info">
+        <text class="duration">{{formatRecordTime(recordingTime)}}</text>
+        <view class="actions">
+          <text class="action-btn play" bindtap="playVoice">▶️ 播放</text>
+          <text class="action-btn delete" bindtap="deleteVoice">🗑️ 删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-actions">
+    <button class="btn cancel" bindtap="cancel">取消</button>
+    <button class="btn submit {{uploading ? 'loading' : ''}}" bindtap="submitForm">
+      {{uploading ? '提交中...' : '提交'}}
+    </button>
+  </view>
+
+  <!-- 动物选择弹窗 -->
+  <view class="modal {{showAnimalSelector ? 'show' : ''}}" bindtap="hideAnimalSelector">
+    <view class="modal-content" catchtap="preventBubble">
+      <view class="modal-header">
+        <text class="title">选择动物</text>
+        <text class="close" bindtap="hideAnimalSelector">×</text>
+      </view>
+      <scroll-view class="animal-list" scroll-y>
+        <view 
+          class="animal-item {{item.selected ? 'selected' : ''}}"
+          wx:for="{{animalList}}"
+          wx:key="id"
+          data-index="{{index}}"
+          bindtap="toggleAnimalSelection"
+        >
+          <view class="checkbox">
+            <text wx:if="{{item.selected}}">✓</text>
+          </view>
+          <view class="animal-info">
+            <text class="name">{{item.name}}</text>
+            <text class="ear-tag">{{item.earTag}}</text>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="modal-footer">
+        <button class="btn confirm" bindtap="confirmAnimalSelection">
+          确定 ({{animalList.filter(item => item.selected).length}})
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

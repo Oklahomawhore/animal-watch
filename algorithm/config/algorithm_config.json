@@ -13,7 +13,6 @@
       "device_serial": "K87324567",
       "channel_no": 1,
       "name": "圈舍A-主摄像头",
-      "enabled": true,
       "roi_regions": [
         {
           "name": "食槽区域",
@@ -32,6 +31,7 @@
           "type": "water"
         }
       ],
+      "enabled": true,
       "detection_threshold": 0.3,
       "movement_threshold": 10.0,
       "min_animal_area": 800,
@@ -48,7 +48,6 @@
       "device_serial": "K87324568",
       "channel_no": 1,
       "name": "圈舍B-主摄像头",
-      "enabled": true,
       "roi_regions": [
         {
           "name": "食槽区域",
@@ -59,10 +58,46 @@
           "type": "feeding"
         }
       ],
+      "enabled": true,
       "detection_threshold": 0.3,
       "movement_threshold": 10.0,
       "min_animal_area": 800,
       "max_animal_area_ratio": 0.3,
+      "event_cooldowns": {
+        "eating": 30,
+        "drinking": 30,
+        "movement": 5,
+        "resting": 60
+      }
+    },
+    {
+      "camera_id": "test_camera_001",
+      "device_serial": "TEST123456",
+      "channel_no": 1,
+      "name": "测试摄像头",
+      "roi_regions": [
+        {
+          "name": "feeding_area",
+          "x": 200,
+          "y": 400,
+          "width": 200,
+          "height": 100,
+          "type": "feeding"
+        },
+        {
+          "name": "water_area",
+          "x": 800,
+          "y": 400,
+          "width": 150,
+          "height": 80,
+          "type": "water"
+        }
+      ],
+      "enabled": true,
+      "detection_threshold": 0.3,
+      "movement_threshold": 10.0,
+      "min_animal_area": 500,
+      "max_animal_area_ratio": 0.5,
       "event_cooldowns": {
         "eating": 30,
         "drinking": 30,

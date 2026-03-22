@@ -2,6 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/shed-detail/shed-detail",
+    "pages/daily-report/daily-report",
+    "pages/animal-detail/animal-detail",
+    "pages/add-record/add-record",
     "pages/monitor/monitor",
     "pages/alerts/alerts",
     "pages/profile/profile"

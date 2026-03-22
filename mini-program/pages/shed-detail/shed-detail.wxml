@@ -22,6 +22,22 @@
     </view>
   </view>
 
+  <!-- 快捷入口 -->
+  <view class="quick-actions">
+    <view class="action-item" bindtap="goToDailyReport">
+      <text class="icon">📋</text>
+      <text class="label">日报</text>
+    </view>
+    <view class="action-item" bindtap="goToLiveMonitor">
+      <text class="icon">📹</text>
+      <text class="label">监控</text>
+    </view>
+    <view class="action-item" bindtap="goToAlerts">
+      <text class="icon">⚠️</text>
+      <text class="label">告警</text>
+    </view>
+  </view>
+
   <!-- 实时数据卡片 -->
   <view class="realtime-section">
     <view class="section-title">实时状态</view>

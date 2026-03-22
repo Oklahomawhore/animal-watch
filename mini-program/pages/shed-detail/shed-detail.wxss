@@ -76,6 +76,33 @@
   margin-right: 10rpx;
 }
 
+/* 快捷入口 */
+.quick-actions {
+  margin: -30rpx 30rpx 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.action-item .icon {
+  font-size: 48rpx;
+}
+
+.action-item .label {
+  font-size: 26rpx;
+  color: #666;
+}
+
 /* 区块标题 */
 .section-title {
   font-size: 32rpx;

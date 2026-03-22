@@ -191,6 +191,14 @@ Page({
     });
   },
 
+  // 查看日报
+  goToDailyReport() {
+    const { shedId, shedInfo } = this.data;
+    wx.navigateTo({
+      url: `/pages/daily-report/daily-report?shedId=${shedId}&shedName=${shedInfo.name || shedId + '号圈舍'}`
+    });
+  },
+
   // 刷新数据
   onPullDownRefresh() {
     this.loadShedDetail(this.data.shedId).finally(() => {
