@@ -110,7 +110,7 @@ Page({
   goToShedDetail(e) {
     const { id } = e.currentTarget.dataset;
     wx.navigateTo({
-      url: `/pages/monitor/monitor?shedId=${id}`
+      url: `/pages/shed-detail/shed-detail?shedId=${id}`
     });
   }
 });

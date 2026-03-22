@@ -1,0 +1,77 @@
+{
+  "timestamp": "2026-03-12T14:41:45.096347",
+  "total_devices": 5,
+  "captured_images": 5,
+  "images": [
+    {
+      "device": {
+        "deviceSerial": "GF6830765",
+        "name": "2区母麝圈",
+        "model": "DS-8864N-R8(C)",
+        "channelNum": 64,
+        "deviceVersion": "V4.84.030 build 250710",
+        "status": 1,
+        "isEncrypt": 0
+      },
+      "channel": 1,
+      "path": "algorithm/data/images/GF6830765_ch1_20260312_144138.jpg",
+      "url": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFF8GqYnHQYplIWFGEXQpFWZV4uq.jpg?Expires=1773384100&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=J7Oqaom5Aa3Q0g9Fc237ZhjBL3M%3D"
+    },
+    {
+      "device": {
+        "deviceSerial": "GG3425740",
+        "name": "2区公麝圈",
+        "model": "DS-8864N-R8(C)",
+        "channelNum": 64,
+        "deviceVersion": "V4.84.030 build 250710",
+        "status": 1,
+        "isEncrypt": 0
+      },
+      "channel": 1,
+      "path": "algorithm/data/images/GG3425740_ch1_20260312_144140.jpg",
+      "url": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFF8KMoG9QKiSoLXfNwjSnQhu4LK.jpg?Expires=1773384102&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=hegEyEEYpYRh4enEzdeQ0k6rNYo%3D"
+    },
+    {
+      "device": {
+        "deviceSerial": "FU7533003",
+        "name": "1区A1侧✕共同区域",
+        "model": "DS-8864N-R8(D)",
+        "channelNum": 64,
+        "deviceVersion": "V4.84.016 build 250621",
+        "status": 1,
+        "isEncrypt": 0
+      },
+      "channel": 1,
+      "path": "algorithm/data/images/FU7533003_ch1_20260312_144142.jpg",
+      "url": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFF8N1Kgfn4tGSXyaiLZ1xbWHfqQ.jpg?Expires=1773384104&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=JowEGE%2FI5L6Vas7IgTG140Qx0PM%3D"
+    },
+    {
+      "device": {
+        "deviceSerial": "FT3193224",
+        "name": "1区A1侧",
+        "model": "DS-8864N-R8(D)",
+        "channelNum": 64,
+        "deviceVersion": "V4.84.016 build 250621",
+        "status": 1,
+        "isEncrypt": 0
+      },
+      "channel": 1,
+      "path": "algorithm/data/images/FT3193224_ch1_20260312_144143.jpg",
+      "url": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFF8QguJh4cydaI1Pmmyxdafh2AH.jpg?Expires=1773384105&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=8fh74jphq6NFCFKhMQGZWs1B3no%3D"
+    },
+    {
+      "device": {
+        "deviceSerial": "FT4704701",
+        "name": "1区A2侧",
+        "model": "DS-8864N-R8(D)",
+        "channelNum": 64,
+        "deviceVersion": "V4.84.016 build 250621",
+        "status": 1,
+        "isEncrypt": 0
+      },
+      "channel": 1,
+      "path": "algorithm/data/images/FT4704701_ch1_20260312_144144.jpg",
+      "url": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFF8TW1IUDjZ3uLWYYWs8Cn8lqS5.jpg?Expires=1773384107&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=7o26eXHZlLN7F5ioipxH%2FFnaumI%3D"
+    }
+  ]
+}

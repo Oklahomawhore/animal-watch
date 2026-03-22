@@ -1,0 +1,152 @@
+<!-- pages/daily-report/daily-report.wxml -->
+<view class="container">
+  <!-- 加载状态 -->
+  <view class="loading-mask" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text>加载中...</text>
+  </view>
+
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <view class="back-btn" bindtap="goBack">
+      <text class="icon">←</text>
+    </view>
+    <view class="header-content">
+      <text class="shed-name">{{shedName}}</text>
+      <text class="page-title">日报</text>
+    </view>
+    <view class="add-btn" bindtap="goToAddRecord">
+      <text class="icon">+</text>
+    </view>
+  </view>
+
+  <!-- 日期选择器 -->
+  <view class="date-selector">
+    <view class="date-list">
+      <view 
+        class="date-item {{index === currentDateIndex ? 'active' : ''}} {{item.isToday ? 'today' : ''}}"
+        wx:for="{{dateList}}"
+        wx:key="date"
+        data-index="{{index}}"
+        bindtap="onDateChange"
+      >
+        <text class="week-day">{{item.weekDay}}</text>
+        <text class="day-number">{{item.day}}</text>
+        <view class="indicator" wx:if="{{index === currentDateIndex}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计概览卡片 -->
+  <view class="stats-section" wx:if="{{dailyReport}}">
+    <view class="stats-grid">
+      <view class="stat-card total">
+        <text class="number">{{statistics.totalAnimals}}</text>
+        <text class="label">存栏总数</text>
+      </view>
+      <view class="stat-card healthy">
+        <text class="number">{{statistics.healthyCount}}</text>
+        <text class="label">健康</text>
+      </view>
+      <view class="stat-card warning">
+        <text class="number">{{statistics.warningCount}}</text>
+        <text class="label">需关注</text>
+      </view>
+      <view class="stat-card danger">
+        <text class="number">{{statistics.dangerCount}}</text>
+        <text class="label">异常</text>
+      </view>
+    </view>
+    
+    <!-- 平均活动评分 -->
+    <view class="activity-overview">
+      <view class="activity-score">
+        <text class="score-value">{{statistics.avgActivityScore}}</text>
+        <text class="score-label">平均活动评分</text>
+      </view>
+      <view class="activity-bar">
+        <view class="progress" style="width: {{statistics.avgActivityScore}}%; background: {{statistics.avgActivityScore >= 80 ? '#4CAF50' : statistics.avgActivityScore >= 60 ? '#FFC107' : '#F44336'}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日亮点/摘要 -->
+  <view class="highlights-section" wx:if="{{dailyReport && dailyReport.highlights}}">
+    <view class="section-title">今日摘要</view>
+    <view class="highlight-list">
+      <view class="highlight-item {{item.type}}" wx:for="{{dailyReport.highlights}}" wx:key="index">
+        <text class="icon">
+          <text wx:if="{{item.type === 'good'}}">✅</text>
+          <text wx:elif="{{item.type === 'warning'}}">⚠️</text>
+          <text wx:else>ℹ️</text>
+        </text>
+        <text class="text">{{item.text}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 动物列表 -->
+  <view class="animals-section">
+    <view class="section-header">
+      <text class="section-title">动物状态</text>
+      <text class="subtitle">共 {{animalList.length}} 只</text>
+    </view>
+    
+    <view class="animal-list">
+      <view 
+        class="animal-card {{animal.healthStatus}}"
+        wx:for="{{animalList}}"
+        wx:key="id"
+        wx:for-item="animal"
+        data-animal-id="{{animal.id}}"
+        bindtap="goToAnimalDetail"
+      >
+        <!-- 健康状态指示器 -->
+        <view class="health-indicator {{animal.healthStatus}}"></view>
+        
+        <!-- 基础信息 -->
+        <view class="animal-basic">
+          <view class="ear-tag">{{animal.earTag}}</view>
+          <view class="animal-info">
+            <text class="name">{{animal.name}}</text>
+            <text class="meta">{{animal.gender === 'male' ? '公' : '母'}} · {{animal.age}}个月</text>
+          </view>
+        </view>
+        
+        <!-- 数据看板 -->
+        <view class="animal-metrics">
+          <view class="metric">
+            <text class="value">{{animal.activityScore}}</text>
+            <text class="label">活动分</text>
+          </view>
+          <view class="metric">
+            <text class="value">{{animal.feedRemaining}}%</text>
+            <text class="label">剩料</text>
+          </view>
+          <view class="metric">
+            <text class="value">{{animal.waterIntake}}L</text>
+            <text class="label">饮水</text>
+          </view>
+        </view>
+        
+        <!-- 箭头 -->
+        <text class="arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && animalList.length === 0}}">
+    <text class="icon">📋</text>
+    <text class="text">暂无数据</text>
+    <text class="sub-text">该日期暂无日报记录</text>
+  </view>
+
+  <!-- 底部占位 -->
+  <view class="bottom-spacer"></view>
+</view>
+
+<!-- 悬浮添加按钮 -->
+<view class="fab-button" bindtap="goToAddRecord">
+  <text class="icon">+</text>
+</view>

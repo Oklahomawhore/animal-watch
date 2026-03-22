@@ -23,15 +23,21 @@ const router = createRouter({
           meta: { title: '仪表盘' }
         },
         {
+          path: 'sheds',
+          name: 'Sheds',
+          component: () => import('@/views/sheds/index.vue'),
+          meta: { title: '圈舍管理' }
+        },
+        {
           path: 'devices',
           name: 'Devices',
-          component: () => import('@/views/Devices.vue'),
+          component: () => import('@/views/devices/index.vue'),
           meta: { title: '设备管理' }
         },
         {
           path: 'alerts',
           name: 'Alerts',
-          component: () => import('@/views/Alerts.vue'),
+          component: () => import('@/views/alerts/index.vue'),
           meta: { title: '报警中心' }
         },
         {
@@ -49,7 +55,7 @@ const router = createRouter({
         {
           path: 'users',
           name: 'Users',
-          component: () => import('@/views/Users.vue'),
+          component: () => import('@/views/users/index.vue'),
           meta: { title: '用户管理' }
         },
         {

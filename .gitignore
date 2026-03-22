@@ -42,3 +42,27 @@ project.config.json
 temp/
 tmp/
 *.tmp
+
+# ECharts - should be installed via npm
+# The echarts.js file should be generated from node_modules during build
+components/ec-canvas/echarts.js
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.db
+*.sqlite3
+.pytest_cache/
+.coverage
+
+# Algorithm specific
+algorithm/data/*.db
+algorithm/output/
+algorithm/test_report.json
+temp_*.jpg

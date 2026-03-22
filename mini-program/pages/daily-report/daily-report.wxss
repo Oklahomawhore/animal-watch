@@ -1,0 +1,410 @@
+/* pages/daily-report/daily-report.wxss */
+.container {
+  min-height: 100vh;
+  background: #F5F5F5;
+  padding-bottom: 40rpx;
+}
+
+/* 加载状态 */
+.loading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #E0E0E0;
+  border-top-color: #4CAF50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20rpx;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 页面头部 */
+.page-header {
+  background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+  padding: 40rpx 30rpx 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.back-btn, .add-btn {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 30rpx;
+}
+
+.back-btn .icon, .add-btn .icon {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.header-content {
+  flex: 1;
+  text-align: center;
+}
+
+.shed-name {
+  font-size: 28rpx;
+  opacity: 0.9;
+  display: block;
+}
+
+.page-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  display: block;
+  margin-top: 8rpx;
+}
+
+/* 日期选择器 */
+.date-selector {
+  margin: -30rpx 30rpx 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.date-list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.date-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16rpx 20rpx;
+  border-radius: 16rpx;
+  position: relative;
+  min-width: 80rpx;
+}
+
+.date-item.active {
+  background: #E8F5E9;
+}
+
+.date-item.today .day-number {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.week-day {
+  font-size: 22rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.day-number {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.indicator {
+  position: absolute;
+  bottom: 4rpx;
+  width: 8rpx;
+  height: 8rpx;
+  background: #4CAF50;
+  border-radius: 50%;
+}
+
+/* 统计区域 */
+.stats-section {
+  margin: 0 30rpx 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 20rpx 10rpx;
+  border-radius: 12rpx;
+  background: #F8F9FA;
+}
+
+.stat-card .number {
+  font-size: 40rpx;
+  font-weight: bold;
+  display: block;
+}
+
+.stat-card .label {
+  font-size: 22rpx;
+  color: #666;
+  margin-top: 8rpx;
+  display: block;
+}
+
+.stat-card.healthy .number { color: #4CAF50; }
+.stat-card.warning .number { color: #FF9800; }
+.stat-card.danger .number { color: #F44336; }
+
+/* 活动评分概览 */
+.activity-overview {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #F0F0F0;
+}
+
+.activity-score {
+  text-align: center;
+  min-width: 120rpx;
+}
+
+.score-value {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #4CAF50;
+  display: block;
+}
+
+.score-label {
+  font-size: 22rpx;
+  color: #999;
+  display: block;
+  margin-top: 4rpx;
+}
+
+.activity-bar {
+  flex: 1;
+  height: 16rpx;
+  background: #F0F0F0;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.activity-bar .progress {
+  height: 100%;
+  border-radius: 8rpx;
+  transition: width 0.3s ease;
+}
+
+/* 今日摘要 */
+.highlights-section {
+  margin: 0 30rpx 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.highlight-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: #F8F9FA;
+  border-radius: 12rpx;
+}
+
+.highlight-item .icon {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+
+.highlight-item .text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 动物列表区域 */
+.animals-section {
+  margin: 0 30rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.section-header .section-title {
+  margin-bottom: 0;
+}
+
+.section-header .subtitle {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 动物卡片 */
+.animal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.animal-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.health-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 8rpx;
+}
+
+.health-indicator.healthy { background: #4CAF50; }
+.health-indicator.warning { background: #FF9800; }
+.health-indicator.danger { background: #F44336; }
+
+.animal-basic {
+  flex: 1;
+  padding-left: 20rpx;
+}
+
+.ear-tag {
+  font-size: 22rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.animal-info .name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+}
+
+.animal-info .meta {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.animal-metrics {
+  display: flex;
+  gap: 30rpx;
+}
+
+.metric {
+  text-align: center;
+}
+
+.metric .value {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+}
+
+.metric .label {
+  font-size: 20rpx;
+  color: #999;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.arrow {
+  font-size: 40rpx;
+  color: #CCC;
+  margin-left: 20rpx;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 60rpx;
+}
+
+.empty-state .icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.empty-state .text {
+  font-size: 32rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.empty-state .sub-text {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 悬浮按钮 */
+.fab-button {
+  position: fixed;
+  right: 40rpx;
+  bottom: 60rpx;
+  width: 100rpx;
+  height: 100rpx;
+  background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 30rpx rgba(76, 175, 80, 0.4);
+  z-index: 100;
+}
+
+.fab-button .icon {
+  font-size: 48rpx;
+  color: #fff;
+  font-weight: bold;
+}
+
+.bottom-spacer {
+  height: 160rpx;
+}

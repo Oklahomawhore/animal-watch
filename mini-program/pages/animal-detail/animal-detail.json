@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "ec-canvas": "../../components/ec-canvas/ec-canvas"
+  },
+  "navigationBarTitleText": "动物详情",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#F5F5F5"
+}
