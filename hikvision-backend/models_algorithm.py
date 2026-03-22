@@ -109,8 +109,8 @@ class Event(db.Model):
     bbox_x2 = db.Column(db.Float)
     bbox_y2 = db.Column(db.Float)
     
-    # 元数据
-    metadata = db.Column(db.JSON, default=dict, comment='事件元数据: overlap_ratio, movement_score等')
+    # 元数据 (使用 event_metadata 避免与 SQLAlchemy 保留字冲突)
+    event_metadata = db.Column('metadata', db.JSON, default=dict, comment='事件元数据: overlap_ratio, movement_score等')
     
     # 时间
     event_time = db.Column(db.DateTime(3), nullable=False, index=True, comment='事件发生时间（毫秒精度）')
@@ -134,7 +134,7 @@ class Event(db.Model):
             'eventType': self.event_type.value if self.event_type else None,
             'confidence': self.confidence,
             'bbox': [self.bbox_x1, self.bbox_y1, self.bbox_x2, self.bbox_y2] if self.bbox_x1 else None,
-            'metadata': self.metadata,
+            'metadata': self.event_metadata,
             'eventTime': self.event_time.isoformat() if self.event_time else None,
             'createdAt': self.created_at.isoformat() if self.created_at else None
         }
