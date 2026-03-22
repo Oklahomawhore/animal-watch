@@ -1,0 +1,152 @@
+<!-- pages/shed-detail/shed-detail.wxml -->
+<view class="container">
+  <!-- 加载状态 -->
+  <view class="loading-mask" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text>加载中...</text>
+  </view>
+
+  <!-- 圈舍头部信息 -->
+  <view class="shed-header">
+    <view class="shed-title">
+      <text class="name">{{shedInfo.name}}</text>
+      <view class="env-tags">
+        <text class="tag">{{shedInfo.temperature}}°C</text>
+        <text class="tag">{{shedInfo.humidity}}%</text>
+        <text class="tag">{{shedInfo.area}}</text>
+      </view>
+    </view>
+    <view class="manager">
+      <text class="label">负责人:</text>
+      <text class="value">{{shedInfo.manager}}</text>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="quick-actions">
+    <view class="action-item" bindtap="goToDailyReport">
+      <text class="icon">📋</text>
+      <text class="label">日报</text>
+    </view>
+    <view class="action-item" bindtap="goToLiveMonitor">
+      <text class="icon">📹</text>
+      <text class="label">监控</text>
+    </view>
+    <view class="action-item" bindtap="goToAlerts">
+      <text class="icon">⚠️</text>
+      <text class="label">告警</text>
+    </view>
+  </view>
+
+  <!-- 实时数据卡片 -->
+  <view class="realtime-section">
+    <view class="section-title">实时状态</view>
+    <view class="realtime-grid">
+      <!-- 活动量 -->
+      <view class="data-card activity">
+        <view class="card-icon">🏃</view>
+        <view class="card-content">
+          <text class="value">{{realtimeData.activityScore}}</text>
+          <text class="label">活动评分</text>
+          <text class="status {{realtimeData.activityScore > 60 ? 'good' : 'warning'}}">
+            {{realtimeData.activityLevel}}
+          </text>
+        </view>
+      </view>
+      
+      <!-- 进食状态 -->
+      <view class="data-card eating">
+        <view class="card-icon">🌿</view>
+        <view class="card-content">
+          <text class="value">{{realtimeData.eatingStatus}}</text>
+          <text class="label">进食状态</text>
+          <text class="sub">{{realtimeData.lastEatingTime}}</text>
+        </view>
+      </view>
+      
+      <!-- 存栏数量 -->
+      <view class="data-card count">
+        <view class="card-icon">🦌</view>
+        <view class="card-content">
+          <text class="value">{{realtimeData.animalCount}}</text>
+          <text class="label">存栏数量</text>
+          <text class="sub">只</text>
+        </view>
+      </view>
+      
+      <!-- 摄像头状态 -->
+      <view class="data-card camera">
+        <view class="card-icon">📹</view>
+        <view class="card-content">
+          <text class="value">{{realtimeData.onlineCameras}}/{{realtimeData.totalCameras}}</text>
+          <text class="label">在线摄像头</text>
+          <text class="sub" bindtap="goToLiveMonitor">查看监控 ></text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 活动趋势图表 -->
+  <view class="chart-section">
+    <view class="section-header">
+      <text class="section-title">活动趋势</text>
+      <view class="time-range-tabs">
+        <text class="tab {{timeRange === 'day' ? 'active' : ''}}" 
+              bindtap="switchTimeRange" data-range="day">日</text>
+        <text class="tab {{timeRange === 'week' ? 'active' : ''}}" 
+              bindtap="switchTimeRange" data-range="week">周</text>
+        <text class="tab {{timeRange === 'month' ? 'active' : ''}}" 
+              bindtap="switchTimeRange" data-range="month">月</text>
+      </view>
+    </view>
+    <view class="chart-container">
+      <ec-canvas id="activity-chart" canvas-id="activity-chart" ec="{{ec}}"></ec-canvas>
+    </view>
+  </view>
+
+  <!-- 吃草记录 -->
+  <view class="eating-section">
+    <view class="section-header">
+      <text class="section-title">今日吃草记录</text>
+      <text class="more">查看全部 ></text>
+    </view>
+    <view class="eating-list">
+      <view class="eating-item {{item.status}}" wx:for="{{eatingRecords}}" wx:key="index">
+        <view class="time-badge">{{item.time}}</view>
+        <view class="eating-info">
+          <text class="duration">持续 {{item.duration}}</text>
+          <text class="amount">食量: {{item.amount}}</text>
+        </view>
+        <view class="status-icon">
+          <text wx:if="{{item.status === 'good'}}">✅</text>
+          <text wx:elif="{{item.status === 'normal'}}">✓</text>
+          <text wx:else>⚠️</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 异常告警 -->
+  <view class="alert-section" wx:if="{{alerts.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">近期异常</text>
+      <text class="more" bindtap="goToAlerts">查看全部 ></text>
+    </view>
+    <view class="alert-list">
+      <view class="alert-item {{item.level}}" wx:for="{{alerts}}" wx:key="index">
+        <view class="alert-icon">
+          <text wx:if="{{item.level === 'warning'}}">⚠️</text>
+          <text wx:elif="{{item.level === 'error'}}">❌</text>
+          <text wx:else>ℹ️</text>
+        </view>
+        <view class="alert-content">
+          <text class="message">{{item.message}}</text>
+          <text class="time">{{item.time}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部占位 -->
+  <view class="bottom-spacer"></view>
+</view>

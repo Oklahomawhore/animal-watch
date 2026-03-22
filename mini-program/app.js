@@ -2,8 +2,11 @@
 App({
   globalData: {
     userInfo: null,
-    apiBaseUrl: 'https://api.linshe.com/v1', // 生产环境地址
-    // apiBaseUrl: 'http://localhost:3000/v1', // 开发环境地址
+    // 后端服务地址配置
+    // 开发环境: http://localhost:5001/api/v2 (Flask后端)
+    // 测试环境: http://47.111.141.55:5001/api/v2
+    // 生产环境: https://ajppt.cn/linshe/api/v2
+    apiBaseUrl: 'https://ajppt.cn/linshe/api/v2',
     token: null
   },
 

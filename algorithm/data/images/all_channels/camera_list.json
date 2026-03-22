@@ -1,0 +1,909 @@
+{
+  "timestamp": "2026-03-12T15:06:58.620336",
+  "totalDevices": 5,
+  "totalCameras": 100,
+  "captured": 100,
+  "failed": 0,
+  "cameras": [
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 1,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFoPbBCZr4jj15FctG07mY4y7IK.jpg?Expires=1773385389&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=4jRzv4oi1%2FZcOXnfKLFHx7%2FOwt4%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch1_20260312_150307.jpg",
+      "timestamp": "20260312_150307",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 2,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFoa5hqBaBpG2kcGlMSyfiqOBml.jpg?Expires=1773385395&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=t3qmhgcdNSyo1%2FnPjOhJ%2F3uSKNA%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch2_20260312_150312.jpg",
+      "timestamp": "20260312_150312",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 3,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFoee9VAnQpw7KVk7b6wWBtQoX9.jpg?Expires=1773385397&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=gXwxC35l5vBzJLYois%2B2qAlbNIw%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch3_20260312_150315.jpg",
+      "timestamp": "20260312_150315",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 4,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFoiyqQXmDxMGYjkzpb1tcYqUem.jpg?Expires=1773385399&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=9JgzZQDA0DJaNNdq7njBqd2lypI%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch4_20260312_150317.jpg",
+      "timestamp": "20260312_150317",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 5,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFonJ9IFysbxNp9Uef6TXZwKCJZ.jpg?Expires=1773385401&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=krBmjDHiLHfDQ6Va2mk6vW614bc%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch5_20260312_150319.jpg",
+      "timestamp": "20260312_150319",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 6,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFos4MAXbhDhURY6fNyF6p617JD.jpg?Expires=1773385403&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=nKLLVqZHkKEqaFeRQ7OnK3bFj8c%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch6_20260312_150321.jpg",
+      "timestamp": "20260312_150321",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 7,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFow6SEyiwtzMcRCBGmkoroOEqm.jpg?Expires=1773385405&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=wT%2BtuzKVtpi6ggjqeByAQg8OTqs%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch7_20260312_150323.jpg",
+      "timestamp": "20260312_150323",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 8,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFp0RTMoYWBHW5Hqscc9a5JsL0Q.jpg?Expires=1773385408&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=blBMEQIV2qwgDgtmm5NeBvcpSEk%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch8_20260312_150325.jpg",
+      "timestamp": "20260312_150325",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 9,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFp6xoldy6BQMlxwYW4S8K8Io6m.jpg?Expires=1773385411&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=aUVrR%2BEl%2FFD5PmpQGfKDZapZjrA%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch9_20260312_150329.jpg",
+      "timestamp": "20260312_150329",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 10,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFpBL7HKlsi4rikbq1h23laWaFn.jpg?Expires=1773385413&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=EJlHeENRRwrFLUNJMueuT9F7XcY%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch10_20260312_150331.jpg",
+      "timestamp": "20260312_150331",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 11,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFpFi7aPTTDZX261jSkBL050xEa.jpg?Expires=1773385415&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=tWm4uBkOj6T8VCIyRF9rWomksWU%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch11_20260312_150333.jpg",
+      "timestamp": "20260312_150333",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 12,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFpNOzyvVr04wiWHXcZfGONcblo.jpg?Expires=1773385419&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=oBgptk7JqtzVcoGHV7z1BdUPLEA%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch12_20260312_150337.jpg",
+      "timestamp": "20260312_150337",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 13,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFpRpXp7lWoTJtifFSp6kh7sCcT.jpg?Expires=1773385421&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=%2BFF%2BGtDMuCcubXQA086J%2F7qWOZo%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch13_20260312_150339.jpg",
+      "timestamp": "20260312_150339",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 14,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFpW32TdNbFRGL8wvV9L9DhfYGu.jpg?Expires=1773385423&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=55Lj0iOlSjAOb3tljyvcQK5voMQ%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch14_20260312_150341.jpg",
+      "timestamp": "20260312_150341",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 15,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFpaZNoDjXwP7KblGfXSSAvFHTj.jpg?Expires=1773385425&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=LKzgVrVlh2Rqbc3wjj289%2FWMLBY%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch15_20260312_150343.jpg",
+      "timestamp": "20260312_150343",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 16,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFpenvo7RlbxQkpD2UKrqCh5uFh.jpg?Expires=1773385427&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=bzUjNnGBqdDBzuCYbHVaoB5NcQk%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch16_20260312_150345.jpg",
+      "timestamp": "20260312_150345",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 17,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFpllXIptC8nZPNavmu90kVodkq.jpg?Expires=1773385431&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=an0orXvjCeQAnBquA6FdFedKMtY%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch17_20260312_150349.jpg",
+      "timestamp": "20260312_150349",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 18,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFpqJYZ2CbLmiRdaoctLTSO5ByR.jpg?Expires=1773385433&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=EOljl9nYR7Y1Q62TRNSSKwcPXXs%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch18_20260312_150351.jpg",
+      "timestamp": "20260312_150351",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 19,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFpukoxSJDhDXy370MMsWkObxfw.jpg?Expires=1773385435&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=YMVYL3yU%2F9jjC8iKc0UOk8QnyXo%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch19_20260312_150353.jpg",
+      "timestamp": "20260312_150353",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GF6830765",
+      "deviceName": "2区母麝圈",
+      "channelNo": 20,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFq3ltyhH8qMnmgmHkWvrN3gcrN.jpg?Expires=1773385440&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=9HogNCxyzLc%2FjvtuFR9c0A%2FTQbM%3D",
+      "localPath": "algorithm/data/images/all_channels/GF6830765_ch20_20260312_150358.jpg",
+      "timestamp": "20260312_150358",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 1,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFq8NHLmU8Xx3QcwtYfYAPge8pR.jpg?Expires=1773385442&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=0I6aBxu6TrmiYbgifHZSMI%2F70XI%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch1_20260312_150400.jpg",
+      "timestamp": "20260312_150400",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 2,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFqDIr7aTcwWrmffrlbpBp4zVGJ.jpg?Expires=1773385445&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=KuxC6JgUT3AjqaVcb6%2BfzmvrVic%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch2_20260312_150404.jpg",
+      "timestamp": "20260312_150404",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 3,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFqLpTse1PR1afFejYHdoaOoxSh.jpg?Expires=1773385449&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=ZIXdaNLUAhSKo%2FMJjj3YN8HA5aU%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch3_20260312_150406.jpg",
+      "timestamp": "20260312_150406",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 4,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFqQFG0j5fU0cCXBqgJI7UGE04D.jpg?Expires=1773385451&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=QDl3NSG6Xzhpoq7y%2FbDrnqFJQgA%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch4_20260312_150409.jpg",
+      "timestamp": "20260312_150409",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 5,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFqUeFQs5xjpYycM3JW2zwKP9ao.jpg?Expires=1773385453&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=q2shrvhFfXKaQW87BBSeEyIr5yM%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch5_20260312_150411.jpg",
+      "timestamp": "20260312_150411",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 6,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFqYYHECVnKqXQXBNbEQP2bkbGQ.jpg?Expires=1773385455&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=jnIzabdOFuLbfAKEcLwN8zsRoNw%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch6_20260312_150413.jpg",
+      "timestamp": "20260312_150413",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 7,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFqccMiOKSSTn5Wmp4xcO2RQuf8.jpg?Expires=1773385457&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=bBn86vjkZ1MdeMAbPeDsol3d1xA%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch7_20260312_150415.jpg",
+      "timestamp": "20260312_150415",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 8,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFqgLmoCwWFiUyBtahl8ZcNNN6V.jpg?Expires=1773385459&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=I6g0%2BuQqnMNDl21NbRijLUVymfk%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch8_20260312_150417.jpg",
+      "timestamp": "20260312_150417",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 9,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFqkB97So5G6FgKPm2VbYffEZbO.jpg?Expires=1773385461&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=wUd09G25UxhsZRRB1jFOmLq7qqQ%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch9_20260312_150418.jpg",
+      "timestamp": "20260312_150418",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 10,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFqoVaNCNWdvlhi6RiImoqIO580.jpg?Expires=1773385463&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=Z1We2BW6%2BLEEkmgfWc97D5NAcuA%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch10_20260312_150422.jpg",
+      "timestamp": "20260312_150422",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 11,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFquF7o3ahVYbZUFOIvec8B6xRA.jpg?Expires=1773385466&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=HgwKJsPGgBPM5tnQqFFWQtHu8Y8%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch11_20260312_150424.jpg",
+      "timestamp": "20260312_150424",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 12,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFqynXMLVl2D5Wxaql8HsXoGYKv.jpg?Expires=1773385468&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=iUco9NV9zFyDKn%2FdHNctN9g%2B%2BYE%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch12_20260312_150426.jpg",
+      "timestamp": "20260312_150426",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 13,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFr38UWEJFzURAftoAJ72oZYq7f.jpg?Expires=1773385470&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=Pj9PRBNXDtfbkBMobfFitZukBwc%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch13_20260312_150428.jpg",
+      "timestamp": "20260312_150428",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 14,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFr7B255UwmKdbir5pWlgUsGN6Y.jpg?Expires=1773385472&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=B2hbwFwz3i5C0EI7sTJGs7v%2B800%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch14_20260312_150430.jpg",
+      "timestamp": "20260312_150430",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 15,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFrB2Pua7AcyPQeFrrh7ZJEqi3B.jpg?Expires=1773385474&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=Cy0BMOmdz8vYKSL3J4oYc04Ao04%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch15_20260312_150432.jpg",
+      "timestamp": "20260312_150432",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 16,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFrEzCwUsNf55vAkgOjMy2ZzxyG.jpg?Expires=1773385476&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=9qIENWwHDhYrIwseYqwdF4t52LM%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch16_20260312_150434.jpg",
+      "timestamp": "20260312_150434",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 17,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFrIuhCZPjQKNcWROfLr0Z4XZTc.jpg?Expires=1773385478&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=XA4MwknZ5TvSkQ5xhLhqFp6E19o%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch17_20260312_150436.jpg",
+      "timestamp": "20260312_150436",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 18,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFrN6u6L27ZhSanGYzm1Ykq5HR4.jpg?Expires=1773385480&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=Kxsinu%2BDk7q46W36fIADKjmJ2Z0%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch18_20260312_150438.jpg",
+      "timestamp": "20260312_150438",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 19,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFrRIaCzeqvZu2qM1C11DmSTjyW.jpg?Expires=1773385482&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=85%2B7xqnI8JBY3EnL%2BBqdgysYWi8%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch19_20260312_150440.jpg",
+      "timestamp": "20260312_150440",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "GG3425740",
+      "deviceName": "2区公麝圈",
+      "channelNo": 20,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFrVgvhu2nlCfOUGMcEoveDRxAY.jpg?Expires=1773385484&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=A1T7D8gNl1viT5bmYA9hzwlY8%2Fo%3D",
+      "localPath": "algorithm/data/images/all_channels/GG3425740_ch20_20260312_150442.jpg",
+      "timestamp": "20260312_150442",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 1,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFrZUhD3BlikjudHZ3M1m1HX7df.jpg?Expires=1773385486&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=l1QMZLe58Vs%2F6UPbkxwrFhTwZN0%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch1_20260312_150444.jpg",
+      "timestamp": "20260312_150444",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 2,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFre2gH2deE8VkktOOMxwn1O3b8.jpg?Expires=1773385489&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=lrZlwvr0gF0FjafnosxgDJqO6F0%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch2_20260312_150446.jpg",
+      "timestamp": "20260312_150446",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 3,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFripWn9wcRGgNWHQeS3CkAfOEK.jpg?Expires=1773385491&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=upgxH1oI5lQtXzvba6kOpDIP6bA%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch3_20260312_150448.jpg",
+      "timestamp": "20260312_150448",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 4,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFrnKh5jCCAFFeGiMQgu1iCdYGs.jpg?Expires=1773385493&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=76BcKM5w3qPoOiRs2gcAXXIT0p0%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch4_20260312_150451.jpg",
+      "timestamp": "20260312_150451",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 5,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFrrvxwWAHL1bUF66R5JXXiTh6o.jpg?Expires=1773385496&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=wH5ZUpwM%2FT9vXPBUXvR%2Frh2EzLo%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch5_20260312_150453.jpg",
+      "timestamp": "20260312_150453",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 6,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFrwOAPk6rGFbRIZU7LKbeCPjBB.jpg?Expires=1773385497&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=Dz%2FE0m4KK%2B7OdZRVkzIQwddSOIQ%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch6_20260312_150455.jpg",
+      "timestamp": "20260312_150455",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 7,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFs0HGltKrD4Nbx7fJ1GPbSlqbV.jpg?Expires=1773385500&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=zqknaRgr%2B7I77%2BiTllLXdrnXqjQ%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch7_20260312_150457.jpg",
+      "timestamp": "20260312_150457",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 8,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFs510LwnMPVGsBd2ncd7pJAXXq.jpg?Expires=1773385502&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=94D5SMF0%2FV29mxrBpoYN0ELUPCE%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch8_20260312_150459.jpg",
+      "timestamp": "20260312_150459",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 9,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFs94GjoQAOINLzV31iMYZv1CTe.jpg?Expires=1773385504&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=deTAaojE8Uvlj8%2F4V5rlGkB5jC8%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch9_20260312_150501.jpg",
+      "timestamp": "20260312_150501",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 10,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFsD6vpApjjOzkfzsU1PflGY2vR.jpg?Expires=1773385506&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=vDXVdz%2F%2Fvrx3zet5lIk2Jur3ZZs%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch10_20260312_150504.jpg",
+      "timestamp": "20260312_150504",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 11,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFsIGTV76PE2YqqhUpy6E9QAtga.jpg?Expires=1773385508&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=7MR%2FWiozpRb9KvZml5c%2Bz1PDOnw%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch11_20260312_150506.jpg",
+      "timestamp": "20260312_150506",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 12,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFsNLu3qhWmiQlLF9M3vO9rc8Ld.jpg?Expires=1773385511&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=0GD%2BaEW6QPQhg4EcFniltQlYZqQ%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch12_20260312_150508.jpg",
+      "timestamp": "20260312_150508",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 13,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFsRB4ZB2LxjCL79niTPk30OKWN.jpg?Expires=1773385513&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=RbJuBF0%2FcdSaR6WUix35f3j7VFk%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch13_20260312_150510.jpg",
+      "timestamp": "20260312_150510",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 14,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFsUv2PP5xgUqxZa6uAt81GwuPP.jpg?Expires=1773385514&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=X5sOP7dHthBJgl909zvHg1KCZjw%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch14_20260312_150512.jpg",
+      "timestamp": "20260312_150512",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 15,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFsYIj0Zjvp0iWoZiKLVEnng0EP.jpg?Expires=1773385516&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=uJGXePxXJD72BtzBfW86XJxFHpI%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch15_20260312_150514.jpg",
+      "timestamp": "20260312_150514",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 16,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFscq1yCAeLJ6QjBeC6ILFRvmKo.jpg?Expires=1773385519&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=0tGnnZrQLZjRNqyoWe%2BEPGAhoMM%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch16_20260312_150516.jpg",
+      "timestamp": "20260312_150516",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 17,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFshUl32bf93px8D6IMUMKIq5hk.jpg?Expires=1773385521&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=kSB9e%2BF7NrlS8s7K1YAjpONaBII%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch17_20260312_150518.jpg",
+      "timestamp": "20260312_150518",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 18,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFslQkdhzc6QwFFrB1iW4hEIpPI.jpg?Expires=1773385523&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=9SdmZSorivg5D2Vs%2BfI5Y%2F1dRXY%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch18_20260312_150520.jpg",
+      "timestamp": "20260312_150520",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 19,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFsoxlymauyG776jLqFviMNzG9V.jpg?Expires=1773385524&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=tX4BHzZvHoaM3cji4nUAuTQQm78%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch19_20260312_150522.jpg",
+      "timestamp": "20260312_150522",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FU7533003",
+      "deviceName": "1区A1侧✕共同区域",
+      "channelNo": 20,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFsu5c7jXSHxhMRamaNWdQ93Ps6.jpg?Expires=1773385527&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=GPhC25Gf0pD1Y63y9b2M2EtNCIc%3D",
+      "localPath": "algorithm/data/images/all_channels/FU7533003_ch20_20260312_150525.jpg",
+      "timestamp": "20260312_150525",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 1,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFsy9cLK2ahwXnUYcIuBRvV4cDZ.jpg?Expires=1773385529&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=OqJf6T%2FUt6d8oawsL%2BlL6msrpuk%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch1_20260312_150527.jpg",
+      "timestamp": "20260312_150527",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 2,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFt2Sc70oaM9RpM5fQCg8EuwFri.jpg?Expires=1773385531&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=wD5zXEnIfedqvAcpwzYWbxoA8yU%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch2_20260312_150529.jpg",
+      "timestamp": "20260312_150529",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 3,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFt6QXbGj087YrUcB5DsUHrohIZ.jpg?Expires=1773385533&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=sQOmo0jXO7ZGG814%2B2VXiRfLliE%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch3_20260312_150531.jpg",
+      "timestamp": "20260312_150531",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 4,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFtAFPadfziRx5OhoJNEMyN0RBQ.jpg?Expires=1773385535&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=w0zSP%2BEsxohxZmjYc5B7xro3iUk%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch4_20260312_150533.jpg",
+      "timestamp": "20260312_150533",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 5,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFtEKiEsIigkbTQoFokEPTnd56d.jpg?Expires=1773385537&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=NQpcGgwOGJo%2F7ou0Nt8ZIUIvnC4%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch5_20260312_150534.jpg",
+      "timestamp": "20260312_150534",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 6,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFtILwtjQ9S1qDEc98A8ppiOYlD.jpg?Expires=1773385539&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=wzI1pX7huYyOGOUnWFSn9TxMJuA%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch6_20260312_150537.jpg",
+      "timestamp": "20260312_150537",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 7,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFtMH7vfZUC6zGZOgThNLwp9kUo.jpg?Expires=1773385541&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=JYQIEf0XHRaiAj%2FXBgbzlTag%2Fkw%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch7_20260312_150538.jpg",
+      "timestamp": "20260312_150538",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 8,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFtPytHgUX1m7Z91iD9mjTrTdf8.jpg?Expires=1773385543&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=9sCFh2BbZ5aApLxTrMJm%2B8wF0Fo%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch8_20260312_150540.jpg",
+      "timestamp": "20260312_150540",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 9,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFtTkLE8gh8OArUKQMFj6iA078j.jpg?Expires=1773385545&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=eCCA31tbkemGDwT5bVef%2FrvNhK4%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch9_20260312_150542.jpg",
+      "timestamp": "20260312_150542",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 10,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFtYGnth9VOf5Zx41i8ZEubHsBN.jpg?Expires=1773385547&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=ZScFa61byjahiDJNHFO%2FAtjXVkE%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch10_20260312_150545.jpg",
+      "timestamp": "20260312_150545",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 11,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFtgSJYpbjIuHTDwnPx3NvChFIO.jpg?Expires=1773385551&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=A63pGyI9yB0tEj1%2BohhATR6ukWw%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch11_20260312_150549.jpg",
+      "timestamp": "20260312_150549",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 12,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFtkp4bWZ4gAFYYRpGTsRKVv5Bk.jpg?Expires=1773385553&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=7877sLfCcLqVRZ8mMK%2Frt6LRH2M%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch12_20260312_150551.jpg",
+      "timestamp": "20260312_150551",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 13,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFtobt0NmYuksgVVzgQsIWTqpoK.jpg?Expires=1773385555&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=Z6XZpPJxuHfwKQMHsrHB2mZ0fkA%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch13_20260312_150552.jpg",
+      "timestamp": "20260312_150552",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 14,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFtsWduz7pnKSdQeOmB3djLCaSx.jpg?Expires=1773385557&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=UhwEXqFK%2B76ZIpvg0X7W4lXzi%2Fo%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch14_20260312_150554.jpg",
+      "timestamp": "20260312_150554",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 15,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFtwVBmN9boA6tfMtvrAVlSVQKn.jpg?Expires=1773385559&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=3p24diNDxvze3wrzZJEHjzEG7GY%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch15_20260312_150556.jpg",
+      "timestamp": "20260312_150556",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 16,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFu0HGzX7ZEsIsBV5MFEo6mGaAE.jpg?Expires=1773385560&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=WGcMUUgTuEQt3TYFxeBG1mYQAPY%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch16_20260312_150558.jpg",
+      "timestamp": "20260312_150558",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 17,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFu4DRlA4hY1f0qZ7eFFtUwJeDA.jpg?Expires=1773385562&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=i6MwUOBvQM66LwWfDyZShkO2UQA%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch17_20260312_150602.jpg",
+      "timestamp": "20260312_150602",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 18,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFuBdRIPUb018Qz9rvUgMkbl8Tr.jpg?Expires=1773385566&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=WZCixJ8mwN%2BS%2Fk9bkzqa2YovZjA%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch18_20260312_150604.jpg",
+      "timestamp": "20260312_150604",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 19,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFuGVPgJ2eT5tK3vB7VtrH3UiYM.jpg?Expires=1773385568&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=yCwpNKa4eic9ikFn6jAFTj6KcrQ%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch19_20260312_150606.jpg",
+      "timestamp": "20260312_150606",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT3193224",
+      "deviceName": "1区A1侧",
+      "channelNo": 20,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFuKMOGanJz8LjImMTzmYUPOx4d.jpg?Expires=1773385571&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=fkgN4vcj7uFxnJ%2BPQ%2BYHeBa7VjE%3D",
+      "localPath": "algorithm/data/images/all_channels/FT3193224_ch20_20260312_150608.jpg",
+      "timestamp": "20260312_150608",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 1,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFuOfkYV6K1gsDC98VLT8ktNDJI.jpg?Expires=1773385573&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=5bFEjOxKCUrq01wAjwkz4Qc8QKA%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch1_20260312_150610.jpg",
+      "timestamp": "20260312_150610",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 2,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFuSyF3DVqjI8JtVM24b7F4iMvY.jpg?Expires=1773385575&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=Ipz8ke9%2BAHCZWGjCk8rDOzyJERU%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch2_20260312_150613.jpg",
+      "timestamp": "20260312_150613",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 3,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFuX0RzESBAMLT7IwJtNI9t0DvB.jpg?Expires=1773385577&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=HpHkR%2FSvA9tfuQjqlA1nCO3Ij80%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch3_20260312_150617.jpg",
+      "timestamp": "20260312_150617",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 4,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFufVeQHT0kVKZ6CSCFfzAEOyC1.jpg?Expires=1773385581&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=9FYGKWNx5e6ZKDy60sNNUF9WCSc%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch4_20260312_150619.jpg",
+      "timestamp": "20260312_150619",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 5,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFujHlB9zDUkYt2SsESGRPc6Reb.jpg?Expires=1773385583&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=Z%2FqbuX0%2FBwoAnXKAWcOiZ3S8sK4%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch5_20260312_150621.jpg",
+      "timestamp": "20260312_150621",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 6,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFuniJc4y2NAKfZXIt4wxi7fniN.jpg?Expires=1773385585&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=4re3R36YJvTxD5PEVIFMNrmN9iA%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch6_20260312_150623.jpg",
+      "timestamp": "20260312_150623",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 7,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFurb8VgCO5mSKH2mnFJMfX2qyc.jpg?Expires=1773385587&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=wCMCWHLK%2BbxgAvJTXp8Wtt%2FaprQ%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch7_20260312_150626.jpg",
+      "timestamp": "20260312_150626",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 8,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFuxjrgkLF2D0VTfmmjjSXGKU3Z.jpg?Expires=1773385590&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=tnNid4pVS67GevrnL7P3Ex7qYuk%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch8_20260312_150628.jpg",
+      "timestamp": "20260312_150628",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 9,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFv25Kf0S7OuHJjIQLSIk3yYonT.jpg?Expires=1773385592&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=EyVvtG9%2BPMGVZ%2BE%2FecZAAeJuF7g%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch9_20260312_150630.jpg",
+      "timestamp": "20260312_150630",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 10,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFv6oGgw6tLMU9QOpNGtqMfqNY0.jpg?Expires=1773385595&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=4v6V8vyulEed15KJeOLoYS7XtMQ%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch10_20260312_150632.jpg",
+      "timestamp": "20260312_150632",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 11,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFvBdfhxCxMlqtl5mDq2bJTuVkN.jpg?Expires=1773385597&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=rxFXYYzrMtr65D%2FS22kUOdotSFQ%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch11_20260312_150635.jpg",
+      "timestamp": "20260312_150635",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 12,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFvG1OOTqkEtt6THtxbzre7mCiP.jpg?Expires=1773385599&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=1YsRt3qEWNt6p1xOeQCFVjMCkZQ%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch12_20260312_150637.jpg",
+      "timestamp": "20260312_150637",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 13,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFvK9IbrZOPjnNCArj6fEy6je3X.jpg?Expires=1773385601&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=ZiFBF0dONDI0B9Zt%2F5VR7TQ9M68%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch13_20260312_150639.jpg",
+      "timestamp": "20260312_150639",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 14,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFvP6PJjPFWiok6D3RoFuloiN2Z.jpg?Expires=1773385603&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=ZC9xLZL7W0Bp0kZePSPHvfe748s%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch14_20260312_150641.jpg",
+      "timestamp": "20260312_150641",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 15,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFvT7QoTx5au3XZUV5e2q2gE5Es.jpg?Expires=1773385605&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=ir62egpoB9B5nvLgZtcEc9N2uuY%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch15_20260312_150643.jpg",
+      "timestamp": "20260312_150643",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 16,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFvXfccamEIkCecVZQ4yhRcRXWP.jpg?Expires=1773385608&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=AZhg7VfkyNx8Be%2B5%2B2iW1yiqIgs%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch16_20260312_150645.jpg",
+      "timestamp": "20260312_150645",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 17,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFvinFCd0jBmDvWltDUb0MXsadr.jpg?Expires=1773385613&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=%2FkuwN3ir2C1%2FLaZyBVXB%2BSamXcs%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch17_20260312_150651.jpg",
+      "timestamp": "20260312_150651",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 18,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFvnLSHFJ1Qz4cLwZ0H4Z0nRVpY.jpg?Expires=1773385615&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=3cgZZ7txlUg0r2OPqN%2F0rAb7YJ8%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch18_20260312_150653.jpg",
+      "timestamp": "20260312_150653",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 19,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFvrOyzQOZBgWefzS0iXHG0ETUf.jpg?Expires=1773385618&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=HpNulh%2Fey1E2MWvZDpDRL%2FmQPUU%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch19_20260312_150655.jpg",
+      "timestamp": "20260312_150655",
+      "status": "success"
+    },
+    {
+      "deviceSerial": "FT4704701",
+      "deviceName": "1区A2侧",
+      "channelNo": 20,
+      "captureUrl": "https://opencapture.ys7.com/opst/1/open_capture/3/003vFFvvxRgnkfCYrJjZTfjF7RlHqen.jpg?Expires=1773385620&OSSAccessKeyId=LTAI5tA737AgARqFm7DvPmwS&Signature=GGnNDS8hgrdN3%2FqUuFAk%2FBBbNf0%3D",
+      "localPath": "algorithm/data/images/all_channels/FT4704701_ch20_20260312_150657.jpg",
+      "timestamp": "20260312_150657",
+      "status": "success"
+    }
+  ]
+}
