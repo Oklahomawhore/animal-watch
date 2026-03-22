@@ -1,0 +1,299 @@
+<!-- pages/animal-detail/animal-detail.wxml -->
+<view class="container">
+  <!-- 加载状态 -->
+  <view class="loading-mask" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text>加载中...</text>
+  </view>
+
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <view class="back-btn" bindtap="goBack">
+      <text class="icon">←</text>
+    </view>
+    <text class="page-title">动物详情</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 基础信息栏 -->
+  <view class="animal-header" wx:if="{{animalInfo}}">
+    <view class="animal-avatar">
+      <image src="{{animalInfo.photo}}" mode="aspectFill" />
+      <view class="health-badge {{animalInfo.healthStatus}}">
+        {{animalInfo.healthStatusText}}
+      </view>
+    </view>
+    <view class="animal-basic-info">
+      <view class="name-row">
+        <text class="name">{{animalInfo.name}}</text>
+        <text class="gender">{{animalInfo.genderText}}</text>
+      </view>
+      <view class="meta-row">
+        <text class="ear-tag">{{animalInfo.earTag}}</text>
+        <text class="divider">|</text>
+        <text class="age">{{animalInfo.ageText}}</text>
+      </view>
+      <view class="shed-info">
+        <text class="icon">🏠</text>
+        <text>{{animalInfo.shedName}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 每日数据看板 -->
+  <view class="dashboard-section" wx:if="{{animalInfo}}">
+    <view class="section-title">今日数据</view>
+    <view class="dashboard-grid">
+      <!-- 活动评分 -->
+      <view class="dashboard-card activity">
+        <view class="card-header">
+          <text class="icon">🏃</text>
+          <text class="label">活动评分</text>
+        </view>
+        <view class="card-body">
+          <text class="value">{{dashboard.activityScore}}</text>
+          <text class="unit">分</text>
+        </view>
+        <view class="card-footer">
+          <text class="status {{dashboard.activityScore >= 80 ? 'good' : dashboard.activityScore >= 60 ? 'normal' : 'warning'}}">
+            {{dashboard.activityLevel}}
+          </text>
+        </view>
+      </view>
+
+      <!-- 吃料剩余 -->
+      <view class="dashboard-card feed">
+        <view class="card-header">
+          <text class="icon">🌿</text>
+          <text class="label">吃料剩余</text>
+        </view>
+        <view class="card-body">
+          <text class="value">{{dashboard.feedRemaining}}</text>
+          <text class="unit">%</text>
+        </view>
+        <view class="card-footer">
+          <text class="status {{dashboard.feedRemaining <= 15 ? 'good' : dashboard.feedRemaining <= 30 ? 'normal' : 'warning'}}">
+            {{dashboard.feedRemaining <= 15 ? '正常' : '剩料较多'}}
+          </text>
+        </view>
+      </view>
+
+      <!-- 喝水量 -->
+      <view class="dashboard-card water">
+        <view class="card-header">
+          <text class="icon">💧</text>
+          <text class="label">喝水量</text>
+        </view>
+        <view class="card-body">
+          <text class="value">{{dashboard.waterIntake}}</text>
+          <text class="unit">L</text>
+        </view>
+        <view class="card-footer">
+          <text class="status {{dashboard.waterIntake >= 2 ? 'good' : 'warning'}}">
+            {{dashboard.waterIntake >= 2 ? '正常' : '偏少'}}
+          </text>
+        </view>
+      </view>
+
+      <!-- 进食次数 -->
+      <view class="dashboard-card eating">
+        <view class="card-header">
+          <text class="icon">🍽️</text>
+          <text class="label">进食次数</text>
+        </view>
+        <view class="card-body">
+          <text class="value">{{dashboard.eatingTimes}}</text>
+          <text class="unit">次</text>
+        </view>
+        <view class="card-footer">
+          <text class="status {{dashboard.eatingTimes >= 3 ? 'good' : 'warning'}}">
+            {{dashboard.eatingTimes >= 3 ? '正常' : '偏少'}}
+          </text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 活动趋势图表 -->
+  <view class="chart-section">
+    <view class="section-header">
+      <text class="section-title">活动趋势</text>
+      <view class="time-range-tabs">
+        <text class="tab {{timeRange === 'week' ? 'active' : ''}}" 
+              bindtap="switchTimeRange" data-range="week">周</text>
+        <text class="tab {{timeRange === 'month' ? 'active' : ''}}" 
+              bindtap="switchTimeRange" data-range="month">月</text>
+      </view>
+    </view>
+    <view class="chart-container">
+      <ec-canvas id="activity-chart" canvas-id="activity-chart" ec="{{ec}}"></ec-canvas>
+    </view>
+  </view>
+
+  <!-- 标签页切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === 'overview' ? 'active' : ''}}" 
+          bindtap="switchTab" data-tab="overview">
+      <text>概览</text>
+    </view>
+    <view class="tab-item {{activeTab === 'medical' ? 'active' : ''}}" 
+          bindtap="switchTab" data-tab="medical">
+      <text>诊疗记录</text>
+      <text class="badge" wx:if="{{medicalRecords.length > 0}}">{{medicalRecords.length}}</text>
+    </view>
+    <view class="tab-item {{activeTab === 'feeding' ? 'active' : ''}}" 
+          bindtap="switchTab" data-tab="feeding">
+      <text>饲养记录</text>
+    </view>
+  </view>
+
+  <!-- 概览内容 -->
+  <view class="tab-content" wx:if="{{activeTab === 'overview'}}">
+    <!-- 诊疗记录摘要 -->
+    <view class="section" wx:if="{{medicalRecords.length > 0}}">
+      <view class="section-header">
+        <text class="section-title">诊疗记录</text>
+        <text class="more" bindtap="switchTab" data-tab="medical">查看全部 ></text>
+      </view>
+      <view class="medical-summary-list">
+        <view class="medical-summary-item {{record.status}}" wx:for="{{medicalRecords}}" wx:key="id" wx:for-item="record">
+          <view class="summary-header">
+            <text class="diagnosis">{{record.diagnosis}}</text>
+            <text class="status-tag {{record.status}}">{{record.statusText}}</text>
+          </view>
+          <view class="medicine-preview">
+            <text wx:for="{{record.medicines}}" wx:key="index" wx:for-item="med">
+              {{med.name}} {{med.dosage}}
+            </text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 饲养记录摘要 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">今日饲养</text>
+        <text class="more" bindtap="switchTab" data-tab="feeding">查看全部 ></text>
+      </view>
+      <view class="feeding-preview">
+        <view class="preview-item">
+          <text class="label">已完成</text>
+          <text class="value completed">{{feedingRecords.today.filter(item => item.completed).length}} 项</text>
+        </view>
+        <view class="preview-item">
+          <text class="label">待完成</text>
+          <text class="value pending">{{feedingRecords.today.filter(item => !item.completed).length}} 项</text>
+        </view>
+        <view class="preview-item">
+          <text class="label">明日计划</text>
+          <text class="value">{{feedingRecords.tomorrow.length}} 项</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 诊疗记录内容 -->
+  <view class="tab-content" wx:if="{{activeTab === 'medical'}}">
+    <view class="medical-list">
+      <view class="medical-card {{record.status}}" wx:for="{{medicalRecords}}" wx:key="id" wx:for-item="record">
+        <view class="card-header">
+          <view class="diagnosis-title">
+            <text class="icon">💊</text>
+            <text class="text">{{record.diagnosis}}</text>
+          </view>
+          <text class="status-badge {{record.status}}">{{record.statusText}}</text>
+        </view>
+        
+        <view class="medicine-list">
+          <view class="medicine-item" wx:for="{{record.medicines}}" wx:key="index" wx:for-item="med">
+            <view class="med-icon">💉</view>
+            <view class="med-info">
+              <text class="name">{{med.name}}</text>
+              <text class="dosage">{{med.dosage}}</text>
+            </view>
+          </view>
+        </view>
+        
+        <view class="card-footer">
+          <view class="info-item">
+            <text class="label">剩余:</text>
+            <text class="value {{record.remainingDays <= 3 ? 'urgent' : ''}}">{{record.remainingDays}}天</text>
+          </view>
+          <view class="info-item">
+            <text class="label">兽医:</text>
+            <text class="value">{{record.veterinarian}}</text>
+          </view>
+        </view>
+        
+        <view class="notes" wx:if="{{record.notes}}">
+          <text class="label">备注:</text>
+          <text class="text">{{record.notes}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{medicalRecords.length === 0}}">
+      <text class="icon">💊</text>
+      <text class="text">暂无诊疗记录</text>
+    </view>
+  </view>
+
+  <!-- 饲养记录内容 -->
+  <view class="tab-content" wx:if="{{activeTab === 'feeding'}}">
+    <!-- 今日已完成 -->
+    <view class="section" wx:if="{{feedingRecords.today.length > 0}}">
+      <view class="section-title">今日已完成 ✓</view>
+      <view class="record-list">
+        <view class="record-item completed" wx:for="{{feedingRecords.today}}" wx:key="id" wx:for-item="record" wx:if="{{record.completed}}">
+          <view class="checkbox checked">✓</view>
+          <view class="record-content">
+            <text class="text">{{record.content}}</text>
+            <text class="meta">{{record.completedBy}} · {{record.completedAt}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 今日待办 -->
+    <view class="section" wx:if="{{feedingRecords.today.filter(r => !r.completed).length > 0}}">
+      <view class="section-title">今日待办 ☐</view>
+      <view class="record-list">
+        <view class="record-item pending" wx:for="{{feedingRecords.today}}" wx:key="id" wx:for-item="record" wx:if="{{!record.completed}}">
+          <view class="checkbox" bindtap="toggleRecordComplete" data-record-id="{{record.id}}" data-completed="{{record.completed}}"></view>
+          <view class="record-content">
+            <text class="text">{{record.content}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 明日计划 -->
+    <view class="section" wx:if="{{feedingRecords.tomorrow.length > 0}}">
+      <view class="section-title">明日计划 📅</view>
+      <view class="record-list">
+        <view class="record-item future" wx:for="{{feedingRecords.tomorrow}}" wx:key="id" wx:for-item="record">
+          <view class="checkbox disabled">☐</view>
+          <view class="record-content">
+            <text class="text">{{record.content}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{feedingRecords.today.length === 0 && feedingRecords.tomorrow.length === 0}}">
+      <text class="icon">📝</text>
+      <text class="text">暂无饲养记录</text>
+    </view>
+  </view>
+
+  <!-- 底部占位 -->
+  <view class="bottom-spacer"></view>
+</view>
+
+<!-- 悬浮添加按钮 -->
+<view class="fab-button" bindtap="goToAddRecord">
+  <text class="icon">+</text>
+</view>

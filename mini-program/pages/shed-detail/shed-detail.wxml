@@ -104,7 +104,7 @@
         <view class="status-icon">
           <text wx:if="{{item.status === 'good'}}">✅</text>
           <text wx:elif="{{item.status === 'normal'}}">✓</text>
-          <text wx:else">⚠️</text>
+          <text wx:else>⚠️</text>
         </view>
       </view>
     </view>
@@ -121,7 +121,7 @@
         <view class="alert-icon">
           <text wx:if="{{item.level === 'warning'}}">⚠️</text>
           <text wx:elif="{{item.level === 'error'}}">❌</text>
-          <text wx:else">ℹ️</text>
+          <text wx:else>ℹ️</text>
         </view>
         <view class="alert-content">
           <text class="message">{{item.message}}</text>

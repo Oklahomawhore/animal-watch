@@ -1,0 +1,74 @@
+{
+  "global_settings": {
+    "frame_interval": 1.0,
+    "max_fps": 1,
+    "enable_gpu": false,
+    "debug_mode": false,
+    "save_debug_images": false,
+    "debug_image_path": "output/debug"
+  },
+  "cameras": [
+    {
+      "camera_id": "camera_001",
+      "device_serial": "K87324567",
+      "channel_no": 1,
+      "name": "圈舍A-主摄像头",
+      "enabled": true,
+      "roi_regions": [
+        {
+          "name": "食槽区域",
+          "x": 200,
+          "y": 400,
+          "width": 200,
+          "height": 100,
+          "type": "feeding"
+        },
+        {
+          "name": "水盆区域",
+          "x": 800,
+          "y": 400,
+          "width": 150,
+          "height": 80,
+          "type": "water"
+        }
+      ],
+      "detection_threshold": 0.3,
+      "movement_threshold": 10.0,
+      "min_animal_area": 800,
+      "max_animal_area_ratio": 0.3,
+      "event_cooldowns": {
+        "eating": 30,
+        "drinking": 30,
+        "movement": 5,
+        "resting": 60
+      }
+    },
+    {
+      "camera_id": "camera_002",
+      "device_serial": "K87324568",
+      "channel_no": 1,
+      "name": "圈舍B-主摄像头",
+      "enabled": true,
+      "roi_regions": [
+        {
+          "name": "食槽区域",
+          "x": 150,
+          "y": 350,
+          "width": 250,
+          "height": 120,
+          "type": "feeding"
+        }
+      ],
+      "detection_threshold": 0.3,
+      "movement_threshold": 10.0,
+      "min_animal_area": 800,
+      "max_animal_area_ratio": 0.3,
+      "event_cooldowns": {
+        "eating": 30,
+        "drinking": 30,
+        "movement": 5,
+        "resting": 60
+      }
+    }
+  ]
+}

@@ -4,9 +4,9 @@ App({
     userInfo: null,
     // 后端服务地址配置
     // 开发环境: http://localhost:5001/api/v2 (Flask后端)
-    // 测试环境: http://47.111.141.55:5001/api/v2
-    // 生产环境: https://ajppt.cn/linshe/api/v2
-    apiBaseUrl: 'https://ajppt.cn/linshe/api/v2',
+    // 测试环境: http://test-server:5001/api/v2
+    // 生产环境: https://your-domain.com/api/v2
+    apiBaseUrl: 'http://YOUR_SERVER_IP:5001/api/v2',
     token: null
   },
 
